@@ -9,19 +9,15 @@
     <div class="inner-container">
         <div class="row">
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 1} }">
-            <img src="@/assets/img2/avatars/breadnjem.png" class="photo5" alt>
+            <img src="@/assets/img/starbucks_iceamericano.jpg" class="photo5" alt>
             <div class="progress-wrap">
               <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">4,100 Point</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">77% 달성</span>
+                <span class="pr-2 t_black f15 font-weight-700 right">4,100 포인트</span>
               </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
             </div>
             <div style="display: flow-root;">
               <span class="font-weight-700 mb-2" style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;front entertainment</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;스타벅스</span>
             </div>
             <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
               스타벅스의 깔끔한 맛을 자랑하는 커피로, 스타벅스 파트너들이 가장 좋아하는 커피입니다. 
