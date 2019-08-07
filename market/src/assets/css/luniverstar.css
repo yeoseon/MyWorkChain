@@ -163,7 +163,7 @@
 .portfolio-image::after { content: ""; position: absolute;  top: 0;  right: 0;  bottom: 0;  left: 0;  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, .5)), color-stop(50%, transparent), color-stop(63%, transparent), to(rgba(0, 0, 0, .5)));
   background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0, transparent 50%, transparent 63%, rgba(0, 0, 0, .5) 100%);}
 
-.detail-01 { background-image: url('../img2/detail/1.jpg');}
+.detail-01 { background-image: url('../img/starbucks_logo.jpg');}
 .detail-02 { background-image: url('../img2/detail/2.jpg');}
 .detail-03 { background-image: url('../img2/detail/3.jpg');}
 .detail-04 { background-image: url('../img2/detail/4.jpg');}

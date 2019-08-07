@@ -11,7 +11,7 @@
       <div class="pt-5 px-4 px-md-5">
         <div class="py-md-4 py-xl-5 mx-lg-5">
           <div class="portfolio-caption">
-            <div v-if="this.$route.params.idolId == '1'" class="text-tiny t_white font-weight-400">어떤 빵보다 부드러운 목소리,<br>어떤 잼보다 달콤한 목소리.<br>우리가 바로 브레드 앤 잼</div>
+            <div v-if="this.$route.params.idolId == '1'" class="text-tiny t_white font-weight-400">스타벅스의 깔끔한 맛을 자랑하는 커피로,<br>스타벅스 파트너들이<br>가장 좋아하는 커피입니다.</div>
             <div v-else-if="this.$route.params.idolId == '2'" class="text-tiny t_white font-weight-400">신고할까요,<br>우리의 혼인신고.<br>LuniBaas</div>
             <div v-else-if="this.$route.params.idolId == '3'" class="text-tiny t_white font-weight-400">WHEREVER YOU ARE<br>WHEREVER YOU WANT<br>INTERN NET</div>
             <div v-else-if="this.$route.params.idolId == '4'" class="text-tiny t_white font-weight-400">SUPER DEVELOPER<br>SPECIAL PLANNER<br>GONJOY</div>
@@ -31,16 +31,8 @@
             <p v-if="e.id == $route.params.idolId">{{e.desc}}</p>
           </div>
           <div class="layout-guide-box mt-4">
-            <p class="t_blue" style="margin-bottom:10px; line-height: 20px;"> 
-              <span class="f13 font-weight-700">목표 금액</span> &nbsp;
-              <span  v-for="e in content" :key="e.id">
-                <span v-if="e.id == $route.params.idolId">{{e.targetAmount}}</span>
-              </span>
-              <span class="f13 font-weight-700">펀딩기간</span> &nbsp;
-              <span>24일</span>
-            </p>
-            <p class="font-weight-700" style="margin-bottom:5px;"> 목표금액이 모이면 데뷔에 가까워집니다.<br></p>
-            <span>후원해주신 모든 분께 매주 관련 뉴스레터를 보내드립니다.</span>
+            <p class="font-weight-700" style="margin-bottom:5px;"> 유의사항<br></p>
+            <span>매장 별 재고 상황에 따라 구매가 어려운 경우에는 동일 가격 이상의 타 음료로 교환 가능합니다. 정식 판매처 외의 장소나 경로를 통하여 구매하거나 기타의 방법으로 보유하신 포인트는 정상적인 사용이 금지되거나 제한 될 수 있으니 주의 하시기 바랍니다.</span>
           </div>
         </div>
         <div class="flex-box-40" style="margin-left: 80px;">
@@ -48,13 +40,10 @@
             <strong class="t_dgray f15 font-weight-400" v-if="e.id == $route.params.idolId">{{e.message}}</strong>
           </div>
           <div>
-            <strong id="money" class="f24 font-weight-700 mb4" v-bind:value="database">{{database.money}}<span class="f17 font-weight-700">&nbsp;원 펀딩</span></strong>
-          </div>
-          <div>
-            <strong id="money" class="f24 font-weight-700 mb4" v-bind:value="database">{{database.people}}<span class="f17 font-weight-700">&nbsp; 명의 서포터</span></strong>
+            <strong id="money" class="f24 font-weight-700 mb4" v-bind:value="database">4,100<span class="f17 font-weight-700">&nbsp;포인트</span></strong>
           </div>
           <div class="flex" style="margin-top: 15px;">
-            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="fund()">프로젝트 후원하기</button>
+            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="fund()">포인트로 상품구매</button>
             <button type="submit" class="button-normal flex-box-20" v-bind:value="database" style="margin-left: 10px;" v-on:click="like()">
               <i class="fa fa-thumbs-up"></i>&nbsp;{{database.like}}</button>
           </div>
@@ -77,15 +66,14 @@ export default {
       database: {
         money: '100000',
         people: '14',
-        like: '256'
+        like: '256' 
       },
       content: [
         {
           id: '1',
-          name: 'Bread N jem',
-          message: 'Bread N Jem 데뷔 응원 프로젝트에 참여해보세요!',
-          targetAmount: '7,700,000원 ㅣ ',
-          desc: `‘브레드 앤 잼' 브레드, 앤, 잼 3명으로 구성된 혼성 그룹이다. 엄청난 댄스 실력을 겸비한 멤버 구성으로, 데뷔 전 부터 많은 관심을 받고 있다. 아시아를 넘어 북미, 유럽, 남미, 중동까지 진출할 계획을 갖고 있다. 월드 클래스 슈퍼스타가 되겠다는 포부를 갖고있으며 미국 빌보드, 영국 오피셜차트, 일본 오리콘, 아이튠즈, 스포티파이, 애플 뮤직 등 세계 유수의 차트에서 엄청난 성적을 기록할 것이라는 평가까지 나오고 있다.`,
+          name: '아이스 카페아메리카노 Tall',
+          message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
+          desc: `강렬한 에스프레소 샷에 시원한 물의 조화. 풍부하고 진한 농도의 에스프레소에 시원한 정수물을 더하여 스타벅스의 깔끔하고 강렬한 에스프레소를 부드럽지만 시원하게 즐기실 수 있는 커피입니다.`,
         },
         {
           id: '2',

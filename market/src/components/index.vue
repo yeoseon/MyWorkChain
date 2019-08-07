@@ -24,7 +24,8 @@
             </div>
           </router-link>
 
-          <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 2} }">
+          
+          <!-- <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 2} }">
             <img src="@/assets/img2/avatars/lunibaas.png" class="photo5" alt>
             <div class="progress-wrap">
               <div style="display: flow-root">
@@ -122,7 +123,7 @@
             <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
               아침 햇살같이 상큼한 멜로디로 ‘제 2의 아이유'를 꿈꾸고 있는 떠오르는 보컬. 청아한 목소리와 알 수 없는 강인함이 돋보이는 신인이다. 
             </div>
-          </router-link>
+          </router-link> -->
           <div style="height: 80px;"> &nbsp;</div>
         </div>
     </div>

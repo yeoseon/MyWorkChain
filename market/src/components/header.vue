@@ -5,7 +5,7 @@
 
       <div class="navbar-collapse" id="landing-navbar-collapse">
         <div class="navbar-nav align-items-lg-center ml-lg-4">
-          <router-link class="nav-link font-weight-700" :class="{selected: $route.path.indexOf('product') !== -1}" :to="{ name: 'product' }">Product</router-link>
+          <router-link class="nav-link font-weight-700" :class="{selected: $route.path.indexOf('product') !== -1}" :to="{ name: 'product' }">상품</router-link>
         </div>
         <div class="navbar-nav align-items-lg-center ml-auto">
           <div class="nav-item">
