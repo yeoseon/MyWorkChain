@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver;
+package bankware.finlab.myworkchainapp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
