@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<meta name="context-path" th:content="@{/}"/>
+	<!-- include css definitions -->
+	<th:block th:include="include-css"></th:block>
+</head>
+<body>
+	<!-- include javascript libraries definitions -->
+	<th:block th:include="include-script"></th:block>
+	<!-- script -->
+	<th:block th:include="home-js"></th:block>
+	
+	<!-- Contents -->
+	<div class="container">
+		<h2>Welcome to MyWorkChain App !!</h2>
+	</div>
+	<div id='calendar'></div>
+	
+</body>
+</html>
