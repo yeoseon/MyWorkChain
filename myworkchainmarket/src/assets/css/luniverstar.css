@@ -4,6 +4,7 @@
 .column{ display: flex; flex-direction: column !important; }
 .f30 { font-size: 30px; }
 .f24 { font-size: 24px; }
+.f20 { font-size: 20px; }
 .f17 { font-size: 17px; }
 .f15 { font-size: 15px; }
 .f13 { font-size: 13px; }
@@ -148,8 +149,8 @@
 .col-md-3{-webkit-box-flex:0;-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%}
 .col-xl-2{-webkit-box-flex:0;-ms-flex:0 0 16.66667%;flex:0 0 16.66667%;max-width:16.66667%}
 .col-sm-6:hover{  -webkit-transform: scale(1.03); -moz-transform: scale(1.03);  -ms-transform: scale(1.03);  transform: scale(1.03); box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .16); transition: 0.3s; color: black;}
-.col-sm-6:nth-child(1) .progress-wrap .progress-striped .progress-bar { width: 77% !important;}
-.col-sm-6:nth-child(2) .progress-wrap .progress-striped .progress-bar { width: 100% !important; background-color: #F14E4E;}
+.col-sm-6:nth-child(1) .progress-wrap .progress-striped .progress-bar { width: 100% !important; background-color: green;}
+.col-sm-6:nth-child(2) .progress-wrap .progress-striped .progress-bar { width: 100% !important; background-color: yellow;}
 .col-sm-6:nth-child(3) .progress-wrap .progress-striped .progress-bar { width: 20% !important;}
 .col-sm-6:nth-child(4) .progress-wrap .progress-striped .progress-bar { width: 59% !important;}
 .col-sm-6:nth-child(5) .progress-wrap .progress-striped .progress-bar { width: 57% !important;}
@@ -164,7 +165,7 @@
   background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0, transparent 50%, transparent 63%, rgba(0, 0, 0, .5) 100%);}
 
 .detail-01 { background-image: url('../img/starbucks_logo.jpg');}
-.detail-02 { background-image: url('../img2/detail/2.jpg');}
+.detail-02 { background-image: url('../img/sulbing.jpg');}
 .detail-03 { background-image: url('../img2/detail/3.jpg');}
 .detail-04 { background-image: url('../img2/detail/4.jpg');}
 .detail-05 { background-image: url('../img2/detail/5.jpg');}

@@ -12,40 +12,42 @@
             <img src="@/assets/img/starbucks_iceamericano.jpg" class="photo5" alt>
             <div class="progress-wrap">
               <div style="display: flow-root">
-                <span class="pr-2 t_black f15 font-weight-700 right">4,100 포인트</span>
+                <span class="pr-2 t_black f24 font-weight-700 right">4,100 포인트</span>
+              </div>
+              <div class="progress progress-striped">
+                <div class="progress-bar"></div>
               </div>
             </div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2" style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;스타벅스</span>
+              <span class="font-weight-700 mb-2 f17" style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;스타벅스</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
+            <div class="t_gry3 small" style=" text-align: left;">
               스타벅스의 깔끔한 맛을 자랑하는 커피로, 스타벅스 파트너들이 가장 좋아하는 커피입니다. 
             </div>
           </router-link>
 
           
-          <!-- <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 2} }">
-            <img src="@/assets/img2/avatars/lunibaas.png" class="photo5" alt>
+          <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 2} }">
+            <img src="@/assets/img/applemangocheese.jpg" class="photo5" alt>
             <div class="progress-wrap">
               <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">목표금액 256,256,000원</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">255% 달성</span>
+                <span class="pr-2 t_black f24 font-weight-700 right">11,900 포인트</span>
               </div>
               <div class="progress progress-striped">
                 <div class="progress-bar"></div>
               </div> 
             </div>
             <div style="display: flow-root;">
-              <span class="font-weight-bold mb-2" style="margin-top: -20px; float: left;">LuniBaaS</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;Woori entertainment</span>
+              <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">애플망고 치즈 설빙</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;설빙</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
-              ‘루니바스'는 켄, 말릭으로 구성된 남성 듀오 그룹이다. 알 수 없는 케미로 데뷔전 부터 탄탄한 팬덤을 보유하고 있다는 것이 특징이다.
+            <div class="t_gry3 small" style=" text-align: left;">
+              남녀노소 모두 좋아하는 망고의 최상급 품질인 애플망고의 달콤함과 깊고 진한 치즈 케이크가 만나 신선하고 상큼한 애플망고의 풍미를 더 해 주죠.
             </div>
           </router-link>
 
-          <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 3} }">
+          <!-- <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 3} }">
             <img src="@/assets/img2/avatars/test.jpg" class="photo5" alt>
             <div class="progress-wrap">
               <div style="display: flow-root">
