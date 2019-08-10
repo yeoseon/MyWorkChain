@@ -22,13 +22,15 @@
 .t_blue2 { color: #2780e0; }
 .t_dim { color: #abb1bc; }
 .t_dgray { color: #637282; }
+.t_black{ color: #1b2733; }
+.t_white{ color: #fff; }
+.t_yellow{ color: yellow; }
 
 .font-weight-400 { font-weight: 400; }
 .font-weight-700 { font-weight: 500; }
 .font-weight-700 { font-weight: 700; }
 .font-weight-900 { font-weight: 900; }
-.t_black{ color: #1b2733; }
-.t_white{ color: #fff; }
+
 .bg-white{ background-color: white; }
 .photo3 {width: 200px; margin: 2px 2px 2px 0; height: 200px; object-fit: cover; border-radius: 50%;}
 .photo4 {width: 200px; margin: 2px 2px 2px 0; height: 200px; object-fit: cover; border: 1px solid #ffc600;}

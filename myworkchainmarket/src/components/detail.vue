@@ -42,10 +42,10 @@
           <div v-for="e in content" :key="e.id">
             <strong id="money" class="f24 font-weight-700 mb4" v-if="e.id == $route.params.idolId">{{e.price}}<span class="f17 font-weight-700">&nbsp;포인트</span></strong>
           </div>
-          <div class="flex" style="margin-top: 15px;">
-            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="fund()">포인트로 상품구매</button>
-            <button type="submit" class="button-normal flex-box-20" v-bind:value="database" style="margin-left: 10px;" v-on:click="like()">
-              <i class="fa fa-thumbs-up"></i>&nbsp;{{database.like}}</button>
+          <div class="flex" style="margin-top: 15px;" v-for="e in content" :key="e.id">
+            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="fund()" v-if="e.id == $route.params.idolId">포인트로 상품구매</button>
+            <button type="submit" class="button-normal flex-box-20" v-bind:value="database" style="margin-left: 10px;" v-on:click="like()" v-if="e.id == $route.params.idolId">
+              <i class="fa fa-thumbs-up"></i>&nbsp;{{e.like}}</button>
           </div>
         </div>
       </div>
@@ -65,8 +65,7 @@ export default {
     return {
       database: {
         money: '100000',
-        people: '14',
-        like: '256' 
+        people: '14'
       },
       content: [
         {
@@ -75,6 +74,7 @@ export default {
           message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
           price: '4,100',
           desc: `강렬한 에스프레소 샷에 시원한 물의 조화. 풍부하고 진한 농도의 에스프레소에 시원한 정수물을 더하여 스타벅스의 깔끔하고 강렬한 에스프레소를 부드럽지만 시원하게 즐기실 수 있는 커피입니다.`,
+          like: '1'
         },
         {
           id: '2',
@@ -82,6 +82,7 @@ export default {
           message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
           price: '11,900',
           desc: `남녀노소 모두 좋아하는 망고의 최상급 품질인 애플망고의 달콤함과 깊고 진한 치즈 케이크가 만나 신선하고 상큼한 애플망고의 풍미를 온전히 느낄 수 있는 제품`,
+          like: '2'
         },
         {
           id: '3',
@@ -89,21 +90,23 @@ export default {
           message: 'Intern net 데뷔 앨범 제작 프로젝트에 참여해보세요!',
           price: '11,900',
           desc: `‘인턴넷'은 샴푸, 앤, 젬, 린다로 구성된 혼성 그룹이다. 현 시대에 빼놓고는 설명할 수 없는 internet을 모티브로 했으며, 언제 어디서나 생각나는 그룹이 되겠다는 의미를 담고있다. 대중들이 좋아할만한 솔직한 쉬운 멜로디와 사랑에 대한 현실적이면서 솔직한 노랫말 그리고 아크로바틱을 기반으로 한 동작이 큰 안무로 활동을 이어갈 계획이라고 밝혔으며 다양한 광고활동 또한 능히 감당할 수 있는 그룹이라고 자신있게 소개한다. 신인답지않은 여유로움을 가장 큰 매력으로 어필하고 있다.`,
+          like: '3'
         },
         {
           id: '4',
           name: 'Gonjoy',
           message: 'Gonjoy 월드투어 포토북 프로젝트에 참여해보세요!',
           price: '11,900',
-          desc: `‘곤조이'는 곤조와 조이로 이루어진 2인조 혼성 그룹이다. 뚜렷한 포지션으로 각자의 매력을 뽐내는 것이 특징이다. 일상을 소재로 한 순수한 노랫말과 과한 꾸밈없는 하모니로 많은 이들에게 공감과 힐링을 선사할 수 있는 아티스트를 꿈꾼다. 특히나 보편적인 소재에 관한 노래가 아니라 일상의 사소한 순간을 포착해 그 곳에 감수성을 얹은 가사를 쓰기 때문에 더욱 기대를 받고있는 듀오다. (하지만 곤조는 래퍼다.)`,
+          desc: '',
+          like: '4'
         },
         {
           id: '5',
           name: 'Front attack',
           message: 'Front Attack 데뷔 응원 프로젝트에 참여해보세요!',
           price: '11,900',
-          desc: `‘프론트 어택'은 프론트 엔터테인먼트에서 야심차게 준비한 남자 아이돌 그룹이다. 대표적 멤버로는 ‘디노'가 있다. (다른 멤버들은 차차 공개할 예정이라고 프론트 앤터에서는 밝혔다.) 데뷔 예정 앨범이 일부 선공개된 직후, 형용할 단어가 없는 명곡이라는 호평을 받고있으며 타이틀 곡으로는 ‘이러쿤 저러쿤' 과 ‘슈퍼 엔Jin’이 있다.
-`,
+          desc: '',
+          like: '5'
         },
         {
           id: '6',
@@ -111,6 +114,7 @@ export default {
           message: 'Morning Glory 스페셜 화보집 프로젝트에 참여해보세요!',
           price: '11,900',
           desc: `아침 햇살같이 상큼한 멜로디로 ‘제 2의 아이유'를 꿈꾸고 있는 떠오르는 보컬. 청아한 목소리와 알 수 없는 강인함이 돋보이는 신인이다. 비공식 앨범 활동은 두 차례 진행한 것으로 알려졌으며, 소규모의 공연도 여러번 진행한 실력파로 알려져있다. 앞으로 많은 대중들에게 사랑받을 아티스트로 성장할 것이라는 평가가 계속해서 이어지고 있다.`,
+          like: '6'
         },
       ]
     }

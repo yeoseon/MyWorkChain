@@ -10,14 +10,11 @@
         <div class="row">
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 1} }">
             <img src="@/assets/img/starbucks_iceamericano.jpg" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pr-2 t_black f24 font-weight-700 right">4,100 포인트</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div>
+            <div style="height: 30px;"> &nbsp;</div>
+            <div style="display: flow-root;">
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">4,100 포인트</span>
             </div>
+            <br>
             <div style="display: flow-root;">
               <span class="font-weight-700 mb-2 f17" style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
               <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;스타벅스</span>
@@ -26,18 +23,14 @@
               스타벅스의 깔끔한 맛을 자랑하는 커피로, 스타벅스 파트너들이 가장 좋아하는 커피입니다. 
             </div>
           </router-link>
-
           
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 2} }">
             <img src="@/assets/img/applemangocheese.jpg" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pr-2 t_black f24 font-weight-700 right">11,900 포인트</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
+            <div style="height: 30px;"> &nbsp;</div>
+            <div style="display: flow-root;">
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">11,900 포인트</span>
             </div>
+            <br>
             <div style="display: flow-root;">
               <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">애플망고 치즈 설빙</span>
               <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;설빙</span>
@@ -47,85 +40,70 @@
             </div>
           </router-link>
 
-          <!-- <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 3} }">
-            <img src="@/assets/img2/avatars/test.jpg" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">목표금액 3,000,000원</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">20% 달성</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
-            </div>
+          <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 3} }">
+            <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
+            <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-bold mb-2" style="margin-top: -20px; float: left;">Intern net</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;JP entertainment</span>
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
-              ‘인턴넷'은 샴푸, 앤, 젬, 린다로 구성된 혼성 그룹이다. 현 시대에 빼놓고는 설명할 수 없는 internet을 모티브로 했으며, 언제 어디서나 생각나는 그룹이 되겠다는 의미를 담고있다. 
+            <br>
+            <div style="display: flow-root;">
+              <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">신세계상품권 모바일교환권</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;이마트, 신세계상품권</span>
+            </div>
+            <div class="t_gry3 small" style=" text-align: left;">
+              전국 이마트 매장내 설치된 상품권 교환 KIOSK에서 신세계 상품권으로 교환후 사용하실수 있습니다.
             </div>
           </router-link>
 
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 4} }">
-            <img src="@/assets/img2/avatars/gonjoy.png" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">목표금액 777,777,000원</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">59% 달성</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
-            </div>
+            <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
+            <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2" style="margin-top: -20px; float: left;">Gonjoy</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;Never entertainment</span>
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
-              ‘곤조이'는 곤조와 조이로 이루어진 2인조 혼성 그룹이다. 뚜렷한 포지션으로 각자의 매력을 뽐내는 것이 특징이다. 
+            <br>
+            <div style="display: flow-root;">
+              <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">신세계상품권 모바일교환권</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;이마트, 신세계상품권</span>
+            </div>
+            <div class="t_gry3 small" style=" text-align: left;">
+              전국 이마트 매장내 설치된 상품권 교환 KIOSK에서 신세계 상품권으로 교환후 사용하실수 있습니다.
             </div>
           </router-link>
 
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 5} }">
-            <img src="@/assets/img2/avatars/frontattack.jpg" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">목표금액 5,000,000원</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">57% 달성</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
-            </div>
+            <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
+            <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2" style="margin-top: -20px; float: left;">Front attack</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;Martin entertainment</span>
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
-              ‘프론트 어택'은 프론트 엔터테인먼트에서 야심차게 준비한 남자 아이돌 그룹이다. 대표적 멤버로는 ‘디노'가 있다. (다른 멤버들은 차차 공개할 예정이라고 프론트 앤터에서는 밝혔다.) 
+            <br>
+            <div style="display: flow-root;">
+              <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">신세계상품권 모바일교환권</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;이마트, 신세계상품권</span>
+            </div>
+            <div class="t_gry3 small" style=" text-align: left;">
+              전국 이마트 매장내 설치된 상품권 교환 KIOSK에서 신세계 상품권으로 교환후 사용하실수 있습니다.
             </div>
           </router-link>
-          
+
           <router-link class="col-sm-6 col-lg-4 p-4" :to="{ name: 'detail', params: {idolId: 6} }">
-            <img src="@/assets/img2/avatars/morningglory.png" class="photo5" alt>
-            <div class="progress-wrap">
-              <div style="display: flow-root">
-                <span class="pl-2 t_white f15 font-weight-700 left">목표금액 5,000,000원</span>
-                <span class="pr-2 t_white f15 font-weight-700 right">107% 달성</span>
-              </div>
-              <div class="progress progress-striped">
-                <div class="progress-bar"></div>
-              </div> 
-            </div>
+            <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
+            <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2" style="margin-top: -20px; float: left;">Morning Glory</span>
-              <span class="t_gry2 small mb-3" style="margin-top: -20px; float: left;"> &nbsp;ㅣ&nbsp;Alpha entertainment</span>
+              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
-            <div class="t_gry3 small" style=" text-align: left; margin-top: -10px;">
-              아침 햇살같이 상큼한 멜로디로 ‘제 2의 아이유'를 꿈꾸고 있는 떠오르는 보컬. 청아한 목소리와 알 수 없는 강인함이 돋보이는 신인이다. 
+            <br>
+            <div style="display: flow-root;">
+              <span class="font-weight-bold mb-2 f17" style="margin-top: -20px; float: left;">신세계상품권 모바일교환권</span>
+              <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;이마트, 신세계상품권</span>
             </div>
-          </router-link> -->
+            <div class="t_gry3 small" style=" text-align: left;">
+              전국 이마트 매장내 설치된 상품권 교환 KIOSK에서 신세계 상품권으로 교환후 사용하실수 있습니다.
+            </div>
+          </router-link>
+
           <div style="height: 80px;"> &nbsp;</div>
         </div>
     </div>
