@@ -2,8 +2,8 @@
 <div>
   <Header/>
   <div class="position-relative pt-9">
-    <div class="wrapper"><h1>MyWorkChain 마켓</h1></div>
-    <div class="title">리워드 포인트를 사용하여 원하는 상품을 구매하세요.</div>
+    <div class="wrapper"><h1>리워드 포인트로 상품을 구매하세요.</h1></div>
+    <!-- <div class="title">리워드 포인트를 사용하여 원하는 상품을 구매하세요.</div> -->
   </div>
   <section class="site-home-scene">
     <div class="inner-container">
@@ -123,7 +123,7 @@ export default {
 <style scoped>
   .position-relative{
     background-color: #1B2733 !important;
-    height: 390px;
+    height: 300px;
   }
   .inner-container{
     padding-top: 60px !important;

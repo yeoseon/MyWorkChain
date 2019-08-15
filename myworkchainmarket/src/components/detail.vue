@@ -13,7 +13,7 @@
           <div class="portfolio-caption">
             <div v-if="this.$route.params.idolId == '1'" class="text-tiny t_white font-weight-400">스타벅스의 깔끔한 맛을 자랑하는 커피로,<br>스타벅스 파트너들이<br>가장 좋아하는 커피입니다.</div>
             <div v-else-if="this.$route.params.idolId == '2'" class="text-tiny t_white font-weight-400">남녀노소 모두 좋아하는,<br>애플망고의 달콤함과 깊고 진한 치즈 케이크가 만나,<br>신선하고 상큼한 애플망고의 풍미</div>
-            <div v-else-if="this.$route.params.idolId == '3'" class="text-tiny t_white font-weight-400">WHEREVER YOU ARE<br>WHEREVER YOU WANT<br>INTERN NET</div>
+            <div v-else-if="this.$route.params.idolId == '3'" class="text-tiny t_white font-weight-400">푸르름이 가득한 여름 이야기,<br>가까운 신세계백화점에서 만나보세요</div>
             <div v-else-if="this.$route.params.idolId == '4'" class="text-tiny t_white font-weight-400">SUPER DEVELOPER<br>SPECIAL PLANNER<br>GONJOY</div>
             <div v-else-if="this.$route.params.idolId == '5'" class="text-tiny t_white font-weight-400">SO SWEET BOYS<br>SPECIAL SWEET VOICE<br>FRONT ATTACK</div>
             <div v-else-if="this.$route.params.idolId == '6'" class="text-tiny t_white font-weight-400">냉동고를 준비하세요,<br> 당신의 고막이 녹아버릴지도 모르니까.<br> Morning Glory</div>
@@ -86,10 +86,10 @@ export default {
         },
         {
           id: '3',
-          name: 'Intern net',
-          message: 'Intern net 데뷔 앨범 제작 프로젝트에 참여해보세요!',
-          price: '11,900',
-          desc: `‘인턴넷'은 샴푸, 앤, 젬, 린다로 구성된 혼성 그룹이다. 현 시대에 빼놓고는 설명할 수 없는 internet을 모티브로 했으며, 언제 어디서나 생각나는 그룹이 되겠다는 의미를 담고있다. 대중들이 좋아할만한 솔직한 쉬운 멜로디와 사랑에 대한 현실적이면서 솔직한 노랫말 그리고 아크로바틱을 기반으로 한 동작이 큰 안무로 활동을 이어갈 계획이라고 밝혔으며 다양한 광고활동 또한 능히 감당할 수 있는 그룹이라고 자신있게 소개한다. 신인답지않은 여유로움을 가장 큰 매력으로 어필하고 있다.`,
+          name: '신세계상품권 모바일교환권',
+          message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
+          price: '100,000',
+          desc: `신세계백화점, 이마트는 물론 쇼핑/외식/레저 등 다양한 가맹점에서 폭넓게 사용하실 수 있는 품격 있는 선물, 신세계상품권을 소개합니다.`,
           like: '3'
         },
         {

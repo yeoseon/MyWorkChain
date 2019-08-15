@@ -124,7 +124,7 @@
 
 .position-relative { position:relative !important }
 .wrapper { text-align: center; }
-.wrapper h1{ color: #fff; font-size: 92px; font-family: 'ubuntu'; text-transform: uppercase;  font-weight: 700;  font-family: 'Josefin Sans',sans-serif; background: linear-gradient(to right,#697dff 10%,#fff 50%,#5bdaff 60%);  background-size: auto auto;  background-clip: border-box;  background-size: 200% auto;  color: #fff;  background-clip: text;  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;  animation: textclip 1.5s linear infinite;  display: inline-block;}
+.wrapper h1{ color: #fff; font-size: 70px; font-family: 'ubuntu'; font-family: 'Josefin Sans',sans-serif; background: linear-gradient(to right,#697dff 10%,#fff 50%,#5bdaff 60%);  background-size: auto auto;  background-clip: border-box;  background-size: 200% auto;  color: #fff;  background-clip: text;  -webkit-background-clip: text; animation: textclip 1.5s linear infinite;  display: inline-block;}
 @keyframes textclip { to {background-position:200% center }}
 
 .title{ color: white; font-size: 30px; text-align: center; font-weight: 300; line-height: 40px; }
@@ -168,7 +168,7 @@
 
 .detail-01 { background-image: url('../img/starbucks_logo.jpg');}
 .detail-02 { background-image: url('../img/sulbing.jpg');}
-.detail-03 { background-image: url('../img2/detail/3.jpg');}
+.detail-03 { background-image: url('../img/shinsegae.jpg');}
 .detail-04 { background-image: url('../img2/detail/4.jpg');}
 .detail-05 { background-image: url('../img2/detail/5.jpg');}
 .detail-06 { background-image: url('../img2/detail/6.jpg');}
