@@ -26,4 +26,12 @@ public class MyWorkChainController {
 		// template name
 		return "home";
 	}
+	
+	@GetMapping("/login")
+	public String viewLogin(Model model) {
+		if(logger.isDebugEnabled()) logger.debug("viewLogin {}", model);
+		
+		// template name
+		return "login";
+	}
 }
