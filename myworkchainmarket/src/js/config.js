@@ -1,26 +1,26 @@
 module.exports = {
   Config : {
-    chainId: '',
+    chainId: '5300575914426995782',
     mt: {
-      symbol: '',
+      symbol: 'FT9754',
     },
     st: {
-      symbol: '',
+      symbol: 'RWT',
     },
     walletAddress: {
-      pd: '',
-      user: ''
+      pd: '0x12368a52a75aaf4aa2dbdad636be57690141e093',
+      user: '0x806c1d2bb9530b8a0229442bc00e02a8cc77aa97'
     },
     dapp: {
-      apiKey: ''
+      apiKey: '4Sq1ZTU2zucocxKwmS9rBKktbVa4fgeCF99FhZpFizcoS9nkwnKUMqkXiTewPBXo'
     },
     txActionName: {
-      like: '',
-      funding: '',
-      purchase: '',
-      getOwner: '',
-      setOwner: ''
+      like: 'like',
+      funding: 'funding',
+      purchase: 'purchase',
+      getOwner: 'getOwner',
+      setOwner: 'setOwner'
     },
-    userName: '',
+    userName: 'samurae83',
   }
 }

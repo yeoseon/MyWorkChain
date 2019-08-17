@@ -22,12 +22,12 @@
       </div>
     </div>
     <div class="container px-3 my-4">
-      <h1 class="f30 font-weight-700" v-for="e in content" :key="e.id">
+      <h1 class="f30 font-weight-700" v-for="e in products" :key="e.id">
         <span v-if="e.id == $route.params.idolId">{{e.name}}</span>
       </h1>
       <div class="flex">
         <div class="flex-box-70">
-          <div class="f15 font-weight-400" v-for="e in content" :key="e.id">
+          <div class="f15 font-weight-400" v-for="e in products" :key="e.id">
             <p v-if="e.id == $route.params.idolId">{{e.desc}}</p>
           </div>
           <div class="layout-guide-box mt-4">
@@ -36,14 +36,14 @@
           </div>
         </div>
         <div class="flex-box-40" style="margin-left: 80px;">
-          <div v-for="e in content" :key="e.id">
+          <div v-for="e in products" :key="e.id">
             <strong class="t_dgray f15 font-weight-400" v-if="e.id == $route.params.idolId">{{e.message}}</strong>
           </div>
-          <div v-for="e in content" :key="e.id">
+          <div v-for="e in products" :key="e.id">
             <strong id="money" class="f24 font-weight-700 mb4" v-if="e.id == $route.params.idolId">{{e.price}}<span class="f17 font-weight-700">&nbsp;포인트</span></strong>
           </div>
-          <div class="flex" style="margin-top: 15px;" v-for="e in content" :key="e.id">
-            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="fund()" v-if="e.id == $route.params.idolId">포인트로 상품구매</button>
+          <div class="flex" style="margin-top: 15px;" v-for="e in products" :key="e.id">
+            <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="purchase(e.id-1)" v-if="e.id == $route.params.idolId">포인트로 상품구매</button>
             <button type="submit" class="button-normal flex-box-20" v-bind:value="database" style="margin-left: 10px;" v-on:click="like()" v-if="e.id == $route.params.idolId">
               <i class="fa fa-thumbs-up"></i>&nbsp;{{e.like}}</button>
           </div>
@@ -67,12 +67,12 @@ export default {
         money: '100000',
         people: '14'
       },
-      content: [
+      products: [
         {
           id: '1',
           name: '아이스 카페아메리카노 Tall',
           message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
-          price: '4,100',
+          price: '4100',
           desc: `강렬한 에스프레소 샷에 시원한 물의 조화. 풍부하고 진한 농도의 에스프레소에 시원한 정수물을 더하여 스타벅스의 깔끔하고 강렬한 에스프레소를 부드럽지만 시원하게 즐기실 수 있는 커피입니다.`,
           like: '1'
         },
@@ -80,7 +80,7 @@ export default {
           id: '2',
           name: '애플망고 치즈 설빙',
           message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
-          price: '11,900',
+          price: '11900',
           desc: `남녀노소 모두 좋아하는 망고의 최상급 품질인 애플망고의 달콤함과 깊고 진한 치즈 케이크가 만나 신선하고 상큼한 애플망고의 풍미를 온전히 느낄 수 있는 제품`,
           like: '2'
         },
@@ -88,7 +88,7 @@ export default {
           id: '3',
           name: '신세계상품권 모바일교환권',
           message: '리워드 포인트를 사용하여 원하는 상품을 구매하세요.',
-          price: '100,000',
+          price: '100000',
           desc: `신세계백화점, 이마트는 물론 쇼핑/외식/레저 등 다양한 가맹점에서 폭넓게 사용하실 수 있는 품격 있는 선물, 신세계상품권을 소개합니다.`,
           like: '3'
         },
@@ -96,7 +96,7 @@ export default {
           id: '4',
           name: 'Gonjoy',
           message: 'Gonjoy 월드투어 포토북 프로젝트에 참여해보세요!',
-          price: '11,900',
+          price: '11900',
           desc: '',
           like: '4'
         },
@@ -104,7 +104,7 @@ export default {
           id: '5',
           name: 'Front attack',
           message: 'Front Attack 데뷔 응원 프로젝트에 참여해보세요!',
-          price: '11,900',
+          price: '11900',
           desc: '',
           like: '5'
         },
@@ -112,7 +112,7 @@ export default {
           id: '6',
           name: 'Morning Glory',
           message: 'Morning Glory 스페셜 화보집 프로젝트에 참여해보세요!',
-          price: '11,900',
+          price: '11900',
           desc: `아침 햇살같이 상큼한 멜로디로 ‘제 2의 아이유'를 꿈꾸고 있는 떠오르는 보컬. 청아한 목소리와 알 수 없는 강인함이 돋보이는 신인이다. 비공식 앨범 활동은 두 차례 진행한 것으로 알려졌으며, 소규모의 공연도 여러번 진행한 실력파로 알려져있다. 앞으로 많은 대중들에게 사랑받을 아티스트로 성장할 것이라는 평가가 계속해서 이어지고 있다.`,
           like: '6'
         },
@@ -141,7 +141,7 @@ export default {
       this.axios.get(`https://api.luniverse.io/tx/v1.0/histories?next=0`,{
         headers: {
           'Authorization': `Bearer ${this.apiKey}`,
-          'Content-Type': `application/json`
+          'products-Type': `application/json`
         },
       })
         .then((response) => {
@@ -193,14 +193,12 @@ export default {
           alert('좋아요에 실패했습니다!')
         });
     },
-    fund(){
-      let m = parseInt(this.database.money.replace(/,/g,""));
-      let p = parseInt(this.database.people.replace(/,/g,""));
-      this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.funding}`,{
-            'from': this.walletAddress.pd,
+    purchase(productId){
+      this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.purchase}`,{
+            'from': this.walletAddress.user,
             'inputs' : {
-              'receiverAddress': this.walletAddress.user,
-              'valueAmount': '1000000000000000000000'
+              'receiverAddress': this.walletAddress.pd,
+              'valueAmount': this.products[productId].price
             }
         }, 
         {
@@ -209,18 +207,47 @@ export default {
           },
         })
         .then(() => {
-          alert(`10,000원이 펀딩되었습니다.\n1,000RWT를 드려요!`)
-          m = m + 10000;
-          m = m.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          this.database.money=m;
-          p = p + 1;
-          p= p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          this.database.people=p;
+          this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.setOwner}`,{
+              'from': this.walletAddress.user,
+              'inputs': {
+                '_index': productId,
+                '_name': this.userName
+              }
+          }, 
+          {
+            headers: {
+              'Authorization': `Bearer ${this.apiKey}`,
+            },
+          })
+            .then(() => {
+              alert('구매에 성공하였습니다.')
+              this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.getOwner}`,{
+                'from': this.walletAddress.user,
+                'inputs': {
+                  '_index': productId
+                }
+              },
+              {
+               headers: {
+                  'Authorization': `Bearer ${this.apiKey}`,
+                }, 
+              })
+                .then((response) => {
+                  if (response.data.data.res[0] !== '') {
+                    this.products[productId].thx=((response.data.data.res[0])+"님, 구매 감사합니다!");    
+                  }
+                })
+                .catch(() => {
+                  alert('getOwner에 실패하였습니다')
+                })
+            })
+            .catch(() => {
+              alert('구매에 실패하였습니다.')
+            });
         })
         .catch(() => {
-          alert('Fund에 실패했습니다!')
+          alert('구매에 실패하였습니다.')
         });
-      
     }
   }
 }
