@@ -1,0 +1,99 @@
+body .wrapper {
+	height: auto; 
+	min-height: 100%;
+}
+
+/* #################### HEADER ####################### */
+.main-header {
+	background-color: #3b4fea;
+	box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+}
+.main-header * {
+	color: white;
+}
+.main-header .logo {
+	font-family: "Roboto300", sans-serif, Helvetica, Arial!important;
+}
+.skin-blue .main-header .navbar {
+	height: 60px;
+}
+@media (min-width: 768px){
+.sidebar-mini.sidebar-collapse .main-header .logo {
+	height: 60px!important;
+	width: 60px!important;
+}
+}
+.sidebar-mini.sidebar-collapse .main-header .logo>.logo-mini, .main-header .logo .logo-lg {
+	margin-top: 5px;
+	letter-spacing: 1;
+}
+.skin-blue .main-header .logo {
+	height: 60px;
+}
+.main-header .sidebar-toggle {
+	padding: 12px 10px!important;
+}
+.main-header .navbar-custom-menu a {
+	font-size: .9em;
+}
+
+/* ################### SIDE BAR ###################### */
+.user-panel {
+	padding: 15px 10px;
+	height: 130px;
+}
+.main-sidebar {
+	margin-top: 10px;
+	background-color: #ebeef3;
+}
+.main-sidebar * {
+	color: #191919;
+}
+.main-sidebar .sidebar {
+	height: auto;
+}
+.user-panel>.info, .user-panel>.image {
+	padding: 0 10px!important;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	left: 0px!important;
+	margin-top: 20px;
+}
+.user-panel>.image>img {
+	max-width: 100%!important;
+	max-height: 100%!important;
+}
+.user-panel>.info {
+	margin-top: 15px;
+}
+.user-panel>.info>p {
+	text-align: center;
+    font-family: "Roboto600";
+    height: 100%;
+    width: 100%;
+    margin: 0px!important;
+    font-size: .88em;
+}
+.sidebar-menu>li.active {
+	border-left: 5px solid #3b4fea;
+}
+.sidebar-menu>li>a {
+	font-size: .9em;
+}
+
+/* ############################ CONTENT ########################### */
+.content-wrapper {
+	background-color: transparent!important;
+}
+.content-wrapper h1 {
+	font-family: "Roboto300";
+	letter-spacing: 0;
+}
+.uppercase {	
+	font-size: .75em!important;
+	font-family: "Roboto";
+}
+.small-box>.small-box-footer {
+	font-size: .8em;
+}

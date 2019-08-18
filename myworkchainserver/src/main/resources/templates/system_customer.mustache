@@ -1,0 +1,50 @@
+{{>system_head_included}}
+
+<div id="task-active" class="wrap task">
+	<!-- HEADER REGION -->
+	<div id="header">
+		<div class="toolbar">
+			<div id="logo" class="toolbar-section">
+				<a class="toolbar-title-link" href="/system">
+				<!-- logo image -->
+					MyWorkChain
+				</a>
+			</div>
+			<div id="menu" class="toolbar-section">
+				<nav id="basic-tab-bar" class="mdc-tab-bar tabs">
+				  <a class="mdc-tab tab" href="/system">
+				  	<span class="menu-label">고객관리</span>
+				  	<span class="mdc-tab-indicator mdc-tab-indicator--active"><span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline" style=""></span></span>
+				  </a>
+				  <a class="mdc-tab tab" href="/system/reward">
+				  	<span class="menu-label">리워드</span>
+					<span class="mdc-tab-indicator"><span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline" style=""></span></span>
+				  </a>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- # HEADER REGION -->
+	
+	<!-- CONTENT REGION -->
+	<div class="page-content">
+		<!-- Side Menu -->
+<!-- 		<div class="page_drawer" id="side-menu" >
+			<nav class="mdc-drawer mdc-drawer--permanent mdc-typography">
+			  <div class="mdc-drawer__content">
+			    <nav id="icon-with-text-demo side-menu" class="mdc-list">
+			      <a class="mdc-list-item mdc-list-item--activated" onclick="">
+			      	기업고객
+			      </a>
+			    </nav>
+			  </div>
+			</nav>
+		</div> -->
+		
+		<!-- Main Section -->
+		<section class="page-main-section" id="content">
+			{{>system_customer_list}}
+		</section>
+	</div>
+	<!-- #CONTENT REGION -->
+</div>

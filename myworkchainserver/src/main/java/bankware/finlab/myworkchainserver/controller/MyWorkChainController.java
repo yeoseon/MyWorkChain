@@ -1,11 +1,14 @@
 package bankware.finlab.myworkchainserver.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import bankware.finlab.myworkchainserver.service.MyWorkChainService;
 
@@ -13,17 +16,26 @@ import bankware.finlab.myworkchainserver.service.MyWorkChainService;
 public class MyWorkChainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MyWorkChainController.class);
-	
-	@Autowired
-	private MyWorkChainService myWorkChainService;
+//	
+//	@Autowired
+//	private MyWorkChainService myWorkChainService;
 	
 	@GetMapping("/")
-	public String viewHome(Model model) {
-		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
+	public String home(HttpServletRequest request, Model model) {
+
+		//TODO: Login 확인
 		
-		model.addAttribute("billionailesList", myWorkChainService.getBillionailes());
+		return "redirect:/" + "company";
 		
-		// template name
-		return "home";
-	}
+	}	
+	
+//	@GetMapping("/")
+//	public String viewHome(Model model) {
+//		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
+//		
+//		model.addAttribute("billionailesList", myWorkChainService.getBillionailes());
+//		
+//		// template name
+//		return "home";
+//	}
 }
