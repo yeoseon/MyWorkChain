@@ -36,6 +36,10 @@ body .wrapper {
 .main-header .navbar-custom-menu a {
 	font-size: .9em;
 }
+.nav>li>a:hover, .nav>li>a:active, .nav>li>a:focus {
+	color: white!important;
+	background-color: transparent!important;
+}
 
 /* ################### SIDE BAR ###################### */
 .user-panel {
