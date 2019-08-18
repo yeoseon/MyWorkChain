@@ -1,34 +1,64 @@
 <script th:inline="javascript">
 $(function() {
+	/* fullcalendar*/
 	var calendarEl = document.getElementById('calendar');
-
-	  var calendar = new FullCalendar.Calendar(calendarEl, {
-	    plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'interaction' ],
-	    defaultView: 'dayGridMonth',
-	    defaultDate: '2019-08-07',
-	    selectable: true,
-	    header: {
-	      left: 'prev,next today',
-	      center: 'title',
-	      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-	    },
-	    events: [
-	      {
-	        title: 'All Day Event',
-	        start: '2019-08-01'
-	      },
-	      {
-	        title: 'Long Event',
-	        start: '2019-08-07',
-	        end: '2019-08-10'
-	      },
-	    ],
-	    dateClick: function(info) {
-	    	$('#modal-commute').modal('show');
-	    	$('#modal-commute-date').html(info.dateStr);
+	 
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'interaction' ],
+		defaultView : 'dayGridMonth',
+		defaultDate : '2019-08-07',
+		selectable : true,
+		header : {
+			left : 'prev,next today',
+			center : 'title',
+			right : 'dayGridMonth,timeGridWeek,timeGridDay'
+		},
+		events : [ {
+			title : 'All Day Event',
+			start : '2019-08-01'
+		}, {
+			title : 'Long Event',
+			start : '2019-08-07',
+			end : '2019-08-10'
+		}, ],
+		dateClick : function(info) {
+			$('#modal-commute').modal('show');
+			$('#modal-commute-date').html(info.dateStr);
 		}
-	  });
+	});
 
-	  calendar.render();
+	calendar.render();
+	
+	/* geolocation */
+	var BWG_LATITUDE = 37.563115;
+   	var BWG_LONGITUDE = 126.969534;
+	var latitude;
+	var longitude;
+	// Geolocation API에 액세스할 수 있는지를 확인
+	if (navigator.geolocation) {
+	    //위치 정보를 얻기
+	    navigator.geolocation.getCurrentPosition (function(pos) {
+	    	latitude = pos.coords.latitude;
+	    	longitude = pos.coords.longitude;
+	    	
+	    	latitude = BWG_LATITUDE;
+	    	longitude = BWG_LONGITUDE;
+	    	
+	    	// Tooltip
+	    	var tooltipTitle;
+	    	if(latitude && longitude){
+	    		tooltipTitle = latitude + ", " + longitude + " (클릭하면 구글 지도를 연결합니다.)";
+	    	}else{
+	    		tooltipTitle = "위치를 표시할 수 없습니다.";
+	    	}
+	    	$('#geo-tooltip').tooltip({
+	    		title : tooltipTitle,
+	    	});
+	    	$('#geo').prop('href', "https://www.google.com/maps/search/?api=1&query="+latitude+","+longitude);
+	    	$('#geo').prop('target', '_blank');
+	    });
+	} else {
+	    alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+	}
 });
 </script>

@@ -10,6 +10,7 @@
 <th:block th:include="include-css"></th:block>
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
+
 	<!-- include javascript libraries definitions -->
 	<th:block th:include="include-script"></th:block>
 	<!-- script -->
@@ -37,6 +38,11 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
+						<li>
+							<a id="geo" href="#">
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom">위치 : BwG 본사</span>
+							</a>
+						</li>
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<img th:src="@{/images/avatar5.png}" class="user-image" alt="User Image">
@@ -119,7 +125,7 @@
 	</div>
 	<!-- ./wrapper -->
 	
-	<!-- Modal -->
+	<!-- 업무 시작/종료 Modal -->
 	<div class="modal modal-center fade" id="modal-commute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-center" role="document">
 	    	<div class="modal-content">
@@ -131,7 +137,7 @@
 				</div>
 	      		<div class="modal-body">
 				    <button type="button" class="btn btn-primary btn-lg btn-block">업무 시작</button>
-				    <button type="button" class="btn btn-secondary btn-lg btn-block">업무 종료</button>
+				    <button type="button" class="btn btn-secondary btn-lg btn-block" disabled>업무 종료</button>
 	      		</div>
 	      		<div class="modal-footer">
 	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
