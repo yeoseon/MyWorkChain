@@ -59,30 +59,17 @@ INSERT INTO work_place (comp_address, work_name, work_address, work_geo_location
 DROP TABLE IF EXISTS employee;
 
 CREATE TABLE employee (
-	user_address VARCHAR(250) PRIMARY KEY,
+	empl_address VARCHAR(250) PRIMARY KEY,
 	comp_address VARCHAR(250) NOT NULL,
-	user_name VARCHAR(250),
-	current_work_seq VARCHAR(250)
+	empl_name VARCHAR(250),
+	current_work_code INT
 );
 
-INSERT INTO employee (user_address, comp_address, user_name, current_work_seq) VALUES
- ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Kevin', '001'),
- ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Mickey', '001'),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Celine', '002');
- 
-
-DROP TABLE IF EXISTS user_works;
-
-CREATE TABLE work_history (
-	work_seq VARCHAR(250) PRIMARY KEY,
-	user_address VARCHAR(250) NOT NULL,
-	work_code INT,
-	work_start_ymd VARCHAR(100),
-	work_end_ymd VARCHAR(100),
-	work_start_time VARCHAR(100),
-	work_end_time VARCHAR(100)
-);
- 
+INSERT INTO employee (empl_address, comp_address, empl_name, current_work_code) VALUES
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Kevin', '1'),
+ ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Mickey', '1'),
+ ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Celine', '2');
+  
 DROP TABLE IF EXISTS work_history;
 
 CREATE TABLE work_history (
