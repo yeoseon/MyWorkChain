@@ -5,7 +5,7 @@ body .wrapper {
 
 /* #################### HEADER ####################### */
 .main-header {
-	background-color: #5803d2;
+	background-color: #3b4fea;
 	box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
 }
 .main-header * {
@@ -100,4 +100,7 @@ body .wrapper {
 }
 .small-box>.small-box-footer {
 	font-size: .8em;
+}
+.sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {
+	margin-left: 0px!important;
 }
