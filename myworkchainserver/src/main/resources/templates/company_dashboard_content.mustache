@@ -1,70 +1,33 @@
-<!-- <div id="customer-list">
-	<div class="list">
-		<div class="mdc-data-table">
-		  <table class="mdc-data-table__table" aria-label="기업 목록">
-		    <thead>
-		      <tr class="mdc-data-table__header-row">
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">회사명</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">주소</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Wallet Address</th>
-		      </tr>
-		    </thead>
-		    <tbody class="mdc-data-table__content">
-		    {{#companyList}}
-		    <tr class="mdc-data-table__row">
-		        <td class="mdc-data-table__cell">{{compName}}</td>
-		        <td class="mdc-data-table__cell">{{location}}</td>
-		        <td class="mdc-data-table__cell">{{compAddress}}</td>
-		     </tr>
-		    {{/companyList}}
-		    {{^companyList}}
-		    <tr>
-		    No Company
-		    </tr>
-		    {{/companyList}}
-		    </tbody>
-		  </table>
-		</div>
-	</div>
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
+    	<div class="mdc-layout-grid__inner">
+  			<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+    		{{>company_dashboard_companyinfo}}
+   		 	</div>
+   		 	<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+    		{{>company_dashboard_reward}}
+   		 	</div>
+   		 </div>
+   		 <div class="mdc-layout-grid__inner">
+   			<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+    		{{>company_dashboard_employeelist}}
+    		</div>
+   		 </div>
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
+    	<div class="mdc-layout-grid__inner">
+   			<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+    		{{>company_dashboard_workplacelist}}
+    		</div>
+   		 </div>
+   		 <div class="mdc-layout-grid__inner">
+   			<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+    		{{>company_dashboard_rewardhistory}}
+    		</div>
+   		 </div>
+    </div>
+  </div>
 </div>
- -->
 
-<div id="workplace-list">
-	<div class="list">
-		<div class="mdc-data-table">
-		  <table class="mdc-data-table__table" aria-label="근무지 목록">
-		    <thead>
-		      <tr class="mdc-data-table__header-row">
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">No</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">근무지명</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">주소</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Location</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Longitude</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Altitude</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Accuracy</th>
-		        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Use</th>
-		      </tr>
-		    </thead>
-		    <tbody class="mdc-data-table__content">
-		    {{#workPlaceList}}
-		    <tr class="mdc-data-table__row">
-		        <td class="mdc-data-table__cell">{{workCode}}</td>
-		        <td class="mdc-data-table__cell">{{workName}}</td>
-		        <td class="mdc-data-table__cell">{{workAddress}}</td>
-		        <td class="mdc-data-table__cell">{{workGeoLocation}}</td>
-		        <td class="mdc-data-table__cell">{{workGeoLongitude}}</td>
-		        <td class="mdc-data-table__cell">{{workGeoAltitude}}</td>
-		        <td class="mdc-data-table__cell">{{workGeoAccuracy}}</td>
-		        <td class="mdc-data-table__cell">{{workUseYn}}</td>
-		     </tr>
-		    {{/workPlaceList}}
-		    {{^workPlaceList}}
-		    <tr>
-		    No Work Place
-		    </tr>
-		    {{/workPlaceList}}
-		    </tbody>
-		  </table>
-		</div>
-	</div>
-</div>
+
