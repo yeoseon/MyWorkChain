@@ -1,19 +1,3 @@
-DROP TABLE IF EXISTS billionaires;
- 
-CREATE TABLE billionaires (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  first_name VARCHAR(250) NOT NULL,
-  last_name VARCHAR(250) NOT NULL,
-  career VARCHAR(250) DEFAULT NULL
-);
- 
-INSERT INTO billionaires (first_name, last_name, career) VALUES
-  ('Aliko', 'Dangote', 'Billionaire Industrialist'),
-  ('Bill', 'Gates', 'Billionaire Tech Entrepreneur'),
-  ('Bill22', 'Gates22', 'Billionaire Tech Entrepreneur22'),
-  ('Folrunsho', 'Alakija', 'Billionaire Oil Magnate');
-  
-  
 DROP TABLE IF EXISTS system_info;
 
 CREATE TABLE system_info (
@@ -21,7 +5,7 @@ CREATE TABLE system_info (
 );
 
 INSERT INTO system_info (mwc_address) VALUES
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd');
+ ('0xf2852cc72bed2cb039464d347154331fdd4d8491');
 
  
 DROP TABLE IF EXISTS company;
@@ -34,8 +18,7 @@ CREATE TABLE company (
 );
 
 INSERT INTO company (comp_address, mwc_address, comp_name, location) VALUES
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd','0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Bankware Global', '서울특별시 중구 소공동 통일로 86'),
- ('xxx','0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Finlab', '서울특별시 중구 소공동 통일로 86');
+ ('0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c','0xf2852cc72bed2cb039464d347154331fdd4d8491', 'Bankware Global', '서울특별시 중구 소공동 통일로 86');
  
  
 DROP TABLE IF EXISTS work_place;
@@ -53,9 +36,9 @@ CREATE TABLE work_place (
 );
 
 INSERT INTO work_place (comp_address, work_name, work_address, work_geo_location, work_geo_longitude, work_geo_altitude, work_geo_accuracy, work_use_yn) VALUES
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '본사', '서울특별시 중구 소공동 통일로 86', '10', '10', '10', '10', true),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '부산지사', '부산광역시 수영구 수영로 776', '30', '40', '20', '80', true),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '신림지사', '서울특별시 관악구 미성3길 41', '90', '270', '60', '30', true);
+ ('0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', '본사', '서울특별시 중구 소공동 통일로 86', '10', '10', '10', '10', true),
+ ('0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', '부산지사', '부산광역시 수영구 수영로 776', '30', '40', '20', '80', true),
+ ('0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', '신림지사', '서울특별시 관악구 미성3길 41', '90', '270', '60', '30', true);
  
 DROP TABLE IF EXISTS employee;
 
@@ -67,9 +50,10 @@ CREATE TABLE employee (
 );
 
 INSERT INTO employee (empl_address, comp_address, empl_name, current_work_code) VALUES
- ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Kevin', '1'),
- ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Mickey', '1'),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Celine', '2');
+ ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Gabriel', '2'),
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Kevin', '1'),
+ ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Mickey', '1'),
+ ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Celine', '2');
   
 DROP TABLE IF EXISTS work_history;
 

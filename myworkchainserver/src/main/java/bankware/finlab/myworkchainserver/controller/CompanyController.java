@@ -15,6 +15,9 @@ public class CompanyController {
 
 	Logger logger = LoggerFactory.getLogger(CompanyController.class);
 	
+	//TODO: 데모를 위해 초기에 화면으로부터 COMPANY_ADDRESS를 입력받을 수 있도록
+	private static final String COMPANY_ADDRESS = "0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c";
+	
 	@Autowired
 	CompanyService companyService; 
 	
@@ -24,7 +27,7 @@ public class CompanyController {
 		String pageName;
 		pageName = "company_dashboard";
 
-		model.addAttribute("companyList", companyService.getCompanyList());
+		model.addAttribute("workPlaceList", companyService.getWorkPlace(COMPANY_ADDRESS));
 		return pageName;
 	}
 	

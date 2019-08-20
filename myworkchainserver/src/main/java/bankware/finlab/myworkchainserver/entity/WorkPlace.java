@@ -18,6 +18,7 @@ public class WorkPlace {
 	private int workCode;
 	private String compAddress;
 	private String workName;
+	private String workAddress;
 	private double workGeoLocation;
 	private double workGeoLongitude;
 	private double workGeoAltitude;
