@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "WORK_PLACE")
+@Table(name = "work_place")
 public class WorkPlace {
 	
 	@Id

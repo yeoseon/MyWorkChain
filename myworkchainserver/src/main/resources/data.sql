@@ -30,11 +30,12 @@ CREATE TABLE company (
 	comp_address VARCHAR(250) PRIMARY KEY,
 	mwc_address VARCHAR(250) NOT NULL,
 	comp_name VARCHAR(250),
-	comp_location VARCHAR(1000)	
+	location VARCHAR(1000)	
 );
 
-INSERT INTO company (comp_address, mwc_address, comp_name, comp_location) VALUES
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd','0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Bankware Global', '서울특별시 중구 소공동 통일로 86');
+INSERT INTO company (comp_address, mwc_address, comp_name, location) VALUES
+ ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd','0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Bankware Global', '서울특별시 중구 소공동 통일로 86'),
+ ('xxx','0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', 'Finlab', '서울특별시 중구 소공동 통일로 86');
  
  
 DROP TABLE IF EXISTS work_place;

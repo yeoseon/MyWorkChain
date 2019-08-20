@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "SYSTEM_INFO")
+@Table(name = "system_info")
 public class SystemInfo {
 	@Id
 	private String mwc_address;

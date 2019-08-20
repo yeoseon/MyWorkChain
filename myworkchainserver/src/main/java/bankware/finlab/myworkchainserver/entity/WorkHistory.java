@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "WORK_HISTORY")
+@Table(name = "work_history")
 public class WorkHistory {
 	
 	@Id
