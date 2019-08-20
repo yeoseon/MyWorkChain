@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "work_place")
-public class WorkPlace {
+public class WorkPlaceEntity {
 	
 	@Id
 	private int workCode;

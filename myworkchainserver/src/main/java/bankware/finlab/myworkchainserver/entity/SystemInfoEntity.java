@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "system_info")
-public class SystemInfo {
+public class SystemInfoEntity {
 	@Id
 	private String mwc_address;
 }

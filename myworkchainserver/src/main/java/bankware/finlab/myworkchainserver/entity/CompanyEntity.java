@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "company")
-public class Company {
+public class CompanyEntity {
 	
 	@Id
 	private String compAddress;

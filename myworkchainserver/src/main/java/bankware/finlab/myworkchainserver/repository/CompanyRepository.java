@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import bankware.finlab.myworkchainserver.entity.Company;
-import bankware.finlab.myworkchainserver.entity.WorkPlace;
+import bankware.finlab.myworkchainserver.entity.CompanyEntity;
+import bankware.finlab.myworkchainserver.entity.WorkPlaceEntity;
 
-public interface CompanyRepository extends CrudRepository<Company, Long> {
+public interface CompanyRepository extends CrudRepository<CompanyEntity, Long> {
 
-	List<Company> findAll();
+	List<CompanyEntity> findAll();
 }

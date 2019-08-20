@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bankware.finlab.myworkchainserver.entity.Company;
-import bankware.finlab.myworkchainserver.entity.WorkPlace;
+import bankware.finlab.myworkchainserver.entity.CompanyEntity;
+import bankware.finlab.myworkchainserver.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchainserver.repository.CompanyRepository;
 import bankware.finlab.myworkchainserver.repository.WorkPlaceRepository;
 
@@ -19,7 +19,7 @@ public class CompanyService {
 	@Autowired 
 	private WorkPlaceRepository workPlaceRepository;
 	
-	public List<Company> getCompanyList() {
+	public List<CompanyEntity> getCompanyList() {
 		return companyRepository.findAll();
 	}
 
@@ -34,8 +34,10 @@ public class CompanyService {
 	/*
 	 * 회사의 근무지 목록 조회
 	 * Server Data 이용
+	 * TODO: 근무지 목록을 효과적으로 보여줄 수 있는 방법 생각
+	 * TODO: HTML Geo 라이브러리 이용하여 의미있는 데이터 넣어두기
 	 */
-	public List<WorkPlace> getWorkPlace(String compAdrs) {
+	public List<WorkPlaceEntity> getWorkPlace(String compAdrs) {
 		
 		return workPlaceRepository.findWorkPlaceByCompAddress(compAdrs);
 	}

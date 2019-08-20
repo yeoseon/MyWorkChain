@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "work_history")
-public class WorkHistory {
+public class WorkHistoryEntity {
 	
 	@Id
 	private int id;

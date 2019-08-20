@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import bankware.finlab.myworkchainserver.entity.WorkPlace;
+import bankware.finlab.myworkchainserver.entity.WorkPlaceEntity;
 
-public interface WorkPlaceRepository extends CrudRepository<WorkPlace, Long> {
+public interface WorkPlaceRepository extends CrudRepository<WorkPlaceEntity, Long> {
 
-	List<WorkPlace> findWorkPlaceByCompAddress(String compAddress);
+	List<WorkPlaceEntity> findWorkPlaceByCompAddress(String compAddress);
+	String findWorkNameByWorkCode(int workCode);
 }
