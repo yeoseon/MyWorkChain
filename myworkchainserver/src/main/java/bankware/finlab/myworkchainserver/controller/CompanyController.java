@@ -20,7 +20,7 @@ public class CompanyController {
 	@Autowired
 	CompanyService companyService; 
 	
-	@RequestMapping(path={"", "/"})
+	@RequestMapping(path={"", "/", "company", "/company"})
 	public String company(Model model) {
 		
 		String pageName;
