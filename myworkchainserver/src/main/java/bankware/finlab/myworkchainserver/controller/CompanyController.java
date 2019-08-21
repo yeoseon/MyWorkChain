@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import bankware.finlab.myworkchainserver.service.CompanyService;
 
 @Controller
-@RequestMapping("company")
 public class CompanyController {
 
 	Logger logger = LoggerFactory.getLogger(CompanyController.class);
