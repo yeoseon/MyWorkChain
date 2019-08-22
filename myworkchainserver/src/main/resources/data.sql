@@ -47,13 +47,19 @@ CREATE TABLE employee (
 	comp_address VARCHAR(250) NOT NULL,
 	empl_name VARCHAR(250),
 	current_work_code INT
+	department VARCHAR(250),
+	position VARCHAR(250),
+	joinData VARCHAR(250),
+	email VARCHAR(250),
+	phoneNumber VHRCHAR(250)
 );
 
-INSERT INTO employee (empl_address, comp_address, empl_name, current_work_code) VALUES
- ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Gabriel', '2'),
- ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Kevin', '1'),
- ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Mickey', '1'),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Celine', '2');
+INSERT INTO employee (empl_address, comp_address, empl_name, current_work_code, department, position, joinData, email, phoneNumber) VALUES
+ ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Gabriel', '2', '아키텍처실', '이사', '2019-02-18', 'dongsik.lee@bankwareglobal.com', '010-1111-1111'),
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Kevin', '1', 'PF실', '책임', '2013-07-01', 'keunyop.lee@bankwareglobal.com', '010-1111-1111'),
+ ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Mickey', '1', '아키텍처실', '상무', '2015-03-01', 'jungho.shin@bankwareglobal.com', '010-1111-1111'),
+ ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Jay', '2', '아키텍처실', '주임', '2016-01-02', 'seongbeom.jeong@bankwareglobal.com', '010-1111-1111'),
+ ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '0xcf6575a9d3bb47fc8435baacdbe7220e8e18230c', 'Celine', '3', '금융서비스실', '사원', '2019-01-21', 'yeoseon.yun@bankwareglobal.com', '010-4692-6053');
   
 DROP TABLE IF EXISTS work_history;
 
