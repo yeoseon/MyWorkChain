@@ -3,11 +3,13 @@ package bankware.finlab.myworkchainserver.service;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -24,9 +26,9 @@ import bankware.finlab.myworkchainserver.vo.Employee;
 public class EmployeeService {
 
 	//TODO : 상수들 Properties로 관리
-	private static final String REST_API_URL = "";
+	private static final String REST_API_URL = "https://api.luniverse.io/tx/v1.0/transactions/companyUserListV1";
 	private static final String GET_EMPLOYEE_ADDRESS_API_POSTFIX = ""; //getEmployeeAddressList의 API PostFix
-	
+	private static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
@@ -50,16 +52,32 @@ public class EmployeeService {
 	private List<String> _getEmplAddressList(String compAddress) throws RestClientException, JsonProcessingException {
 		List<String> emplAddressList = new ArrayList<String>();
 
+		String testrqst = "{\n" + 
+				"        \"from\": {\n" + 
+				"                \"userKey\": \"APIAddress\",\n" + 
+				"                \"walletType\": \"LUNIVERSE\"\n" + 
+				"        },\n" + 
+				"        \"inputs\": {\n" + 
+				"                \"_companyId\": \"0x69f2d1bdc2430a3a067620f617fec3100b892d54\"\n" + 
+				"        }\n" + 
+				"}";
+		
 		//TODO : get list of employee address from chain
 		String url = REST_API_URL + GET_EMPLOYEE_ADDRESS_API_POSTFIX;
-		Map<String, Object> rqst = new HashMap<>(); //TODO: Request 객체 생성
+//		Map<String, Object> rqst = new HashMap<>(); //TODO: Request 객체 생성
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		//TODO: Header......
+		final HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "Bearer " + BEARER_API);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity<String> entity = new HttpEntity<String>(testrqst, headers);
+		
 		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		String[] resultList = restTemplate.postForObject(url, commonService.objectToJson(rqst), String[].class);
-		emplAddressList = Arrays.asList(resultList);
+//		String[] resultList = restTemplate.postForObject(url, commonService.objectToJson(testrqst), String[].class);
+		String response = restTemplate.postForObject(url, entity, String.class);
+		
+//		emplAddressList = Arrays.asList(resultList);
 
 		return emplAddressList;
 	}
