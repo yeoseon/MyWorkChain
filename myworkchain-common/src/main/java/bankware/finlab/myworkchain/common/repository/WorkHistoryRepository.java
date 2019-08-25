@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 
 public interface WorkHistoryRepository extends CrudRepository<WorkHistoryEntity, Long> {
-
+	
+	WorkHistoryEntity findWorkHistoryByUserAddressAndWorkStartYmd(String userAddress, String workStartYmd);
+	
 }

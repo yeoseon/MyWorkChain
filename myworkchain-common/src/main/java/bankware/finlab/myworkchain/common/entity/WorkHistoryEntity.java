@@ -1,6 +1,8 @@
 package bankware.finlab.myworkchain.common.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class WorkHistoryEntity {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String userAddress;
 	private String workStartYmd;
@@ -24,7 +27,8 @@ public class WorkHistoryEntity {
 	private String workEndTime;
 	
 	@Builder
-	public WorkHistoryEntity(String userAddress, String workStartYmd, String workEndYmd, String workStartTime, String workEndTime) {
+	public WorkHistoryEntity(int id, String userAddress, String workStartYmd, String workEndYmd, String workStartTime, String workEndTime) {
+		this.id = id;
 		this.userAddress = userAddress;
 		this.workStartYmd = workStartYmd;
 		this.workEndYmd = workEndYmd;
