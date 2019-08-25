@@ -3,6 +3,35 @@ $(function() {
 	/* Variables */
 	var EMPL_ADDRESS = '0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112';
 	
+	/* Get Working List*/
+	/*<![CDATA[*/
+	var workHistoryEntityList = /*[[${workHistoryEntityList}]]*/;
+	console.log(workHistoryEntityList);
+	var calendarModel = [];
+	$.each(workHistoryEntityList, function(index, workHistoryEntity){
+		var startMilliSeconds = moment(workHistoryEntity.workStartYmd + ' ' + workHistoryEntity.workStartTime).valueOf();
+		var endMilliSeconds = moment(workHistoryEntity.workEndYmd + ' ' + workHistoryEntity.workEndTime).valueOf();
+		var workingSeconds = moment.duration(endMilliSeconds - startMilliSeconds).asSeconds();
+		var rgbCode = '#1DDB16';
+		
+		// 근무시간 10시간 초과 빨간색
+		if(workingSeconds > 36000) rgbCode = '#FF0000';
+		// 근무시간 9시간 초과 ~ 10시간 이하 주황색
+		else if(workingSeconds > 32400 && workingSeconds <= 36000) rgbCode = '#FFBB00';
+		// 근무시간 9시간 이하 초록색
+		else rgbCode = '#1DDB16';
+		
+		var workHistory = {
+				title : 'Working',
+				start : startMilliSeconds,
+				end : endMilliSeconds,
+				backgroundColor : rgbCode,
+				borderColor : rgbCode,
+		};
+		calendarModel.push(workHistory);
+	});
+	/*]]>*/
+	
 	/* fullcalendar*/
 	var calendarEl = document.getElementById('calendar');
 	 
@@ -16,27 +45,20 @@ $(function() {
 			center : 'title',
 			right : 'dayGridMonth,timeGridWeek,timeGridDay'
 		},
-		events : [ {
-			title : 'All Day Event',
-			start : '2019-08-01'
-		}, {
-			title : 'Long Event',
-			start : '2019-08-07',
-			end : '2019-08-10'
-		}, ],
+		events : calendarModel,
 		dateClick : function(info) {
-			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYY[]MM[]DD');
-			var todayYmd = moment().format('YYYY[]MM[]DD');
+			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYYMMDD');
+			var todayYmd = moment().format('YYYYMMDD');
 			if(clickedCalendarTodayYmd != todayYmd){
 				console.log("clickedCalendarTodayYmd : " + clickedCalendarTodayYmd);
 				console.log("todayYmd : " + todayYmd);
-				alert("오늘 날짜만 업무를 선택할 수 있습니다.");
+				alert("오늘 날짜만 선택할 수 있습니다.");
 				return;
 			}
-			// New Work History
+			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
-				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS, //요청 경로
+				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+todayYmd, //요청 경로
 				contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
 				//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 				success : function(data, status, xhr) {
@@ -119,7 +141,7 @@ $(function() {
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
 				alert("정상 처리 되었습니다.");
-				$('#modal-commute').modal('hide');
+				location.replace(BASE_CONTEXT_PATH);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
@@ -143,6 +165,7 @@ $(function() {
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
 				alert("정상 처리 되었습니다.");
+				location.replace(BASE_CONTEXT_PATH);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
