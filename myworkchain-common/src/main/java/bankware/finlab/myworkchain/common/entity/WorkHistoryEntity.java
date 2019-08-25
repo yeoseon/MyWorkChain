@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,16 @@ public class WorkHistoryEntity {
 	private int id;
 	private String userAddress;
 	private String workStartYmd;
-	private String workendYmd;
+	private String workEndYmd;
 	private String workStartTime;
 	private String workEndTime;
+	
+	@Builder
+	public WorkHistoryEntity(String userAddress, String workStartYmd, String workEndYmd, String workStartTime, String workEndTime) {
+		this.userAddress = userAddress;
+		this.workStartYmd = workStartYmd;
+		this.workEndYmd = workEndYmd;
+		this.workStartTime = workStartTime;
+		this.workEndTime = workEndTime;
+	}
 }
