@@ -1,1 +1,3 @@
 rootProject.name = 'myworkchainserver'
+include ':myworkchain-common'
+project(':myworkchain-common').projectDir = new File("../myworkchain-common")
