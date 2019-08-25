@@ -1,12 +1,15 @@
 <script th:inline="javascript">
 $(function() {
+	/* Variables */
+	var EMPL_ADDRESS = '0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112';
+	
 	/* fullcalendar*/
 	var calendarEl = document.getElementById('calendar');
 	 
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'interaction' ],
 		defaultView : 'dayGridMonth',
-		defaultDate : '2019-08-07',
+		//defaultDate : '2019-08-07',
 		selectable : true,
 		header : {
 			left : 'prev,next today',
@@ -22,8 +25,37 @@ $(function() {
 			end : '2019-08-10'
 		}, ],
 		dateClick : function(info) {
-			$('#modal-commute').modal('show');
-			$('#modal-commute-date').html(info.dateStr);
+			// New Work History
+			$.ajax({
+				type : "GET", //요청 메소드 타입
+				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS, //요청 경로
+				contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+				//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+				success : function(data, status, xhr) {
+					$('#modal-commute').modal('show');
+					$('#modal-commute-date').html(info.dateStr);
+					
+					console.log(data);
+					if(!data){
+						console.log('업무 시작 필요 !!');
+						$('#start_work').prop('disabled', false);
+						$('#end_work').prop('disabled', true);
+					}else{
+						if(!data.workEndYmd || !data.workEndTime){
+							console.log('업무 시작 중 !!');
+							$('#start_work').prop('disabled', true);
+							$('#end_work').prop('disabled', false);
+						}else{
+							console.log('업무 종료 완료 !!');
+							$('#start_work').prop('disabled', true);
+							$('#end_work').prop('disabled', true);
+						}
+					}
+				},
+				error : function(xhr, status, error) {
+					alert(error);
+				}
+			});
 		}
 	});
 
@@ -60,5 +92,54 @@ $(function() {
 	} else {
 	    alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
 	}
+	
+	/* Work History*/
+	// 업무 시작
+	$('#start_work').on('click', function(e){
+		// Check validations
+		//var date = calendar.getDate();
+		//alert("The current date of the calendar is " + date.toISOString());
+		
+		// New Work History
+		$.ajax({
+			type : "POST", //요청 메소드 타입
+			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
+			data : JSON.stringify({
+				'userAddress' : EMPL_ADDRESS,
+			}),
+			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+			success : function(data, status, xhr) {
+				alert("정상 처리 되었습니다.");
+				$('#modal-commute').modal('hide');
+			},
+			error : function(xhr, status, error) {
+				alert("에러 발생 !!");
+			}
+		});
+	});
+	// 업무 종료
+	$('#end_work').on('click', function(e){
+		// Check validations
+		//var date = calendar.getDate();
+		//alert("The current date of the calendar is " + date.toISOString());
+		
+		// New Work History
+		$.ajax({
+			type : "PATCH", //요청 메소드 타입
+			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
+			data : JSON.stringify({
+				'userAddress' : EMPL_ADDRESS,
+			}),
+			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+			success : function(data, status, xhr) {
+				alert("정상 처리 되었습니다.");
+			},
+			error : function(xhr, status, error) {
+				alert("에러 발생 !!");
+			}
+		});
+	});
 });
 </script>

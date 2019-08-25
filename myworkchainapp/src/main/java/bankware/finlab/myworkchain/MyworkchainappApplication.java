@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainapp;
+package bankware.finlab.myworkchain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
