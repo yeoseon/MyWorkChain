@@ -1,12 +1,10 @@
-package bankware.finlab.myworkchainserver;
+package bankware.finlab.myworkchain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "bankware.finlab.myworkchain.common")
 public class MyworkchainserverApplication extends SpringBootServletInitializer {
 
 //	@Override

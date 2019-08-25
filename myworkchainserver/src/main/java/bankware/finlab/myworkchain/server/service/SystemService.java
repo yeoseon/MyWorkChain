@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver.service;
+package bankware.finlab.myworkchain.server.service;
 
 import java.util.List;
 

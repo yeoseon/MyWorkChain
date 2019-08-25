@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver.vo;
+package bankware.finlab.myworkchain.server.vo;
 
 import lombok.Builder;
 import lombok.Getter;

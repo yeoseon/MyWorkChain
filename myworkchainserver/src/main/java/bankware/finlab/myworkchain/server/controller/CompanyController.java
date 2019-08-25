@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver.controller;
+package bankware.finlab.myworkchain.server.controller;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import org.springframework.web.client.RestClientException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import bankware.finlab.myworkchainserver.service.CompanyService;
-import bankware.finlab.myworkchainserver.service.EmployeeService;
-import bankware.finlab.myworkchainserver.vo.Employee;
+import bankware.finlab.myworkchain.server.service.CompanyService;
+import bankware.finlab.myworkchain.server.service.EmployeeService;
+import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Controller
 public class CompanyController {

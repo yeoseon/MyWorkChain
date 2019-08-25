@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver.controller;
+package bankware.finlab.myworkchain.server.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import bankware.finlab.myworkchainserver.service.SystemService;
+import bankware.finlab.myworkchain.server.service.SystemService;
 
 @Controller
 @RequestMapping("system")

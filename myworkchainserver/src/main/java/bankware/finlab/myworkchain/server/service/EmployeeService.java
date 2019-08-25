@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchainserver.service;
+package bankware.finlab.myworkchain.server.service;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
-import bankware.finlab.myworkchainserver.vo.Employee;
+import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Service
 public class EmployeeService {
