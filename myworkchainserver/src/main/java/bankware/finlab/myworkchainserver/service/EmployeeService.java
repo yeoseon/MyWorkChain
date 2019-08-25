@@ -2,14 +2,12 @@ package bankware.finlab.myworkchainserver.service;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -17,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import bankware.finlab.myworkchainserver.entity.EmployeeEntity;
-import bankware.finlab.myworkchainserver.repository.EmployeeRepository;
-import bankware.finlab.myworkchainserver.repository.WorkPlaceRepository;
+import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
+import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
+import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchainserver.vo.Employee;
 
 @Service

@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bankware.finlab.myworkchainserver.entity.CompanyEntity;
-import bankware.finlab.myworkchainserver.entity.WorkPlaceEntity;
-import bankware.finlab.myworkchainserver.repository.CompanyRepository;
-import bankware.finlab.myworkchainserver.repository.WorkPlaceRepository;
+import bankware.finlab.myworkchain.common.entity.CompanyEntity;
+import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
+import bankware.finlab.myworkchain.common.repository.CompanyRepository;
+import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 
 @Service
 public class CompanyService {
