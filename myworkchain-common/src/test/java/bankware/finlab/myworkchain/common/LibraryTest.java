@@ -3,9 +3,9 @@
  */
 package bankware.finlab.myworkchain.common;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 public class LibraryTest {
-    @Test public void testSomeLibraryMethod() {
-    }
+//    @Test public void testSomeLibraryMethod() {
+//    }
 }

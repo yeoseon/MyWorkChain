@@ -1,31 +1,38 @@
-plugins {
-	id 'org.springframework.boot' version '2.1.7.RELEASE'
-	id 'java-library'
+buildscript {
+    repositories { 
+    	mavenCentral() 
+    }
+	dependencies {
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
+	}
 }
 
-apply plugin: 'io.spring.dependency-management'
+ext { springBootVersion = '2.1.7.RELEASE' }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "io.spring.dependency-management"
 
 group = 'bankware.finlab'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+jar {
+    version = '0.0.1-SNAPSHOT'
 }
+sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
