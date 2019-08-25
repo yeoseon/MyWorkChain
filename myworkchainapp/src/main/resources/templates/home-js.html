@@ -25,6 +25,14 @@ $(function() {
 			end : '2019-08-10'
 		}, ],
 		dateClick : function(info) {
+			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYY[]MM[]DD');
+			var todayYmd = moment().format('YYYY[]MM[]DD');
+			if(clickedCalendarTodayYmd != todayYmd){
+				console.log("clickedCalendarTodayYmd : " + clickedCalendarTodayYmd);
+				console.log("todayYmd : " + todayYmd);
+				alert("오늘 날짜만 업무를 선택할 수 있습니다.");
+				return;
+			}
 			// New Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
