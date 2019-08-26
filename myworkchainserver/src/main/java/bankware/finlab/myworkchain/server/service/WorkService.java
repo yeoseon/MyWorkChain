@@ -3,6 +3,7 @@ package bankware.finlab.myworkchain.server.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,7 +20,11 @@ public class WorkService {
 
 	private final static String POSTFIX_CHECK_STAMP = "checkStampV2";
 	
+	@Autowired
 	CommonService commonService;
+	
+	@Autowired
+	EmployeeService employeeService;
 	
 	/*
 	 * 근무 기록
@@ -36,16 +41,18 @@ public class WorkService {
 	private RestRequest _setNewWorkRequest(NewWorkRequest request) {
 		
 		RestRequest restRequest = new RestRequest();
-		RestRequestFrom from = new RestRequestFrom();
 		
+		//from
+		RestRequestFrom from = new RestRequestFrom();
 		//TODO: properties 관리?
 		from.setUserKey("APIAddress");
 		from.setWalletType("LUNIVERSE");
 		
 		restRequest.setFrom(from);
 		
+		//input
 		CheckStampInput input = new CheckStampInput();
-		input.set_userId(request.getId());
+		input.set_userId(employeeService.getEmployeeInfoById(request.getId()).getWalletAddress());
 		input.set_yearMon(commonService.getYearMonth());
 		input.set_day(commonService.getDay());
 		input.set_workCode(request.getWorkCode());
@@ -59,13 +66,16 @@ public class WorkService {
 	}
 	
 	/*
-	 * 근무 기록 조회
+	 * 한달 간의 근무 기록 조회
 	 */
-	public List<WorkHistory> getWorkHistory(String userId) {
-		
-		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
-		
-		return workHistoryList;
-	}
+//	public List<WorkHistory> getWorkHistory(String userId, int startDay, int endDay) {
+//		
+//		RestRequest restRequest =_setNewWorkRequest(request);
+//		
+//		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_CHECK_STAMP);
+//
+//		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
+//		return workHistoryList;
+//	}
 
 }
