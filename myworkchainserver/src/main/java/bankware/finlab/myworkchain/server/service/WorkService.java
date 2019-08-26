@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.server.dto.NewWorkRequest;
+import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.CheckStampInput;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequestFrom;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
+import bankware.finlab.myworkchain.server.dto.restapi.WorkHistoryInput;
 import bankware.finlab.myworkchain.server.vo.WorkHistory;
 
 @Service
@@ -43,11 +45,7 @@ public class WorkService {
 		RestRequest restRequest = new RestRequest();
 		
 		//from
-		RestRequestFrom from = new RestRequestFrom();
-		//TODO: properties 관리?
-		from.setUserKey("APIAddress");
-		from.setWalletType("LUNIVERSE");
-		
+		RestRequestFrom from = commonService.getFrom();
 		restRequest.setFrom(from);
 		
 		//input
@@ -66,16 +64,41 @@ public class WorkService {
 	}
 	
 	/*
-	 * 한달 간의 근무 기록 조회
+	 * 근무 기록 조회
 	 */
-//	public List<WorkHistory> getWorkHistory(String userId, int startDay, int endDay) {
-//		
-//		RestRequest restRequest =_setNewWorkRequest(request);
-//		
-//		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_CHECK_STAMP);
-//
-//		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
-//		return workHistoryList;
-//	}
+	public List<WorkHistory> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
+		
+		RestRequest restRequest =_setWorkHistoryInput(request);
+		
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_CHECK_STAMP);
+		//TODO : make workHistoryList;
+		
+		return _makeWorkHistoryList(response);
+	}
+	
+	private RestRequest _setWorkHistoryInput(WorkHistoryRequest request) {
+		RestRequest restRequest = new RestRequest();
+		
+		//from
+		RestRequestFrom from = commonService.getFrom();
+		
+		restRequest.setFrom(from);
+		
+		//input
+		WorkHistoryInput input = new WorkHistoryInput();
+		input.set_userId(employeeService.getEmployeeInfoById(request.getId()).getWalletAddress());
+		input.set_yearMon(request.getYearMonth());
+		input.set_stday(request.getStartDay());
+		input.set_edday(request.getEndDay());
+		
+		restRequest.setInputs(input);
+		
+		return restRequest;
+	}
 
+	private List<WorkHistory> _makeWorkHistoryList(RestResponse response) {
+		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
+		
+		return workHistoryList;
+	}
 }
