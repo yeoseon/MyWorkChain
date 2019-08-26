@@ -25,14 +25,6 @@ export default {
       },
     },
     {
-      title: 'product',
-      path: '/product',
-      name: 'product',
-      component: function(resolve) {
-        require(['@/components/product.vue'], resolve)
-      },
-    },
-    {
       title: 'my',
       path: '/my',
       name: 'my',

@@ -1,9 +1,8 @@
 <template>
 <div>
   <Header/>
-  <div class="position-relative pt-9">
-    <div class="wrapper"><h1>리워드 포인트로 상품을 구매하세요.</h1></div>
-    <!-- <div class="title">리워드 포인트를 사용하여 원하는 상품을 구매하세요.</div> -->
+  <div class="position-relative pt-7">
+    <div class="wrapper"><h2>Reward Point Market</h2></div>
   </div>
   <section class="site-home-scene">
     <div class="inner-container">
@@ -12,11 +11,11 @@
             <img src="@/assets/img/starbucks_iceamericano.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">4,100 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">4,100 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f17" style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
+              <span class="font-weight-700 mb-2 f17 " style="margin-top: -20px; float: left;">아이스 카페아메리카노 Tall</span>
               <span class="t_gry2 small mb-3" style="margin-top: -15px; float: left;"> &nbsp;ㅣ&nbsp;스타벅스</span>
             </div>
             <div class="t_gry3 small" style=" text-align: left;">
@@ -28,7 +27,7 @@
             <img src="@/assets/img/applemangocheese.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">11,900 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">11,900 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
@@ -44,7 +43,7 @@
             <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
@@ -60,7 +59,7 @@
             <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
@@ -76,7 +75,7 @@
             <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
@@ -92,7 +91,7 @@
             <img src="@/assets/img/shinsegae50000.jpg" class="photo5" alt>
             <div style="height: 30px;"> &nbsp;</div>
             <div style="display: flow-root;">
-              <span class="font-weight-700 mb-2 f20" style="margin-top: -20px; float: right;">100,000 포인트</span>
+              <span class="font-weight-700 mb-2 f20 t_purple" style="margin-top: -20px; float: right;">100,000 포인트</span>
             </div>
             <br>
             <div style="display: flow-root;">
@@ -122,8 +121,12 @@ export default {
 
 <style scoped>
   .position-relative{
-    background-color: #1B2733 !important;
-    height: 300px;
+    background-color: #e8e6f2 !important;
+    height: 230px;
+  }
+  .position-relative-sub{
+    background-color: #f15a29 !important;
+    height: 120px;
   }
   .inner-container{
     padding-top: 60px !important;

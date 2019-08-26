@@ -40,12 +40,10 @@
             <strong class="t_dgray f15 font-weight-400" v-if="e.id == $route.params.idolId">{{e.message}}</strong>
           </div>
           <div v-for="e in products" :key="e.id">
-            <strong id="money" class="f24 font-weight-700 mb4" v-if="e.id == $route.params.idolId">{{e.price}}<span class="f17 font-weight-700">&nbsp;포인트</span></strong>
+            <strong id="money" class="f24 font-weight-700 mb4 t_purple" v-if="e.id == $route.params.idolId">{{e.price}}<span class="f17 font-weight-700">&nbsp;포인트</span></strong>
           </div>
           <div class="flex" style="margin-top: 15px;" v-for="e in products" :key="e.id">
             <button type="submit" class="button-submit flex-box-80" style="font-weight:400 !important;" v-on:click="purchase(e.id-1)" v-if="e.id == $route.params.idolId">포인트로 상품구매</button>
-            <button type="submit" class="button-normal flex-box-20" v-bind:value="database" style="margin-left: 10px;" v-on:click="like()" v-if="e.id == $route.params.idolId">
-              <i class="fa fa-thumbs-up"></i>&nbsp;{{e.like}}</button>
           </div>
         </div>
       </div>
@@ -167,31 +165,6 @@ export default {
         })
         .catch(() => {
         })
-    },
-    like(){
-      let n = parseInt(this.database.like.replace(/,/g,""));
-      this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.like}`,{ 
-          'from': this.walletAddress.pd,
-          'inputs' : {
-            'receiverAddress': this.walletAddress.user,
-            'valueAmount': '100000000000000000000'
-          }
-      },
-      {
-        headers: {
-          'api-key': this.apiKey,
-        }
-      }
-      )
-        .then(() => {
-          alert('좋아요를 눌러주셔서 감사합니다!\n100RWT를 드려요!');
-          n = n + 1;
-          n = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          this.database.like=n;
-        })
-        .catch(() => {
-          alert('좋아요에 실패했습니다!')
-        });
     },
     purchase(productId){
       this.axios.post(`https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.purchase}`,{
