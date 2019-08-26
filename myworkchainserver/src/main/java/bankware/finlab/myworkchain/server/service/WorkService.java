@@ -18,6 +18,7 @@ public class WorkService {
 	public Boolean newWorkHistory(NewWorkRequest request)  {
 		RestResponse response = new RestResponse();
 		
+		
 		return response.getResult();
 	}
 	

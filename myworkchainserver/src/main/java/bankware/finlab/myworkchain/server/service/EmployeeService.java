@@ -38,15 +38,39 @@ public class EmployeeService {
 	@Autowired 
 	CommonService commonService;
 	
-	//TODO: 직원 목록 조회
-	//Chain에서 직원 Address 목록 조회
-	//Server에 있는 직원 Data와 Mapping
+	/*
+	 * 회사 Address를 받아 직원 목록 조회
+	 */
 	public List<Employee> getEmployeeList(String compAddress) throws RestClientException, JsonProcessingException {
 
+		//Chain에서 직원 Address 목록 조회
+		//Server에 있는 직원 Data와 Mapping
 		List<Object> emplAddressList = _getEmplAddressList(compAddress);
 		List<EmployeeEntity> emplListData = employeeRepository.findAll();
 		
 		return _mappingEmployeeInfo(emplAddressList, emplListData);
+	}
+	
+	/*
+	 * 직원 ID를 받아 직원 정보 조회
+	 */
+	public Employee getEmployeeInfoById(String userId) {
+		
+		EmployeeEntity entity = employeeRepository.findEmployeeById(userId);
+		
+		Employee employee = Employee.builder()
+	 			.id(entity.getId())
+				.name(entity.getEmplName())
+				.department(entity.getDepartment())
+				.position(entity.getPosition())
+				.joinDate(entity.getJoinDate())
+				.email(entity.getEmail())
+				.phoneNumber(entity.getPhoneNumber())
+				.workPlace(_getWorkPlaceName(entity.getCurrentWorkCode()))
+				.walletAddress(entity.getEmplAddress())
+				.build();
+		
+		return employee;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -126,6 +150,4 @@ public class EmployeeService {
 		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
 		return workPlace.getWorkName();
 	}
-	
-	//TODO: 직원의 근무 이력 조회
 }
