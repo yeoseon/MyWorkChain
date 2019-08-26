@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import bankware.finlab.myworkchain.server.common.RestResponse;
 import bankware.finlab.myworkchain.server.dto.NewWorkRequest;
-import bankware.finlab.myworkchain.server.dto.common.RestResponse;
 import bankware.finlab.myworkchain.server.vo.WorkHistory;
 
 @Service

@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchain.server.common;
+package bankware.finlab.myworkchain.server.common.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
