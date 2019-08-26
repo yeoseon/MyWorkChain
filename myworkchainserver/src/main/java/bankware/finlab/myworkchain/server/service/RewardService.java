@@ -15,6 +15,7 @@ public class RewardService {
 
 	
 	private final static String POSTFIX_TRANSFER_TO_USER = "transfer2User";
+	private final static String POSTFIX_GET_BALANCE = "FT9754/R1908/balance";
 	@Autowired
 	CommonService commonService;
 	
@@ -44,5 +45,15 @@ public class RewardService {
 		restRequest.setInputs(input);
 		
 		return restRequest;
+	}
+
+	/*
+	 * 리워드(balance) 조회
+	 */
+	public String getBalance(String walletAddress) {
+		
+		RestResponse response = commonService.callGet(walletAddress, POSTFIX_GET_BALANCE);
+		
+		return response.getData().getBalance();
 	}
 }

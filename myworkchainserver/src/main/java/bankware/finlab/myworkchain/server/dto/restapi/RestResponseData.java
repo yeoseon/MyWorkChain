@@ -20,4 +20,7 @@ public class RestResponseData {
 	
 	@JsonProperty(value="res")
 	private List<Object> res;
+	
+	@JsonProperty(value="balance")
+	private String balance;
 }

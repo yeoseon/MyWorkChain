@@ -10,6 +10,7 @@ import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.CompanyRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.vo.Company;
+import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Service
 public class CompanyService {
@@ -20,27 +21,32 @@ public class CompanyService {
 	@Autowired 
 	private WorkPlaceRepository workPlaceRepository;
 	
+	/*
+	 * 전체 회사 목록 조회
+	 */
 	public List<CompanyEntity> getCompanyList() {
 		return companyRepository.findAll();
 	}
 
-	//TODO : 회사 정보 조회
 	/*
-	 * 기업 정보도 Chain이 아니라 Server 데이터로 관리해야할 것 같다.
-	 * TODO: 일단 두가지 방안으로 모두 구현해둔 후에 회의 때 정해서 적용할 것.
+	 * 회사의 정보 조회
 	 */
 	public Company getCompanyInfo(String compAdrs) {
 		
-		Company company = new Company();
+		CompanyEntity companyEntity = companyRepository.findCompanyByCompAddress(compAdrs);
+		
+		Company company = Company.builder()
+						.compAddress(companyEntity.getCompAddress())
+						.name(companyEntity.getCompName())
+						.address(companyEntity.getLocation())
+						.useYn(companyEntity.getUseYn())
+						.build();
 		
 		return company;
 	}
 	
 	/*
 	 * 회사의 근무지 목록 조회
-	 * Server Data 이용
-	 * TODO: 근무지 목록을 효과적으로 보여줄 수 있는 방법 생각
-	 * TODO: HTML Geo 라이브러리 이용하여 의미있는 데이터 넣어두기
 	 */
 	public List<WorkPlaceEntity> getWorkPlace(String compAdrs) {
 		

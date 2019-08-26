@@ -19,5 +19,6 @@ public class CompanyEntity {
 	private String mwcAddress;
 	private String compName;
 	private String location;
+	private Boolean useYn;
 }
 

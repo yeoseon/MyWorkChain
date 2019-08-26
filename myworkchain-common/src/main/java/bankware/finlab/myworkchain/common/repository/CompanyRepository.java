@@ -9,4 +9,6 @@ import bankware.finlab.myworkchain.common.entity.CompanyEntity;
 public interface CompanyRepository extends CrudRepository<CompanyEntity, Long> {
 
 	List<CompanyEntity> findAll();
+	
+	CompanyEntity findCompanyByCompAddress(String address);
 }
