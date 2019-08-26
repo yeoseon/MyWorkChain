@@ -22,7 +22,7 @@ public class CompanyController {
 
 	Logger logger = LoggerFactory.getLogger(CompanyController.class);
 	
-	//TODO: 데모를 위해 초기에 화면으로부터 COMPANY_ADDRESS를 입력받을 수 있도록
+	//TODO: properties 관리
 	private static final String COMPANY_ADDRESS = "0x69f2d1bdc2430a3a067620f617fec3100b892d54";
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class CompanyController {
 	
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@RequestMapping(path={"", "/"})
 	public String company(Model model) throws RestClientException, JsonProcessingException {
 		
@@ -43,5 +43,5 @@ public class CompanyController {
 		model.addAttribute("employeeList", employeeList);
 		return pageName;
 	}
-	
+
 }
