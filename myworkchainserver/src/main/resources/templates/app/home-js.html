@@ -1,0 +1,176 @@
+<script th:inline="javascript">
+$(function() {
+	/* Variables */
+	var EMPL_ADDRESS = '0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112';
+	
+	/* Get Working List*/
+	/*<![CDATA[*/
+	var workHistoryEntityList = /*[[${workHistoryEntityList}]]*/;
+	console.log(workHistoryEntityList);
+	var calendarModel = [];
+	$.each(workHistoryEntityList, function(index, workHistoryEntity){
+		var startMilliSeconds = moment(workHistoryEntity.workStartYmd + ' ' + workHistoryEntity.workStartTime).valueOf();
+		var endMilliSeconds = moment(workHistoryEntity.workEndYmd + ' ' + workHistoryEntity.workEndTime).valueOf();
+		var workingSeconds = moment.duration(endMilliSeconds - startMilliSeconds).asSeconds();
+		var rgbCode = '#1DDB16';
+		
+		// 근무시간 10시간 초과 빨간색
+		if(workingSeconds > 36000) rgbCode = '#FF0000';
+		// 근무시간 9시간 초과 ~ 10시간 이하 주황색
+		else if(workingSeconds > 32400 && workingSeconds <= 36000) rgbCode = '#FFBB00';
+		// 근무시간 9시간 이하 초록색
+		else rgbCode = '#1DDB16';
+		
+		var workHistory = {
+				title : 'Working',
+				start : startMilliSeconds,
+				end : endMilliSeconds,
+				backgroundColor : rgbCode,
+				borderColor : rgbCode,
+		};
+		calendarModel.push(workHistory);
+	});
+	/*]]>*/
+	
+	/* fullcalendar*/
+	var calendarEl = document.getElementById('calendar');
+	 
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'interaction' ],
+		defaultView : 'dayGridMonth',
+		//defaultDate : '2019-08-07',
+		selectable : true,
+		header : {
+			left : 'prev,next today',
+			center : 'title',
+			right : 'dayGridMonth,timeGridWeek,timeGridDay'
+		},
+		events : calendarModel,
+		dateClick : function(info) {
+			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYYMMDD');
+			var todayYmd = moment().format('YYYYMMDD');
+			if(clickedCalendarTodayYmd != todayYmd){
+				console.log("clickedCalendarTodayYmd : " + clickedCalendarTodayYmd);
+				console.log("todayYmd : " + todayYmd);
+				alert("오늘 날짜만 선택할 수 있습니다.");
+				return;
+			}
+			// Get Work History
+			$.ajax({
+				type : "GET", //요청 메소드 타입
+				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+todayYmd, //요청 경로
+				contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+				//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+				success : function(data, status, xhr) {
+					$('#modal-commute').modal('show');
+					$('#modal-commute-date').html(info.dateStr);
+					
+					console.log(data);
+					if(!data){
+						console.log('업무 시작 필요 !!');
+						$('#start_work').prop('disabled', false);
+						$('#end_work').prop('disabled', true);
+					}else{
+						if(!data.workEndYmd || !data.workEndTime){
+							console.log('업무 시작 중 !!');
+							$('#start_work').prop('disabled', true);
+							$('#end_work').prop('disabled', false);
+						}else{
+							console.log('업무 종료 완료 !!');
+							$('#start_work').prop('disabled', true);
+							$('#end_work').prop('disabled', true);
+						}
+					}
+				},
+				error : function(xhr, status, error) {
+					alert(error);
+				}
+			});
+		}
+	});
+
+	calendar.render();
+	
+	/* geolocation */
+	var BWG_LATITUDE = 37.563115;
+   	var BWG_LONGITUDE = 126.969534;
+	var latitude;
+	var longitude;
+	// Geolocation API에 액세스할 수 있는지를 확인
+	if (navigator.geolocation) {
+	    //위치 정보를 얻기
+	    navigator.geolocation.getCurrentPosition (function(pos) {
+	    	latitude = pos.coords.latitude;
+	    	longitude = pos.coords.longitude;
+	    	
+	    	latitude = BWG_LATITUDE;
+	    	longitude = BWG_LONGITUDE;
+	    	
+	    	// Tooltip
+	    	var tooltipTitle;
+	    	if(latitude && longitude){
+	    		tooltipTitle = latitude + ", " + longitude + " (클릭하면 구글 지도를 연결합니다.)";
+	    	}else{
+	    		tooltipTitle = "위치를 표시할 수 없습니다.";
+	    	}
+	    	$('#geo-tooltip').tooltip({
+	    		title : tooltipTitle,
+	    	});
+	    	$('#geo').prop('href', "https://www.google.com/maps/search/?api=1&query="+latitude+","+longitude);
+	    	$('#geo').prop('target', '_blank');
+	    });
+	} else {
+	    alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
+	}
+	
+	/* Work History*/
+	// 업무 시작
+	$('#start_work').on('click', function(e){
+		// Check validations
+		//var date = calendar.getDate();
+		//alert("The current date of the calendar is " + date.toISOString());
+		
+		// New Work History
+		$.ajax({
+			type : "POST", //요청 메소드 타입
+			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
+			data : JSON.stringify({
+				'userAddress' : EMPL_ADDRESS,
+			}),
+			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+			success : function(data, status, xhr) {
+				alert("정상 처리 되었습니다.");
+				location.replace(BASE_CONTEXT_PATH);
+			},
+			error : function(xhr, status, error) {
+				alert("에러 발생 !!");
+			}
+		});
+	});
+	// 업무 종료
+	$('#end_work').on('click', function(e){
+		// Check validations
+		//var date = calendar.getDate();
+		//alert("The current date of the calendar is " + date.toISOString());
+		
+		// New Work History
+		$.ajax({
+			type : "PATCH", //요청 메소드 타입
+			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
+			data : JSON.stringify({
+				'userAddress' : EMPL_ADDRESS,
+			}),
+			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
+			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+			success : function(data, status, xhr) {
+				alert("정상 처리 되었습니다.");
+				location.replace(BASE_CONTEXT_PATH);
+			},
+			error : function(xhr, status, error) {
+				alert("에러 발생 !!");
+			}
+		});
+	});
+});
+</script>
