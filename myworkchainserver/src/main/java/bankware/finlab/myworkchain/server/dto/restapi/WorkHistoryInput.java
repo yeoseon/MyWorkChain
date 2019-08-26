@@ -14,17 +14,8 @@ public class WorkHistoryInput {
 	private String _yearMon;
 	
 	@JsonProperty
-	private String _day;
+	private Integer _stday;
 	
 	@JsonProperty
-	private String _workCode;
-	
-	@JsonProperty
-	private Integer _latitude;
-	
-	@JsonProperty
-	private Integer _longitude;
-	
-	@JsonProperty
-	private String _workPlace;
+	private Integer _edday;
 }
