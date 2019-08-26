@@ -50,6 +50,23 @@ public class CommonService {
 		
 	}
 	
+	public String testCallPost(String rqst, String postfix) {
+		
+		String url = REST_API_URL_TRANSACTION + postfix;
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		final HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", "Bearer " + BEARER_API);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity<String> entity = new HttpEntity<String>(rqst, headers);
+		
+		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+		RestResponse response = restTemplate.postForObject(url, entity, RestResponse.class);
+		
+		return "ok";
+		
+	}
 	
 	public RestResponse callGet(String adrs, String postfix) { // get Balance일 때만 사용하므로, adrs 고정해둠
 		

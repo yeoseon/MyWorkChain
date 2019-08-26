@@ -15,10 +15,10 @@ CREATE TABLE company (
 	mwc_address VARCHAR(250) NOT NULL,
 	comp_name VARCHAR(250),
 	location VARCHAR(1000),
-	useYn boolean
+	use_yn boolean
 );
 
-INSERT INTO company (comp_address, mwc_address, comp_name, location, useYn) VALUES
+INSERT INTO company (comp_address, mwc_address, comp_name, location, use_yn) VALUES
  ('0x69f2d1bdc2430a3a067620f617fec3100b892d54','0xf2852cc72bed2cb039464d347154331fdd4d8491', 'Bankware Global', '서울특별시 중구 소공동 통일로 86', true);
  
  

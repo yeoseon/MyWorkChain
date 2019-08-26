@@ -15,7 +15,7 @@ public class RewardService {
 
 	
 	private final static String POSTFIX_TRANSFER_TO_USER = "transfer2User";
-	private final static String POSTFIX_GET_BALANCE = "FT9754/R1908/balance";
+	private final static String POSTFIX_GET_BALANCE = "/FT9754/R1908/balance";
 	@Autowired
 	CommonService commonService;
 	
