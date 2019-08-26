@@ -26,9 +26,8 @@ import bankware.finlab.myworkchain.server.vo.Employee;
 public class EmployeeService {
 
 	//TODO : 상수들 Properties로 관리
-	private static final String REST_API_URL = "https://api.luniverse.io/tx/v1.0/transactions/";
-	private static final String GET_EMPLOYEE_ADDRESS_API_POSTFIX = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
-	private static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
+	private static final String POSTFIX_COMPANY_USER_LIST = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
+	
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
@@ -86,21 +85,13 @@ public class EmployeeService {
 				"        }\n" + 
 				"}";
 		
-		RestResponse response = commonService.callPost(testrqst, GET_EMPLOYEE_ADDRESS_API_POSTFIX);
+		RestResponse response = commonService.callPost(testrqst, POSTFIX_COMPANY_USER_LIST);
 		
 //		emplAddressList = Arrays.asList(resultList);
 
 		List<Object> emplAddressList = new ArrayList<Object>();
 		emplAddressList = (List<Object>) response.getData().getRes().get(0);
 		return emplAddressList;
-	}
-	
-	public void sendPost(String targetUrl, Object rqst) throws RestClientException, JsonProcessingException {
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		restTemplate.postForEntity(targetUrl, commonService.objectToJson(rqst), String.class);
 	}
 	
 	private List<Employee> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
