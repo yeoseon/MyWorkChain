@@ -11,9 +11,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Employee {
+	
+	private int id;
 	// 직원 이름
 	private String name;
-	// 부서
+	// 부서`
 	private String department;
 	// 직책
 	private String position;
@@ -29,7 +31,8 @@ public class Employee {
 	private String walletAddress;
 	
 	@Builder
-	public Employee(String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String walletAddress) {
+	public Employee(int id, String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String walletAddress) {
+		this.id = id;
 		this.name = name;
 		this.department = department;
 		this.position = position;

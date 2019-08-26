@@ -9,5 +9,5 @@ import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 public interface WorkPlaceRepository extends CrudRepository<WorkPlaceEntity, Long> {
 
 	List<WorkPlaceEntity> findWorkPlaceByCompAddress(String compAddress);
-	String findWorkNameByWorkCode(int workCode);
+	WorkPlaceEntity findWorkNameByWorkCode(int workCode);
 }

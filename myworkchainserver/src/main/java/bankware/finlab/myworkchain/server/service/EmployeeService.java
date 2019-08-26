@@ -16,16 +16,18 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
+import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.vo.Employee;
+import bankware.finlab.myworkchain.server.vo.RestResponse;
 
 @Service
 public class EmployeeService {
 
 	//TODO : 상수들 Properties로 관리
-	private static final String REST_API_URL = "https://api.luniverse.io/tx/v1.0/transactions/companyUserListV1";
-	private static final String GET_EMPLOYEE_ADDRESS_API_POSTFIX = ""; //getEmployeeAddressList의 API PostFix
+	private static final String REST_API_URL = "https://api.luniverse.io/tx/v1.0/transactions/";
+	private static final String GET_EMPLOYEE_ADDRESS_API_POSTFIX = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
 	private static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -41,14 +43,14 @@ public class EmployeeService {
 	//Server에 있는 직원 Data와 Mapping
 	public List<Employee> getEmployeeList(String compAddress) throws RestClientException, JsonProcessingException {
 
-		List<String> emplAddressList = _getEmplAddressList(compAddress);
+		List<Object> emplAddressList = _getEmplAddressList(compAddress);
 		List<EmployeeEntity> emplListData = employeeRepository.findAll();
 		
 		return _mappingEmployeeInfo(emplAddressList, emplListData);
 	}
 	
-	private List<String> _getEmplAddressList(String compAddress) throws RestClientException, JsonProcessingException {
-		List<String> emplAddressList = new ArrayList<String>();
+	@SuppressWarnings("unchecked")
+	private List<Object> _getEmplAddressList(String compAddress) throws RestClientException, JsonProcessingException {
 
 		String testrqst = "{\n" + 
 				"        \"from\": {\n" + 
@@ -73,10 +75,12 @@ public class EmployeeService {
 		
 		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 //		String[] resultList = restTemplate.postForObject(url, commonService.objectToJson(testrqst), String[].class);
-		String response = restTemplate.postForObject(url, entity, String.class);
+		RestResponse response = restTemplate.postForObject(url, entity, RestResponse.class);
 		
 //		emplAddressList = Arrays.asList(resultList);
 
+		List<Object> emplAddressList = new ArrayList<Object>();
+		emplAddressList = (List<Object>) response.getData().getRes().get(0);
 		return emplAddressList;
 	}
 	
@@ -88,17 +92,18 @@ public class EmployeeService {
 		restTemplate.postForEntity(targetUrl, commonService.objectToJson(rqst), String.class);
 	}
 	
-	private List<Employee> _mappingEmployeeInfo(List<String> emplAddressList, List<EmployeeEntity> emplListData) {
+	private List<Employee> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
 		
 		List<Employee> employeeList = new ArrayList<Employee>();
 		
 		// 1. Server DB에 있는 직원 목록을 먼저 다 가져온 후 Mapping한다. 
-		for(String emplAddress : emplAddressList) {
+		for(Object emplAddress : emplAddressList) {
 			Employee employee = new Employee();
 			
 			for(EmployeeEntity emplDataItem : emplListData) {
 				if(emplAddress.equals(emplDataItem.getEmplAddress())) {
 					 employee = Employee.builder()
+							 			.id(emplDataItem.getId())
 										.name(emplDataItem.getEmplName())
 										.department(emplDataItem.getDepartment())
 										.position(emplDataItem.getPosition())
@@ -117,7 +122,9 @@ public class EmployeeService {
 	}
 	
 	private String _getWorkPlaceName(int workPlaceCode) {
-		return workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
+		
+		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
+		return workPlace.getWorkName();
 	}
 	
 	//TODO: 직원의 근무 이력 조회
