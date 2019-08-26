@@ -1,17 +1,13 @@
 package bankware.finlab.myworkchain.server.service;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -19,6 +15,8 @@ import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
+import bankware.finlab.myworkchain.server.dto.restapi.RestRequest;
+import bankware.finlab.myworkchain.server.dto.restapi.RestRequestFrom;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 import bankware.finlab.myworkchain.server.vo.Employee;
 
@@ -75,25 +73,31 @@ public class EmployeeService {
 	@SuppressWarnings("unchecked")
 	private List<Object> _getEmplAddressList(String compAddress) throws RestClientException, JsonProcessingException {
 
-		String testrqst = "{\n" + 
-				"        \"from\": {\n" + 
-				"                \"userKey\": \"APIAddress\",\n" + 
-				"                \"walletType\": \"LUNIVERSE\"\n" + 
-				"        },\n" + 
-				"        \"inputs\": {\n" + 
-				"                \"_companyId\": \"0x69f2d1bdc2430a3a067620f617fec3100b892d54\"\n" + 
-				"        }\n" + 
-				"}";
-		
-		RestResponse response = commonService.callPost(testrqst, POSTFIX_COMPANY_USER_LIST);
-		
-//		emplAddressList = Arrays.asList(resultList);
+		RestRequest restRequest = _setEmplAddressListRequest(compAddress);
 
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_COMPANY_USER_LIST);
+		
 		List<Object> emplAddressList = new ArrayList<Object>();
 		emplAddressList = (List<Object>) response.getData().getRes().get(0);
 		return emplAddressList; 
 	}
 	
+	private RestRequest _setEmplAddressListRequest(String compAddress) {
+		
+		RestRequest restRequest = new RestRequest();
+		
+		//from
+		RestRequestFrom from = commonService.getFrom();
+		restRequest.setFrom(from);
+		
+		//input
+		Map<String, Object> input = new HashMap<>();
+		input.put("_companyId", compAddress);
+		
+		restRequest.setInputs(input);
+		
+		return restRequest;
+	}
 	private List<Employee> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
 		
 		List<Employee> employeeList = new ArrayList<Employee>();
