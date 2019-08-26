@@ -91,7 +91,7 @@ public class EmployeeService {
 
 		List<Object> emplAddressList = new ArrayList<Object>();
 		emplAddressList = (List<Object>) response.getData().getRes().get(0);
-		return emplAddressList;
+		return emplAddressList; 
 	}
 	
 	private List<Employee> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
