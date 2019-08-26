@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
+import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequestFrom;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 
@@ -23,6 +26,9 @@ public class CommonService {
 	//TODO : properties 관리
 	private static final String REST_API_URL = "https://api.luniverse.io/tx/v1.0/transactions/";
 	private static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
+	
+	@Autowired
+	WorkPlaceRepository workPlaceRepository;
 	
 	public RestResponse callPost(String rqst, String postfix) {
 		
@@ -49,6 +55,12 @@ public class CommonService {
 		from.setWalletType("LUNIVERSE");
 		
 		return from;
+	}
+	
+	public String getWorkPlaceName(int workPlaceCode) {
+		
+		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
+		return workPlace.getWorkName();
 	}
 	
 	public String objectToJson(Object object) throws JsonProcessingException {

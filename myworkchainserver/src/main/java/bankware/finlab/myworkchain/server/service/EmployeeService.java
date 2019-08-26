@@ -63,7 +63,7 @@ public class EmployeeService {
 				.joinDate(entity.getJoinDate())
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
-				.workPlace(_getWorkPlaceName(entity.getCurrentWorkCode()))
+				.workPlace(commonService.getWorkPlaceName(entity.getCurrentWorkCode()))
 				.walletAddress(entity.getEmplAddress())
 				.build();
 		
@@ -116,7 +116,7 @@ public class EmployeeService {
 										.joinDate(emplDataItem.getJoinDate())
 										.email(emplDataItem.getEmail())
 										.phoneNumber(emplDataItem.getPhoneNumber())
-										.workPlace(_getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
+										.workPlace(commonService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
 										.walletAddress(emplDataItem.getEmplAddress())
 										.build();
 				}
@@ -125,11 +125,5 @@ public class EmployeeService {
 		}
 		
 		return employeeList;
-	}
-	
-	private String _getWorkPlaceName(int workPlaceCode) {
-		
-		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
-		return workPlace.getWorkName();
 	}
 }
