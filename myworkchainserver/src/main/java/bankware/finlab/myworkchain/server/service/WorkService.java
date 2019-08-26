@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import bankware.finlab.myworkchain.server.dto.NewWorkRequest;
-import bankware.finlab.myworkchain.server.vo.RestResponse;
+import bankware.finlab.myworkchain.server.dto.common.RestResponse;
 import bankware.finlab.myworkchain.server.vo.WorkHistory;
 
 @Service
@@ -18,10 +18,7 @@ public class WorkService {
 	public Boolean newWorkHistory(NewWorkRequest request)  {
 		RestResponse response = new RestResponse();
 		
-		 
-		Boolean result = response.getResult();
-		
-		return result;
+		return response.getResult();
 	}
 	
 	/*

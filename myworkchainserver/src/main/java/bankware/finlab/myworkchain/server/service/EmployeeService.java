@@ -19,8 +19,8 @@ import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
+import bankware.finlab.myworkchain.server.dto.common.RestResponse;
 import bankware.finlab.myworkchain.server.vo.Employee;
-import bankware.finlab.myworkchain.server.vo.RestResponse;
 
 @Service
 public class EmployeeService {

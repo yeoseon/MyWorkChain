@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchain.server.vo;
+package bankware.finlab.myworkchain.server.dto.common;
 
 import java.util.Map;
 
