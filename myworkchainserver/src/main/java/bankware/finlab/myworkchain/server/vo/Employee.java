@@ -12,7 +12,8 @@ import lombok.ToString;
 @ToString
 public class Employee {
 	
-	private int id;
+	// 로그인 아이디
+	private String id;
 	// 직원 이름
 	private String name;
 	// 부서`
@@ -31,7 +32,7 @@ public class Employee {
 	private String walletAddress;
 	
 	@Builder
-	public Employee(int id, String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String walletAddress) {
+	public Employee(String id, String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String walletAddress) {
 		this.id = id;
 		this.name = name;
 		this.department = department;

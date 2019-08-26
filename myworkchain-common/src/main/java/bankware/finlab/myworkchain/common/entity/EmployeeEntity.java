@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "employee")
 public class EmployeeEntity {
-	private int id;
+	private String id;
 	@Id
 	private String emplAddress; //직원 Wallet 주소
 	private String compAddress; //기업 Wallet 주소

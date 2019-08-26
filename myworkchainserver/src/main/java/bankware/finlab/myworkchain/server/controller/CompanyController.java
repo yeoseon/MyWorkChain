@@ -17,6 +17,7 @@ import bankware.finlab.myworkchain.server.service.EmployeeService;
 import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Controller
+@RequestMapping("admin")
 public class CompanyController {
 
 	Logger logger = LoggerFactory.getLogger(CompanyController.class);
@@ -30,7 +31,7 @@ public class CompanyController {
 	@Autowired
 	EmployeeService employeeService;
 	
-	@RequestMapping(path={"", "/", "company", "/company"})
+	@RequestMapping(path={"", "/"})
 	public String company(Model model) throws RestClientException, JsonProcessingException {
 		
 		String pageName;
