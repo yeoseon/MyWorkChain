@@ -57,12 +57,6 @@ public class CommonService {
 		return from;
 	}
 	
-	public String getWorkPlaceName(int workPlaceCode) {
-		
-		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
-		return workPlace.getWorkName();
-	}
-	
 	public String objectToJson(Object object) throws JsonProcessingException {
 		
 		ObjectMapper mapper = new ObjectMapper();

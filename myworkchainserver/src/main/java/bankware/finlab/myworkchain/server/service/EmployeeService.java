@@ -32,8 +32,11 @@ public class EmployeeService {
 	@Autowired
 	WorkPlaceRepository workPlaceRepository;
 	
-	@Autowired 
+	@Autowired
 	CommonService commonService;
+	
+	@Autowired 
+	CompanyService companyService;
 	
 	/*
 	 * 회사 Address를 받아 직원 목록 조회
@@ -63,7 +66,7 @@ public class EmployeeService {
 				.joinDate(entity.getJoinDate())
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
-				.workPlace(commonService.getWorkPlaceName(entity.getCurrentWorkCode()))
+				.workPlace(companyService.getWorkPlaceName(entity.getCurrentWorkCode()))
 				.walletAddress(entity.getEmplAddress())
 				.build();
 		
@@ -116,7 +119,7 @@ public class EmployeeService {
 										.joinDate(emplDataItem.getJoinDate())
 										.email(emplDataItem.getEmail())
 										.phoneNumber(emplDataItem.getPhoneNumber())
-										.workPlace(commonService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
+										.workPlace(companyService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
 										.walletAddress(emplDataItem.getEmplAddress())
 										.build();
 				}
