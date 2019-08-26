@@ -94,7 +94,7 @@ public class WorkService {
 		restRequest.setInputs(input);
 		
 		return restRequest;
-	}
+	} 
 
 	private List<WorkHistory> _makeWorkHistoryList(RestResponse response) {
 		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
