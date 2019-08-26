@@ -51,6 +51,7 @@ public class WorkService {
 		input.set_workCode(request.getWorkCode());
 		input.set_latitude(commonService.floatToInteger(request.getLatitude()));
 		input.set_longitude(commonService.floatToInteger(request.getLatitude()));
+		input.set_workPlace(request.getWorkPlaceCode());
 		
 		restRequest.setInputs(input);
 		
