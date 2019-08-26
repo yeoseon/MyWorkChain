@@ -19,7 +19,7 @@ import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
-import bankware.finlab.myworkchain.server.common.RestResponse;
+import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Service
@@ -86,20 +86,7 @@ public class EmployeeService {
 				"        }\n" + 
 				"}";
 		
-		//TODO : get list of employee address from chain
-		String url = REST_API_URL + GET_EMPLOYEE_ADDRESS_API_POSTFIX;
-//		Map<String, Object> rqst = new HashMap<>(); //TODO: Request 객체 생성
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		final HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "Bearer " + BEARER_API);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		final HttpEntity<String> entity = new HttpEntity<String>(testrqst, headers);
-		
-		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-//		String[] resultList = restTemplate.postForObject(url, commonService.objectToJson(testrqst), String[].class);
-		RestResponse response = restTemplate.postForObject(url, entity, RestResponse.class);
+		RestResponse response = commonService.callPost(testrqst, GET_EMPLOYEE_ADDRESS_API_POSTFIX);
 		
 //		emplAddressList = Arrays.asList(resultList);
 

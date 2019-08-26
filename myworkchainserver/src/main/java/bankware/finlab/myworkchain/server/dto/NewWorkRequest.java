@@ -1,8 +1,10 @@
 package bankware.finlab.myworkchain.server.dto;
 
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class NewWorkRequest {
 
 	//로그인 아이디

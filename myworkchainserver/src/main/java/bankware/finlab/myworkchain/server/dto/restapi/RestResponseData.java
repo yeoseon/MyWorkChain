@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchain.server.common;
+package bankware.finlab.myworkchain.server.dto.restapi;
 
 import java.util.List;
 

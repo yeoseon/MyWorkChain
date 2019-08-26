@@ -1,4 +1,4 @@
-package bankware.finlab.myworkchain.server.common;
+package bankware.finlab.myworkchain.server.dto.restapi;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +11,6 @@ public class RestRequest {
 	RestRequestFrom from;
 	
 	@JsonProperty
-	RestRequestInput inputs;
+	Object inputs;
 	
 }

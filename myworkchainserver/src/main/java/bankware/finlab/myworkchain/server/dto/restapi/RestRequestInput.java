@@ -1,6 +1,4 @@
-package bankware.finlab.myworkchain.server.common;
-
-import java.util.Map;
+package bankware.finlab.myworkchain.server.dto.restapi;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,6 +7,9 @@ import lombok.Setter;
 @Setter
 public class RestRequestInput {
 
+	@JsonProperty
+	private String _userId;
+	
 	@JsonProperty
 	private String _companyId;
 	
@@ -24,6 +25,5 @@ public class RestRequestInput {
 	@JsonProperty
 	private String _longitude;
 	
-	@JsonProperty
-	private Map<String, Object> _userId;
+	
 }
