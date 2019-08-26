@@ -1,5 +1,12 @@
 # MyWorkChain Server Project
 
+### 프로젝트 초기 세팅 방법
+처음 프로젝트를 Pull 한 후 세팅하는 절차
+
+1. 프로젝트 오른쪽 클릭 - [Configure > Add Gradle Nature]
+2. 프로젝트 오른쪽 클릭 - [Gradle > Refresh Gradle Project]
+3. 프로젝트 컴파일 확인
+
 ### WAS - Tomcat
 기본 WAS Container - Tomcat
 
