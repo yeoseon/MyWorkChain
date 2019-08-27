@@ -61,24 +61,30 @@ INSERT INTO employee (id, empl_address, comp_address, empl_name, current_work_co
  ('Kevin', '0x425d268cB4075e809762eaf6644ADB71fBAe600D', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Kevin', '1', 'PF실', '책임', '2013-07-01', 'keunyop.lee@bankwareglobal.com', '010-1111-1111'),
  ('Mickey', '0xf537938cC1A409db6eAeB557889795C28467Af96', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Mickey', '1', '아키텍처실', '상무', '2015-03-01', 'jungho.shin@bankwareglobal.com', '010-1111-1111'),
  ('Celine', '0xF1568fdE338a2641fEe85Dd2d3a936e0dEed4aAD', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Celine', '3', '금융서비스실', '사원', '2019-01-21', 'yeoseon.yun@bankwareglobal.com', '010-4692-6053');
-  
+
+/* WORK HISTORY */
 DROP TABLE IF EXISTS work_history;
 
 CREATE TABLE work_history (
 	id INT AUTO_INCREMENT  PRIMARY KEY,
-	user_address VARCHAR(250) NOT NULL,
-	work_start_ymd VARCHAR(100),
-	work_end_ymd VARCHAR(100),
-	work_start_time VARCHAR(100),
-	work_end_time VARCHAR(100)
+	user_id VARCHAR(250) NOT NULL,
+	time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	work_code VARCHAR(50),
+	latitude INT NOT NULL,
+	longitude INT NOT NULL,
+	reward INT NOT NULL
 );
 
-INSERT INTO work_history (user_address, work_start_ymd, work_end_ymd, work_start_time, work_end_time) VALUES
- ('0xeaed2747df494052ef8660ebada75ec1c9449508', '20190819', '20190819', '093000', '183000'),
- ('0x82536a89099b6acfefa78ca15eb669d55d18528d', '20190819', '20190820', '093000', '013000'),
- ('0x320988e96fc90a4097b23eb7f4ff987fa06a8dfd', '20190819', '20190819', '093000', '183000'),
- ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '20190819', '20190821', '093000', '183000'),
- ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '20190822', '20190822', '093000', '183100'),
- ('0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112', '20190825', '20190825', '093000', '143000');
- 
- 
+INSERT INTO work_history (user_id, time, work_code, latitude, longitude, reward) VALUES
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '2019-08-27 09:30:06', '01', 11111111, 22222222, 100),
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '2019-08-27 18:31:21', '02', 11111111, 22222222, 200),
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '2019-08-27 09:30:06', '01', 11111111, 22222222, 100),
+ ('0xeaed2747df494052ef8660ebada75ec1c9449508', '2019-08-27 18:31:21', '02', 11111111, 22222222, 300),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-07 09:30:06', '01', 11111111, 22222222, 100),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-07 18:31:21', '02', 11111111, 22222222, 230),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-09 09:30:06', '01', 11111111, 22222222, 120),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-09 20:32:21', '02', 11111111, 22222222, 160),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-23 09:33:06', '01', 11111111, 22222222, 110),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-23 21:35:21', '02', 11111111, 22222222, 50),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-24 09:30:06', '01', 11111111, 22222222, 500),
+ ('0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0', '2019-08-26 18:31:21', '02', 11111111, 22222222, 1000);

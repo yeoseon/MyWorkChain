@@ -1,16 +1,35 @@
 <script th:inline="javascript">
 $(function() {
 	/* Variables */
-	var EMPL_ADDRESS = '0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112';
+	var EMPL_ADDRESS = '0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0';
 	var LOGIN_ID = 'Gabriel';
+	var WORK_CODE_START='01';
+	var WORK_CODE_END='02';
 	
 	/* Get Working List*/
 	/*<![CDATA[*/
 	var workHistoryEntityList = /*[[${workHistoryEntityList}]]*/;
+	/*]]>*/
 	console.log(workHistoryEntityList);
-	var calendarModel = [];
+	var startWorkHistoryEntityList = workHistoryEntityList.filter(function(item){
+		return item.workCode == WORK_CODE_START;
+	});
+	var endWorkHistoryEntityList = workHistoryEntityList.filter(function(item){
+		return item.workCode == WORK_CODE_END;
+	});
+	// 업무 시작 목록
+	$.each(startWorkHistoryEntityList, function(index, startWorkHistoryEntity){
+		var startWorkStartYmd=moment(startWorkHistoryEntity.time).format('YYYYMMDD');
+		// 업무 종료 목록
+		$.each(endWorkHistoryEntityList, function(index, endWorkHistoryEntity){
+			var endWorkStartYmd=moment(endWorkHistoryEntity.time).format('YYYYMMDD');
+			if(endWorkHistoryEntity == endWorkStartYmd){
+				
+			}
+		});
+	});
 	$.each(workHistoryEntityList, function(index, workHistoryEntity){
-		var startMilliSeconds = moment(workHistoryEntity.workStartYmd + ' ' + workHistoryEntity.workStartTime).valueOf();
+		var milliSeconds = moment(workHistoryEntity.time).valueOf();
 		var endMilliSeconds = moment(workHistoryEntity.workEndYmd + ' ' + workHistoryEntity.workEndTime).valueOf();
 		var workingSeconds = moment.duration(endMilliSeconds - startMilliSeconds).asSeconds();
 		var rgbCode = '#1DDB16';
@@ -22,6 +41,7 @@ $(function() {
 		// 근무시간 9시간 이하 초록색
 		else rgbCode = '#1DDB16';
 		
+		/* var calendarModel = [];
 		var workHistory = {
 				title : 'Working',
 				start : startMilliSeconds,
@@ -29,9 +49,8 @@ $(function() {
 				backgroundColor : rgbCode,
 				borderColor : rgbCode,
 		};
-		calendarModel.push(workHistory);
+		calendarModel.push(workHistory); */
 	});
-	/*]]>*/
 	
 	/* fullcalendar*/
 	var calendarEl = document.getElementById('calendar');

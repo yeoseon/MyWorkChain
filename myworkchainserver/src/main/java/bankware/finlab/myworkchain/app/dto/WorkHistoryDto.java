@@ -1,5 +1,7 @@
 package bankware.finlab.myworkchain.app.dto;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,5 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class WorkHistoryDto {
-	private String userAddress;
+	private String userId;
+	private Timestamp time;
+	private int latitude;
+	private int longitude;
 }

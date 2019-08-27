@@ -1,5 +1,6 @@
 package bankware.finlab.myworkchain.app.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -35,7 +36,7 @@ public class MyWorkChainAppController {
 	private WorkService workService;
 	
 	// 하드 코딩, 추후 변경 필요 TODO
-	private static final String EMPL_ADDRESS = "0xB31794ef274FFb1e6e4a55bAE4f9F18DeBA3C112";
+	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
 	
 	@GetMapping("/calendar")
 	public String viewHome(Model model) {
@@ -59,18 +60,18 @@ public class MyWorkChainAppController {
 	}
 	
 	@GetMapping("/work/history/{userAddress:.+}/{workStartYmd}")
-	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userAddress") String userAddress, @PathVariable("workStartYmd") String workStartYmd) {
-		logger.info("userAddress : {}", userAddress);
-		WorkHistoryEntity workHistoryEntity = workHistoryService.getWorkHistoryWithWorkStartYmd(userAddress, workStartYmd);
+	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userId") String userId, @PathVariable("time") Timestamp time) {
+		logger.info("userId : {}", userId);
+		WorkHistoryEntity workHistoryEntity = workHistoryService.getWorkHistoryWithTime(userId, time);
 		logger.info("workHistoryEntity : {}", workHistoryEntity);
 		
 		return workHistoryEntity;
 	}
 	
-	@GetMapping("/work/history/{userAddress:.+}")
-	public @ResponseBody List<WorkHistoryEntity> getWorkHistoryList(@PathVariable("userAddress") String userAddress) {
-		logger.info("userAddress : {}", userAddress);
-		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryList(userAddress);
+	@GetMapping("/work/history/{userId:.+}")
+	public @ResponseBody List<WorkHistoryEntity> getWorkHistoryList(@PathVariable("userId") String userId) {
+		logger.info("userAddress : {}", userId);
+		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryList(userId);
 		logger.info("workHistoryEntityList : {}", workHistoryEntityList);
 		
 		return workHistoryEntityList;

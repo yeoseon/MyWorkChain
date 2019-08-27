@@ -1,13 +1,13 @@
 package bankware.finlab.myworkchain.app.service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
+import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.common.repository.WorkHistoryRepository;
 
@@ -23,38 +23,32 @@ public class WorkHistoryService {
 	 * @return WorkHistoryEntity
 	 */
 	public WorkHistoryEntity newWorkHistory(WorkHistoryDto workHistoryDto) {
-		LocalDateTime localDateTime = LocalDateTime.now();
-		String localDate = localDateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		String localTime = localDateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HHmmss"));
-		
 		WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
-																	.userAddress(workHistoryDto.getUserAddress())
-																	.workStartYmd(localDate)
-																	.workStartTime(localTime)
+																	.userId(workHistoryDto.getUserId())
+																	.workCode(WorkHistoryConstant.WORK_CODE_START)
+																	.latitude(workHistoryDto.getLatitude())
+																	.longitude(workHistoryDto.getLongitude())
 																	.build();
 		return workHistoryRepository.save(workHistoryEntity);
 	}
 
 	/**
 	 * Work History 가져오기
-	 * @param userAddress
-	 * @param workStartYmd
+	 * @param userId
+	 * @param time
 	 * @return
 	 */
-	public WorkHistoryEntity getWorkHistoryWithWorkStartYmd(String userAddress, String workStartYmd) {
-//		LocalDateTime localDateTime = LocalDateTime.now();
-//		String localDate = localDateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		
-		return workHistoryRepository.findWorkHistoryByUserAddressAndWorkStartYmd(userAddress, workStartYmd);
+	public WorkHistoryEntity getWorkHistoryWithTime(String userId, Timestamp time) {
+		return workHistoryRepository.findWorkHistoryByUserIdAndTime(userId, time);
 	}
 	
 	/**
 	 * Work History 목록 가져오기
-	 * @param userAddress
+	 * @param userId
 	 * @return
 	 */
-	public List<WorkHistoryEntity> getWorkHistoryList(String userAddress) {
-		return workHistoryRepository.findWorkHistoryByUserAddress(userAddress);
+	public List<WorkHistoryEntity> getWorkHistoryList(String userId) {
+		return workHistoryRepository.findWorkHistoryByUserId(userId);
 	}
 	
 	/**
@@ -63,18 +57,12 @@ public class WorkHistoryService {
 	 * @return WorkHistoryEntity
 	 */
 	public WorkHistoryEntity modifyWorkHistory(WorkHistoryDto workHistoryDto) {
-		LocalDateTime localDateTime = LocalDateTime.now();
-		String localDate = localDateTime.toLocalDate().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		String localTime = localDateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HHmmss"));
-		
-		WorkHistoryEntity oldWorkHistoryEntity = getWorkHistoryWithWorkStartYmd(workHistoryDto.getUserAddress(), localDate);
+		WorkHistoryEntity oldWorkHistoryEntity = getWorkHistoryWithTime(workHistoryDto.getUserId(), workHistoryDto.getTime());
 		WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
 																.id(oldWorkHistoryEntity.getId())
-																.userAddress(oldWorkHistoryEntity.getUserAddress())
-																.workStartYmd(oldWorkHistoryEntity.getWorkStartYmd())
-																.workStartTime(oldWorkHistoryEntity.getWorkStartTime())
-																.workEndYmd(localDate)
-																.workEndTime(localTime)
+																.userId(oldWorkHistoryEntity.getUserId())
+																.latitude(workHistoryDto.getLatitude())
+																.longitude(workHistoryDto.getLongitude())
 															.build();
 		return workHistoryRepository.save(workHistoryEntity);
 	}
