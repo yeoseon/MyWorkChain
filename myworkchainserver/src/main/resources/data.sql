@@ -19,7 +19,7 @@ CREATE TABLE company (
 );
 
 INSERT INTO company (comp_address, mwc_address, comp_name, location, use_yn) VALUES
- ('0x69f2d1bdc2430a3a067620f617fec3100b892d54','0xf2852cc72bed2cb039464d347154331fdd4d8491', 'Bankware Global', '서울특별시 중구 소공동 통일로 86', true);
+ ('0x69f2d1bdc2430a3a067620f617fec3100b892d54','0xf2852cc72bed2cb039464d347154331fdd4d8491', 'SL2', '서울특별시 중구 소공동 통일로 86', true);
  
  
 DROP TABLE IF EXISTS work_place;
@@ -54,10 +54,10 @@ CREATE TABLE employee (
 );
 
 INSERT INTO employee (id, empl_address, comp_address, empl_name, current_work_code, department, position, join_date, email, phone_number) VALUES
- ('Gabriel', '0xbFB07E725F66B2aC1187a5B134FbCF4a3f3bEaF0', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Gabriel', '02', '아키텍처실', '이사', '2019-02-18', 'dongsik.lee@bankwareglobal.com', '010-1111-1111'),
- ('Kevin', '0x425d268cB4075e809762eaf6644ADB71fBAe600D', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Kevin', '01', 'PF실', '책임', '2013-07-01', 'keunyop.lee@bankwareglobal.com', '010-1111-1111'),
- ('Mickey', '0xf537938cC1A409db6eAeB557889795C28467Af96', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Mickey', '01', '아키텍처실', '상무', '2015-03-01', 'jungho.shin@bankwareglobal.com', '010-1111-1111'),
- ('Celine', '0xF1568fdE338a2641fEe85Dd2d3a936e0dEed4aAD', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Celine', '02', '금융서비스실', '사원', '2019-01-21', 'yeoseon.yun@bankwareglobal.com', '010-4692-6053');
+ ('Gabriel', '0xbFB07E725F66B2aC1187a5B134FbCF4a3f3bEaF0', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Gabriel', '02', '개발팀', '매니저', '2019-02-18', 'dongshik.lee@gmail.com', '010-1111-1111'),
+ ('Kevin', '0x425d268cB4075e809762eaf6644ADB71fBAe600D', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Kevin', '01', '개발팀', '매니저', '2013-07-01', 'kylee1112@hotmail.com', '010-1111-1111'),
+ ('Mickey', '0xf537938cC1A409db6eAeB557889795C28467Af96', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Mickey', '01', '개발팀', '매니저', '2015-03-01', 'Sjh8341@gmail.com', '010-1111-1111'),
+ ('Celine', '0xF1568fdE338a2641fEe85Dd2d3a936e0dEed4aAD', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Celine', '02', '개발팀', '매니저', '2019-01-21', 'devyyskr@gmail.com', '010-4692-6053');
 
 /* WORK HISTORY */
 DROP TABLE IF EXISTS work_history;
