@@ -40,7 +40,7 @@ public class WorkHistoryService {
 	 * @return
 	 */
 	public List<WorkHistoryEntity> getWorkHistoryWithTime(String userId, LocalDate time) {
-		return workHistoryRepository.findWorkHistoryByUserIdAndTimeAfter(userId, time);
+		return workHistoryRepository.findWorkHistoryByUserIdAndTimeBetween(userId, time, time.plusDays(1));
 	}
 	
 	/**
