@@ -101,11 +101,11 @@
 
 /************************ CONTENT *****************************/
 
-/* 2019.08.20 임시 */
-.mdc-layout-grid__cell {
-	border: 3px solid purple;
+.item-wrapper {
+	border: 1px solid #ddd;
+	margin-bottom: 20px;
+	border-radius: 10px;
 }
-
 /* <<<<<  Common  >>>>>>*/
 .page-content {
 	/* TODO: 이걸 margin으로 두니까 Scroll이 발생함..*/
