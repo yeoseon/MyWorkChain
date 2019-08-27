@@ -74,7 +74,7 @@ export default {
       return Config.st.symbol
     },
     apiKey() {
-      return Config.dapp.apiKey
+      return Config.apiKey
     }
   },
   mounted() {
