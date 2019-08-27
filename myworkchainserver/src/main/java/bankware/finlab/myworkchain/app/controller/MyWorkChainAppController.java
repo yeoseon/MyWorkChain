@@ -68,7 +68,7 @@ public class MyWorkChainAppController {
 		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryWithTime(userId, time);
 		logger.info("workHistoryEntityList : {}", workHistoryEntityList);
 		
-		return null;
+		return workHistoryEntityList;
 	}
 	
 	@GetMapping("/work/history/{userId:.+}")
