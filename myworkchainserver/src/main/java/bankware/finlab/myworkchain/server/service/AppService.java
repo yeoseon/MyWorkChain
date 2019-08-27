@@ -1,5 +1,7 @@
 package bankware.finlab.myworkchain.server.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class AppService {
 	 * NewWorkHistoryServiceRequest 
 	 * TODO: result가 false시, 에러 메시지도 처리해야할 듯.
 	 */
-	public Boolean newWorkHistoryService(NewWorkHistoryServiceInput input) throws JsonProcessingException {
+	public Boolean newWorkHistoryService(NewWorkHistoryServiceInput input) throws JsonProcessingException, ParseException {
 		
 		Boolean result = false;
 		
@@ -53,29 +55,31 @@ public class AppService {
 		Boolean newWorkToDBResponse = true;
 		
 		//2. 근무 기록 (to Chain)
-		Boolean newWorkToChainResponse = workService.newWorkHistory(newWorkToChainRequest);
+//		Boolean newWorkToChainResponse = workService.newWorkHistory(newWorkToChainRequest);
 		
 		//3. 토큰 대상 여부 검사 TODO
-		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
+//		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
+//		
+//		//4. 토큰 대상일 경우 토큰 지급
+//		Boolean sendRewardResponse = false;
+//		if(isSendReward) {
+//			SendRewardRequest sendRewardRequest = new SendRewardRequest();
+//			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressById(input.getId())); //직원이 속한 기업 Address 호출하여 Setting
+//			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeById(input.getId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
+//			sendRewardRequest.setValueAmount(VALUE_AMOUNT); 
+//			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
+//		}
+//		else {
+//			sendRewardResponse = true;
+//		}
+//		
+//		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
+//			result = true;
+//		}
+//		
+//		return result;
 		
-		//4. 토큰 대상일 경우 토큰 지급
-		Boolean sendRewardResponse = false;
-		if(isSendReward) {
-			SendRewardRequest sendRewardRequest = new SendRewardRequest();
-			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressById(input.getId())); //직원이 속한 기업 Address 호출하여 Setting
-			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeById(input.getId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
-			sendRewardRequest.setValueAmount(VALUE_AMOUNT); 
-			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
-		}
-		else {
-			sendRewardResponse = true;
-		}
-		
-		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
-			result = true;
-		}
-		
-		return result;
+		return true;
 	}
 	
 	
@@ -99,7 +103,7 @@ public class AppService {
 	 * 퇴근 시, 출근 시간과 비교하여 8시간 이상 근무를 했을 경우 토큰을 지급한다.
 	 * TODO: result가 false시, 에러 메시지도 처리해야할 듯.
 	 */
-	private Boolean _isSendReward(NewWorkHistoryToChainRequest request) {
+	private Boolean _isSendReward(NewWorkHistoryToChainRequest request) throws ParseException {
 		
 		Boolean result = false;
 
@@ -112,14 +116,25 @@ public class AppService {
 //			result = true;
 //		}
 //		else {
-//			return false;
+//			return false; // 현재 위치는 근무지가 아닙니다.
 //		}
 		
 		if(START_WORK_CODE.equals(request.getWorkCode())) {
 			//WorkCode가 '출근'인 경우
 			//오전 09:30분 이전 출근 등록시 true
-			Date date = request.getDate();
 			
+			SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+			Date date = format.parse(request.getDate().toString());
+			Date referenceDate = format.parse("09:30:00"); //오전 9시 30분
+			
+			int compare = referenceDate.compareTo(date); //date가 더 작아야 함. 즉 compare가 > 0
+			
+			if(compare >= 0) {
+				result = true;
+			}
+			else {
+				return false; // 오전 09시 30분이 지났습니다.
+			}
 		}
 		else if(END_WORK_CODE.equals(request.getWorkCode())) {
 			//WorkCode가 '퇴근'인 경우
