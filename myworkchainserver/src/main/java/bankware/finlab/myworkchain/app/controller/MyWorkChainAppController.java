@@ -1,6 +1,6 @@
 package bankware.finlab.myworkchain.app.controller;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
@@ -60,7 +59,7 @@ public class MyWorkChainAppController {
 	}
 	
 	@GetMapping("/work/history/{userId:.+}/{time}")
-	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userId") String userId, @PathVariable("time") Timestamp time) {
+	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userId") String userId, @PathVariable("time") LocalDateTime time) {
 		logger.info("userId : {}", userId);
 		WorkHistoryEntity workHistoryEntity = workHistoryService.getWorkHistoryWithTime(userId, time);
 		logger.info("workHistoryEntity : {}", workHistoryEntity);
