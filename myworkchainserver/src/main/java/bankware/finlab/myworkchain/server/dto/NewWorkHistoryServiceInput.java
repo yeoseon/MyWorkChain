@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class NewWorkRequest {
+public class NewWorkHistoryServiceInput {
 
 	//로그인 아이디
 	private String id;

@@ -50,24 +50,6 @@ public class CommonService {
 		
 	}
 	
-	public String testCallPost(String rqst, String postfix) {
-		
-		String url = REST_API_URL_TRANSACTION + postfix;
-		
-		RestTemplate restTemplate = new RestTemplate();
-		
-		final HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "Bearer " + BEARER_API);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		final HttpEntity<String> entity = new HttpEntity<String>(rqst, headers);
-		
-		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
-		RestResponse response = restTemplate.postForObject(url, entity, RestResponse.class);
-		
-		return "ok";
-		
-	}
-	
 	public RestResponse callGet(String adrs, String postfix) { // get Balance일 때만 사용하므로, adrs 고정해둠
 		
 		String url = REST_API_URL_WALLET + adrs + postfix;
@@ -117,26 +99,22 @@ public class CommonService {
 	/*
 	 * 시스템 년,월 정보(YYYYMM)
 	 */
-	public String getYearMonth() {
+	public String getYearMonth(Date date) {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMM");
 		
-		Date time = new Date();
-		
-		String yearMonth = format.format(time);
+		String yearMonth = format.format(date);
 		return yearMonth;
 	}
 	
 	/*
 	 * 시스템 일 정보(DD)
 	 */
-	public String getDay() {
+	public String getDay(Date date) {
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd");
 		
-		Date time = new Date();
-		
-		String day = format.format(time);
+		String day = format.format(date);
 		return day;
 	}
 	

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import bankware.finlab.myworkchain.server.dto.NewWorkRequest;
+import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.CheckStampInput;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequest;
@@ -31,7 +31,7 @@ public class WorkService {
 	/*
 	 * 근무 기록(Chain)
 	 */
-	public Boolean newWorkHistory(NewWorkRequest request) throws JsonProcessingException  {
+	public Boolean newWorkHistory(NewWorkHistoryToChainRequest request) throws JsonProcessingException  {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
@@ -40,7 +40,7 @@ public class WorkService {
 		return response.getResult();
 	}
 	
-	private RestRequest _setNewWorkRequest(NewWorkRequest request) {
+	private RestRequest _setNewWorkRequest(NewWorkHistoryToChainRequest request) {
 		
 		RestRequest restRequest = new RestRequest();
 		
@@ -51,8 +51,8 @@ public class WorkService {
 		//input
 		CheckStampInput input = new CheckStampInput();
 		input.set_userId(employeeService.getEmployeeInfoById(request.getId()).getWalletAddress());
-		input.set_yearMon(commonService.getYearMonth());
-		input.set_day(commonService.getDay());
+		input.set_yearMon(commonService.getYearMonth(request.getDate()));
+		input.set_day(commonService.getDay(request.getDate()));
 		input.set_workCode(request.getWorkCode());
 		input.set_latitude(commonService.floatToInteger(request.getLatitude()));
 		input.set_longitude(commonService.floatToInteger(request.getLatitude()));
