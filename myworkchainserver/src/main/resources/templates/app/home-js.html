@@ -210,7 +210,7 @@ $(function() {
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
 				//로그인 아이디
-				id : LOGIN_ID,
+				userId : LOGIN_ID,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_START,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
@@ -243,7 +243,7 @@ $(function() {
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
 				//로그인 아이디
-				id : LOGIN_ID,
+				userId : LOGIN_ID,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_END,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)

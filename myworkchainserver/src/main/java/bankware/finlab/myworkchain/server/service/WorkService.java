@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
-import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.CheckStampInput;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequest;
@@ -34,7 +35,11 @@ public class WorkService {
 	/*
 	 * 근무 기록(Chain)
 	 */
-	public Boolean newWorkHistory(NewWorkHistoryToChainRequest request) throws JsonProcessingException  {
+	public Boolean newWorkHistory(WorkHistoryDto request) throws JsonProcessingException  {
+		
+		//시스템 시각 Setting
+		Date time = new Date(); 
+		request.setTime(time);
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
@@ -43,7 +48,7 @@ public class WorkService {
 		return response.getResult();
 	}
 	
-	private RestRequest _setNewWorkRequest(NewWorkHistoryToChainRequest request) {
+	private RestRequest _setNewWorkRequest(WorkHistoryDto request) {
 		
 		RestRequest restRequest = new RestRequest();
 		
@@ -54,11 +59,11 @@ public class WorkService {
 		//input
 		CheckStampInput input = new CheckStampInput();
 		input.set_userId(employeeService.getEmployeeInfoById(request.getUserId()).getEmplAddress());
-		input.set_yearMon(commonService.getYearMonth(request.getDate()));
-		input.set_day(commonService.getDay(request.getDate()));
+		input.set_yearMon(commonService.getYearMonth(request.getTime()));
+		input.set_day(commonService.getDay(request.getTime()));
 		input.set_workCode(request.getWorkCode());
 		input.set_latitude(commonService.bigDecimalToString(commonService.multiple(request.getLatitude())));
-		input.set_longitude(commonService.bigDecimalToString(commonService.multiple(request.getLongtitude())));
+		input.set_longitude(commonService.bigDecimalToString(commonService.multiple(request.getLongitude())));
 		input.set_workPlace(request.getWorkPlaceCode());
 		
 		restRequest.setInputs(input);

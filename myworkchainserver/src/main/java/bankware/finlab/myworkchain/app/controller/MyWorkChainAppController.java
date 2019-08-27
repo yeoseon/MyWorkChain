@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
@@ -92,8 +93,9 @@ public class MyWorkChainAppController {
 	
 	@Transactional
 	@PostMapping("/work/history")
-	public @ResponseBody Boolean newWorkHistory(@RequestBody NewWorkHistoryToChainRequest request) throws JsonProcessingException {
+	public @ResponseBody Boolean newWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException {
 		logger.info("NewWorkRequest : {}", request);
+		
 		Boolean isNewWorkHistory = workService.newWorkHistory(request);
 		logger.info("업무 시작 !");
 		
@@ -102,7 +104,7 @@ public class MyWorkChainAppController {
 	
 	@Transactional
 	@PatchMapping("/work/history")
-	public @ResponseBody Boolean modifyWorkHistory(@RequestBody NewWorkHistoryToChainRequest request) throws JsonProcessingException {
+	public @ResponseBody Boolean modifyWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException {
 		logger.info("NewWorkRequest : {}", request);
 		Boolean isNewWorkHistory = workService.newWorkHistory(request);
 		logger.info("업무 종료 !");

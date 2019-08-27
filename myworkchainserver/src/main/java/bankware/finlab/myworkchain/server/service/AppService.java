@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
-import bankware.finlab.myworkchain.server.dto.NewWorkHistoryServiceInput;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 
 @Service
@@ -42,16 +42,15 @@ public class AppService {
 	 * NewWorkHistoryServiceRequest 
 	 * TODO: result가 false시, 에러 메시지도 처리해야할 듯.
 	 */
-	public Boolean newWorkHistoryService(NewWorkHistoryServiceInput input) throws JsonProcessingException, ParseException {
+	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
 		Boolean result = false;
 		
-		NewWorkHistoryToChainRequest newWorkToChainRequest = _setRequest(input);
 		//1. 근무 기록 (to DB) TODO
 		Boolean newWorkToDBResponse = true;
 		
 		//2. 근무 기록 (to Chain)
-//		Boolean newWorkToChainResponse = workService.newWorkHistory(newWorkToChainRequest);
+		Boolean newWorkToChainResponse = workService.newWorkHistory(input);
 		
 		//3. 토큰 대상 여부 검사 TODO
 //		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
@@ -76,22 +75,6 @@ public class AppService {
 //		return result;
 		
 		return true;
-	}
-	
-	
-	private NewWorkHistoryToChainRequest _setRequest(NewWorkHistoryServiceInput input) {
-		NewWorkHistoryToChainRequest request = new NewWorkHistoryToChainRequest();
-		
-		request.setUserId(input.getUserId());
-		request.setWorkPlaceCode(input.getWorkPlaceCode());
-		request.setWorkCode(input.getWorkCode());
-		request.setLatitude(input.getLatitude());
-		request.setLongtitude(input.getLongtitude());
-		
-		Date date = new Date(); //시스템 시각
-		request.setDate(date);
-		
-		return request;
 	}
 	
 	/*
