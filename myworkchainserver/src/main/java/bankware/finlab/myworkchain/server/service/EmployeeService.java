@@ -66,7 +66,7 @@ public class EmployeeService {
 				.joinDate(entity.getJoinDate())
 				.email(entity.getEmail())
 				.phoneNumber(entity.getPhoneNumber())
-				.workPlace(companyService.getWorkPlaceName(entity.getCurrentWorkCode()))
+				.workPlaceName(companyService.getWorkPlaceName(entity.getCurrentWorkCode()))
 				.walletAddress(entity.getEmplAddress())
 				.build();
 		
@@ -119,7 +119,7 @@ public class EmployeeService {
 										.joinDate(emplDataItem.getJoinDate())
 										.email(emplDataItem.getEmail())
 										.phoneNumber(emplDataItem.getPhoneNumber())
-										.workPlace(companyService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
+										.workPlaceName(companyService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
 										.walletAddress(emplDataItem.getEmplAddress())
 										.build();
 				}

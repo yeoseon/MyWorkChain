@@ -20,6 +20,6 @@ public class WorkPlaceEntity {
 	private String workName;
 	private String workAddress;
 	private float workGeoLongitude;
-	private float workGeoAltitude;
+	private float workGeoLatitude;
 	private Boolean workUseYn;
 } 

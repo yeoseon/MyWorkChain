@@ -13,17 +13,17 @@ public class WorkPlace {
 	private String workName;
 	private String workAddress;
 	private float longitude;
-	private float altitude;
+	private float latitude;
 	private Boolean workUseYn;
 	
 	@Builder
-	public WorkPlace(String workCode, String compAddress, String workName, String workAddress, float longitude, float altitude, Boolean workUseYn) {
+	public WorkPlace(String workCode, String compAddress, String workName, String workAddress, float longitude, float latitude, Boolean workUseYn) {
 		this.workCode = workCode;
 		this.compAddress = compAddress;
 		this.workName = workName;
 		this.workAddress = workAddress;
 		this.longitude = longitude;
-		this.altitude = altitude;
+		this.latitude = latitude;
 		this.workUseYn = workUseYn;
 	}
 	

@@ -11,6 +11,9 @@ import bankware.finlab.myworkchain.common.repository.CompanyRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.vo.Company;
 import bankware.finlab.myworkchain.server.vo.Employee;
+import bankware.finlab.myworkchain.server.vo.WorkPlace;
+import bankware.finlab.myworkchain.server.vo.WorkPlace.WorkPlaceBuilder;
+import lombok.Builder;
 
 @Service
 public class CompanyService {
@@ -54,9 +57,29 @@ public class CompanyService {
 	}
 	
 	/*
+	 * WorkPlace Code를 입력받아, 근무지 객체 조회
+	 */
+	public WorkPlace getWorkPlaceByCode(String workPlaceCode) {
+		
+		WorkPlaceEntity workPlaceEntity = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
+		
+		WorkPlace workplace = WorkPlace.builder()
+	 			.workCode(workPlaceEntity.getWorkCode())
+				.compAddress(workPlaceEntity.getCompAddress())
+				.workName(workPlaceEntity.getWorkName())
+				.workAddress(workPlaceEntity.getWorkAddress())
+				.longitude(workPlaceEntity.getWorkGeoLongitude())
+				.latitude(workPlaceEntity.getWorkGeoLatitude())
+				.workUseYn(workPlaceEntity.getWorkUseYn())
+				.build();
+		
+		return workplace;
+	}
+	
+	/*
 	 * WorkPlace Code를 입력받아, 근무지 이름 조회
 	 */
-	public String getWorkPlaceName(int workPlaceCode) {
+	public String getWorkPlaceName(String workPlaceCode) {
 		
 		WorkPlaceEntity workPlace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
 		return workPlace.getWorkName();
