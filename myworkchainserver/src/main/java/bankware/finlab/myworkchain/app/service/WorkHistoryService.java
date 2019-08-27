@@ -22,7 +22,7 @@ public class WorkHistoryService {
 	 * @param workHistoryDto
 	 * @return WorkHistoryEntity
 	 */
-	public WorkHistoryEntity newWorkHistory(WorkHistoryDto workHistoryDto) {
+	public WorkHistoryEntity newWorkHistoryToDB(WorkHistoryDto workHistoryDto) {
 		WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
 																	.userId(workHistoryDto.getUserId())
 																	.workCode(WorkHistoryConstant.WORK_CODE_START)

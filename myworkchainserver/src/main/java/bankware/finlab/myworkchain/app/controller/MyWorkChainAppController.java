@@ -23,8 +23,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
-import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
+import bankware.finlab.myworkchain.server.service.AppService;
 import bankware.finlab.myworkchain.server.service.WorkService;
 
 @Controller
@@ -37,6 +37,9 @@ public class MyWorkChainAppController {
 	
 	@Autowired
 	private WorkService workService;
+	
+	@Autowired
+	private AppService appService;
 	
 	// 하드 코딩, 추후 변경 필요 TODO
 	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
@@ -93,10 +96,10 @@ public class MyWorkChainAppController {
 	
 	@Transactional
 	@PostMapping("/work/history")
-	public @ResponseBody Boolean newWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException {
+	public @ResponseBody Boolean newWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException, ParseException {
 		logger.info("NewWorkRequest : {}", request);
-		
-		Boolean isNewWorkHistory = workService.newWorkHistory(request);
+
+		Boolean isNewWorkHistory = appService.newWorkHistoryService(request);
 		logger.info("업무 시작 !");
 		
 		return isNewWorkHistory;
@@ -104,9 +107,9 @@ public class MyWorkChainAppController {
 	
 	@Transactional
 	@PatchMapping("/work/history")
-	public @ResponseBody Boolean modifyWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException {
+	public @ResponseBody Boolean modifyWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException, ParseException {
 		logger.info("NewWorkRequest : {}", request);
-		Boolean isNewWorkHistory = workService.newWorkHistory(request);
+		Boolean isNewWorkHistory = appService.newWorkHistoryService(request);
 		logger.info("업무 종료 !");
 		
 		return isNewWorkHistory;

@@ -35,7 +35,7 @@ public class WorkService {
 	/*
 	 * 근무 기록(Chain)
 	 */
-	public Boolean newWorkHistory(WorkHistoryDto request) throws JsonProcessingException  {
+	public Boolean newWorkHistoryToChain(WorkHistoryDto request) throws JsonProcessingException  {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		

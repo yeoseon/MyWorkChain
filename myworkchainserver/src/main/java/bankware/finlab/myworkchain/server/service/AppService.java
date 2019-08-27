@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
+import bankware.finlab.myworkchain.app.service.WorkHistoryService;
 import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
+import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
@@ -33,6 +35,9 @@ public class AppService {
 	@Autowired
 	CompanyService companyService;
 	
+	@Autowired
+	WorkHistoryService workHistoryService;
+	
 	/*
 	 * App 근무 기록 Service (근무기록(to Chain) + 근무기록(to DB) + 리워드 토큰 전송
 	 * 오전 09:30분 이전에 출근 등록을 했을 경우,
@@ -44,6 +49,8 @@ public class AppService {
 	 */
 	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
+		//TODO : Boolean으로 뱉어주지 말고, Response 처리
+		
 		//시스템 시각 Setting
 		Date time = new Date(); 
 		input.setTime(time);
@@ -52,9 +59,10 @@ public class AppService {
 		
 		//1. 근무 기록 (to DB) TODO
 		Boolean newWorkToDBResponse = true;
+		WorkHistoryEntity workHistoryDbItem = workHistoryService.newWorkHistoryToDB(input); 
 		
 		//2. 근무 기록 (to Chain)
-		Boolean newWorkToChainResponse = workService.newWorkHistory(input);
+		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
 		
 		//3. 토큰 대상 여부 검사 TODO
 //		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
