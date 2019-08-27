@@ -28,6 +28,7 @@ public class WorkHistoryService {
 																	.workCode(WorkHistoryConstant.WORK_CODE_START)
 																	.latitude(workHistoryDto.getLatitude())
 																	.longitude(workHistoryDto.getLongitude())
+																	.workPlaceCode(WorkHistoryConstant.WORK_PLACE_CODE_01)
 																	.build();
 		return workHistoryRepository.save(workHistoryEntity);
 	}
@@ -63,6 +64,7 @@ public class WorkHistoryService {
 																.userId(oldWorkHistoryEntity.getUserId())
 																.latitude(workHistoryDto.getLatitude())
 																.longitude(workHistoryDto.getLongitude())
+																.workPlaceCode(workHistoryDto.getWorkPlaceCode())
 															.build();
 		return workHistoryRepository.save(workHistoryEntity);
 	}

@@ -59,7 +59,7 @@ public class MyWorkChainAppController {
 		return "app/login";
 	}
 	
-	@GetMapping("/work/history/{userAddress:.+}/{workStartYmd}")
+	@GetMapping("/work/history/{userId:.+}/{time}")
 	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userId") String userId, @PathVariable("time") Timestamp time) {
 		logger.info("userId : {}", userId);
 		WorkHistoryEntity workHistoryEntity = workHistoryService.getWorkHistoryWithTime(userId, time);

@@ -14,4 +14,5 @@ public class WorkHistoryDto {
 	private Timestamp time;
 	private int latitude;
 	private int longitude;
+	private String workPlaceCode;
 }

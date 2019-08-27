@@ -17,40 +17,52 @@ $(function() {
 	var endWorkHistoryEntityList = workHistoryEntityList.filter(function(item){
 		return item.workCode == WORK_CODE_END;
 	});
+	console.log(startWorkHistoryEntityList);
+	console.log(endWorkHistoryEntityList);
+	// Calendar Model
+	var calendarModel = [];
+	
 	// 업무 시작 목록
 	$.each(startWorkHistoryEntityList, function(index, startWorkHistoryEntity){
 		var startWorkStartYmd=moment(startWorkHistoryEntity.time).format('YYYYMMDD');
+		var startMilliSeconds = moment(startWorkHistoryEntity.time).valueOf();
+		var workHistory = {
+				title : '업무 종료를 하지 않으셨습니다.',
+				start : startMilliSeconds,
+				end : null,
+				backgroundColor : null,
+				borderColor : null,
+		};
 		// 업무 종료 목록
+		var isExistsEndWorking = false;
 		$.each(endWorkHistoryEntityList, function(index, endWorkHistoryEntity){
 			var endWorkStartYmd=moment(endWorkHistoryEntity.time).format('YYYYMMDD');
-			if(endWorkHistoryEntity == endWorkStartYmd){
+			if(startWorkStartYmd == endWorkStartYmd){
+				// 근무시간
+				var endMilliSeconds = moment(endWorkHistoryEntity.time).valueOf();
+				var workingSeconds = moment.duration(endMilliSeconds - startMilliSeconds).asSeconds();
+				var rgbCode = '#1DDB16';
+				// 근무시간 10시간 초과 빨간색
+				if(workingSeconds > 36000) rgbCode = '#FF0000';
+				// 근무시간 9시간 초과 ~ 10시간 이하 주황색
+				else if(workingSeconds > 32400 && workingSeconds <= 36000) rgbCode = '#FFBB00';
+				// 근무시간 9시간 이하 초록색
+				else rgbCode = '#1DDB16';
 				
+				// Calendar Model
+				workHistory.title = 'Working';
+				workHistory.end = endMilliSeconds;
+				workHistory.backgroundColor = rgbCode;
+				workHistory.borderColor = rgbCode;
+				
+				isExistsEndWorking = true;
+				return false;
 			}
 		});
+		calendarModel.push(workHistory);
 	});
-	$.each(workHistoryEntityList, function(index, workHistoryEntity){
-		var milliSeconds = moment(workHistoryEntity.time).valueOf();
-		var endMilliSeconds = moment(workHistoryEntity.workEndYmd + ' ' + workHistoryEntity.workEndTime).valueOf();
-		var workingSeconds = moment.duration(endMilliSeconds - startMilliSeconds).asSeconds();
-		var rgbCode = '#1DDB16';
-		
-		// 근무시간 10시간 초과 빨간색
-		if(workingSeconds > 36000) rgbCode = '#FF0000';
-		// 근무시간 9시간 초과 ~ 10시간 이하 주황색
-		else if(workingSeconds > 32400 && workingSeconds <= 36000) rgbCode = '#FFBB00';
-		// 근무시간 9시간 이하 초록색
-		else rgbCode = '#1DDB16';
-		
-		/* var calendarModel = [];
-		var workHistory = {
-				title : 'Working',
-				start : startMilliSeconds,
-				end : endMilliSeconds,
-				backgroundColor : rgbCode,
-				borderColor : rgbCode,
-		};
-		calendarModel.push(workHistory); */
-	});
+	
+	console.log(calendarModel);
 	
 	/* fullcalendar*/
 	var calendarEl = document.getElementById('calendar');

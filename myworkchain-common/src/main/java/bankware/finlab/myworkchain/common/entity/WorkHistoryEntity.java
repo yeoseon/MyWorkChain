@@ -27,16 +27,18 @@ public class WorkHistoryEntity {
 	private String workCode;
 	private int latitude;
 	private int longitude;
+	private String workPlaceCode;
 	private int reward;
 	
 	@Builder
-	public WorkHistoryEntity(int id, String userId, Timestamp time, String workCode, int latitude, int longitude, int reward) {
+	public WorkHistoryEntity(int id, String userId, Timestamp time, String workCode, int latitude, int longitude, String workPlaceCode, int reward) {
 		this.id = id;
 		this.userId = userId;
 		this.time = time;
 		this.workCode = workCode;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.workPlaceCode = workPlaceCode;
 		this.reward = reward;
 	}
 }
