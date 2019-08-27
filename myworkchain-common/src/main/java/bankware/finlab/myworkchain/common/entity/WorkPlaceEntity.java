@@ -1,11 +1,12 @@
 package bankware.finlab.myworkchain.common.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,8 +21,8 @@ public class WorkPlaceEntity {
 	private String compAddress;
 	private String workName;
 	private String workAddress;
-	private float longitude;
-	private float latitude;
+	private BigDecimal longitude;
+	private BigDecimal latitude;
 	private Boolean workUseYn;
 	
 } 

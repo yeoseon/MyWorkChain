@@ -29,8 +29,8 @@ CREATE TABLE work_place (
 	comp_address VARCHAR(250) NOT NULL,
 	work_name VARCHAR(250),
 	work_address VARCHAR(1000),
-	longitude NUMBER(3),
-	latitude NUMBER(3),
+	longitude DECIMAL,
+	latitude DECIMAL,
 	work_use_yn boolean
 );
 
