@@ -76,24 +76,6 @@ public class WorkService {
 		return _makeWorkHistoryList(response);
 	}
 	
-	public String getWorkHistory() {
-		
-		String request = "{\r\n" + 
-				"        \"from\": {\r\n" + 
-				"                \"userKey\": \"APIAddress\",\r\n" + 
-				"                \"walletType\": \"LUNIVERSE\"\r\n" + 
-				"        },\r\n" + 
-				"        \"inputs\": {\r\n" + 
-				"                \"_userId\": \"0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0\",\r\n" + 
-				"                \"_yearMon\": \"201908\",\r\n" + 
-				"                \"_stday\": \"1\",\r\n" + 
-				"                \"_edday\": \"31\"\r\n" + 
-				"        }\r\n" + 
-				"}";
-		String response = commonService.testCallPost(request, "stampListV2");
-		
-		return response;
-	}
 	private RestRequest _setWorkHistoryInput(WorkHistoryRequest request) {
 		RestRequest restRequest = new RestRequest();
 		

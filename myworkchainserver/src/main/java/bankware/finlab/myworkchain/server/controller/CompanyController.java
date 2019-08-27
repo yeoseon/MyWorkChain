@@ -51,12 +51,4 @@ public class CompanyController {
 		
 		return pageName;
 	}
-
-	@RequestMapping(path={"history", "/history"}, method = RequestMethod.GET)
-	public String testHistory() {
-		
-		String result = workService.getWorkHistory();
-		System.out.println(result);
-		return result;
-	}
 }
