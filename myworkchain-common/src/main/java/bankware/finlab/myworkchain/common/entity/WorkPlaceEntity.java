@@ -24,15 +24,4 @@ public class WorkPlaceEntity {
 	private float latitude;
 	private Boolean workUseYn;
 	
-	@Builder
-	public WorkPlaceEntity(String workCode, String compAddress, String workName, String workAddress, float longitude, float latitude, Boolean workUseYn) {
-		this.workCode = workCode;
-		this.compAddress = compAddress;
-		this.workName = workName;
-		this.workAddress = workAddress;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.workUseYn = workUseYn;
-	}
-	
 } 

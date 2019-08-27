@@ -8,7 +8,7 @@ import lombok.Setter;
 public class CheckStampInput {
 	
 	@JsonProperty
-	private String _userId;
+	private String _userId; // user wallet address
 	
 	@JsonProperty
 	private String _yearMon;

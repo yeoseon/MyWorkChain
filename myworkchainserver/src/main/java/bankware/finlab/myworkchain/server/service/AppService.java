@@ -85,7 +85,7 @@ public class AppService {
 	private NewWorkHistoryToChainRequest _setRequest(NewWorkHistoryServiceInput input) {
 		NewWorkHistoryToChainRequest request = new NewWorkHistoryToChainRequest();
 		
-		request.setId(input.getId());
+		request.setUserId(input.getUserId());
 		request.setWorkPlaceCode(input.getWorkPlaceCode());
 		request.setWorkCode(input.getWorkCode());
 		request.setLatitude(input.getLatitude());
@@ -107,7 +107,7 @@ public class AppService {
 		Boolean result = false;
 
 		// 해당 사용자의 근무지 정보 Get
-		String userWorkPlaceCode = employeeService.getEmployeeInfoById(request.getId()).getWorkPlace();
+		String userWorkPlaceCode = employeeService.getEmployeeInfoById(request.getUserId()).getCurrentWorkplaceCode();
 		WorkPlaceEntity userWorkPlace = companyService.getWorkPlaceByCode(userWorkPlaceCode);
 		
 		// 입력받은 위/경도와 비교 TODO : 기준 정확히 정해서 구현해둘 것

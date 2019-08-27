@@ -3,22 +3,27 @@ package bankware.finlab.myworkchain.common.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 @Entity
 @Table(name = "employee")
 public class EmployeeEntity {
-	private String id;
+	
+	private String userId;
 	@Id
 	private String emplAddress; //직원 Wallet 주소
 	private String compAddress; //기업 Wallet 주소
-	private String emplName;
-	private String currentWorkCode; // 현재 근무지 코드
+	private String name; //이름
+	private String currentWorkplaceCode; // 현재 근무지 코드
+	@Transient
+	private String workPlaceName; //현재 근무지 코드를 바탕으로 가져오는 값
 	// 부서
 	private String department;
 	// 직책
@@ -29,4 +34,22 @@ public class EmployeeEntity {
 	private String email;
 	// 휴대전화
 	private String phoneNumber;
+	
+	
+	
+	@Builder
+	public EmployeeEntity(String userId, String emplAddress, String compAddress, String name, String currentWorkplaceCode, String workPlaceName, String department, String position, String joinDate, String email, String phoneNumber) {
+		this.userId = userId;
+		this.emplAddress = emplAddress;
+		this.compAddress = compAddress;
+		this.name = name;
+		this.currentWorkplaceCode = currentWorkplaceCode;
+		this.workPlaceName = workPlaceName;
+		this.department = department;
+		this.position = position;
+		this.joinDate = joinDate;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
+	
 }

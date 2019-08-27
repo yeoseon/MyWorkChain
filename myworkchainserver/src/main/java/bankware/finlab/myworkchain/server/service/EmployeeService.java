@@ -12,13 +12,11 @@ import org.springframework.web.client.RestClientException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
-import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequestFrom;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
-import bankware.finlab.myworkchain.server.vo.Employee;
 
 @Service
 public class EmployeeService {
@@ -41,7 +39,7 @@ public class EmployeeService {
 	/*
 	 * 회사 Address를 받아 직원 목록 조회
 	 */
-	public List<Employee> getEmployeeList(String compAddress) throws RestClientException, JsonProcessingException {
+	public List<EmployeeEntity> getEmployeeList(String compAddress) throws RestClientException, JsonProcessingException {
 
 		//Chain에서 직원 Address 목록 조회
 		//Server에 있는 직원 Data와 Mapping
@@ -54,21 +52,9 @@ public class EmployeeService {
 	/*
 	 * 직원 ID를 받아 직원 정보 조회
 	 */
-	public Employee getEmployeeInfoById(String userId) {
+	public EmployeeEntity getEmployeeInfoById(String userId) {
 		
-		EmployeeEntity entity = employeeRepository.findEmployeeById(userId);
-		
-		Employee employee = Employee.builder()
-	 			.id(entity.getId())
-				.name(entity.getEmplName())
-				.department(entity.getDepartment())
-				.position(entity.getPosition())
-				.joinDate(entity.getJoinDate())
-				.email(entity.getEmail())
-				.phoneNumber(entity.getPhoneNumber())
-				.workPlaceName(companyService.getWorkPlaceName(entity.getCurrentWorkCode()))
-				.walletAddress(entity.getEmplAddress())
-				.build();
+		EmployeeEntity employee = employeeRepository.findEmployeeByUserId(userId);
 		
 		return employee;
 	}
@@ -101,26 +87,28 @@ public class EmployeeService {
 		
 		return restRequest;
 	}
-	private List<Employee> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
+	private List<EmployeeEntity> _mappingEmployeeInfo(List<Object> emplAddressList, List<EmployeeEntity> emplListData) {
 		
-		List<Employee> employeeList = new ArrayList<Employee>();
+		List<EmployeeEntity> employeeList = new ArrayList<EmployeeEntity>();
 		
 		// 1. Server DB에 있는 직원 목록을 먼저 다 가져온 후 Mapping한다. 
 		for(Object emplAddress : emplAddressList) {
-			Employee employee = new Employee();
+			EmployeeEntity employee = new EmployeeEntity();
 			
 			for(EmployeeEntity emplDataItem : emplListData) {
 				if(emplAddress.equals(emplDataItem.getEmplAddress())) {
-					 employee = Employee.builder()
-							 			.id(emplDataItem.getId())
-										.name(emplDataItem.getEmplName())
+					 employee = EmployeeEntity.builder()
+							 			.userId(emplDataItem.getUserId())
+							 			.emplAddress(emplDataItem.getEmplAddress())
+							 			.compAddress(emplDataItem.getCompAddress())
+										.name(emplDataItem.getName())
+										.currentWorkplaceCode(emplDataItem.getCurrentWorkplaceCode())
+										.workPlaceName(companyService.getWorkPlaceName(emplDataItem.getCurrentWorkplaceCode()))
 										.department(emplDataItem.getDepartment())
 										.position(emplDataItem.getPosition())
 										.joinDate(emplDataItem.getJoinDate())
 										.email(emplDataItem.getEmail())
 										.phoneNumber(emplDataItem.getPhoneNumber())
-										.workPlaceName(companyService.getWorkPlaceName(emplDataItem.getCurrentWorkCode()))
-										.walletAddress(emplDataItem.getEmplAddress())
 										.build();
 				}
 			}

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class NewWorkHistoryServiceInput {
 
 	//로그인 아이디
-	private String id;
+	private String userId;
 	
 	//근무 구분 코드 (01: 출근, 02: 퇴근)
 	private String workCode;

@@ -41,11 +41,11 @@ INSERT INTO work_place (work_code, comp_address, work_name, work_address, longit
 DROP TABLE IF EXISTS employee;
 
 CREATE TABLE employee (
-	id VARCHAR(250) NOT NULL,
+	user_id VARCHAR(250) NOT NULL,
 	empl_address VARCHAR(250) PRIMARY KEY,
 	comp_address VARCHAR(250) NOT NULL,
-	empl_name VARCHAR(250),
-	current_work_code VARCHAR(50),
+	name VARCHAR(250),
+	current_workplace_code VARCHAR(50),
 	department VARCHAR(250),
 	position VARCHAR(250),
 	join_date VARCHAR(250),
@@ -53,7 +53,7 @@ CREATE TABLE employee (
 	phone_number VARCHAR(250)
 );
 
-INSERT INTO employee (id, empl_address, comp_address, empl_name, current_work_code, department, position, join_date, email, phone_number) VALUES
+INSERT INTO employee (user_id, empl_address, comp_address, name, current_workplace_code, department, position, join_date, email, phone_number) VALUES
  ('Gabriel', '0xbFB07E725F66B2aC1187a5B134FbCF4a3f3bEaF0', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Gabriel', '02', '개발팀', '매니저', '2019-02-18', 'dongshik.lee@gmail.com', '010-1111-1111'),
  ('Kevin', '0x425d268cB4075e809762eaf6644ADB71fBAe600D', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Kevin', '01', '개발팀', '매니저', '2013-07-01', 'kylee1112@hotmail.com', '010-1111-1111'),
  ('Mickey', '0xf537938cC1A409db6eAeB557889795C28467Af96', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Mickey', '01', '개발팀', '매니저', '2015-03-01', 'Sjh8341@gmail.com', '010-1111-1111'),
