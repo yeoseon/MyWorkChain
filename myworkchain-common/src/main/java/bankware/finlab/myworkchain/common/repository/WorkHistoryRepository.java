@@ -9,7 +9,7 @@ import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 
 public interface WorkHistoryRepository extends CrudRepository<WorkHistoryEntity, Long> {
 	
-	List<WorkHistoryEntity> findWorkHistoryByUserIdAndTimeAfter(String userId, LocalDate time);
+	List<WorkHistoryEntity> findWorkHistoryByUserIdAndTimeBetween(String userId, LocalDate now, LocalDate after);
 
 	List<WorkHistoryEntity> findWorkHistoryByUserId(String userId);
 }
