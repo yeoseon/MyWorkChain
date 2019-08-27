@@ -22,4 +22,4 @@ public class WorkPlaceEntity {
 	private float workGeoLongitude;
 	private float workGeoAltitude;
 	private Boolean workUseYn;
-}
+} 
