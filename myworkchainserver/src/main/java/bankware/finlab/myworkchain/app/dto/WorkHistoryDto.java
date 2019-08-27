@@ -1,5 +1,6 @@
 package bankware.finlab.myworkchain.app.dto;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 public class WorkHistoryDto {
 	private String userId;
 	private Date time;
-	private int latitude;
-	private int longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private String workPlaceCode;
 }

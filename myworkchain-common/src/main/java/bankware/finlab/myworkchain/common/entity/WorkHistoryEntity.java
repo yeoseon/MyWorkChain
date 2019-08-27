@@ -1,7 +1,7 @@
 package bankware.finlab.myworkchain.common.entity;
 
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -30,13 +30,13 @@ public class WorkHistoryEntity {
 	@CreationTimestamp
 	private LocalDateTime time;
 	private String workCode;
-	private int latitude;
-	private int longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private String workPlaceCode;
 	private int reward;
 	
 	@Builder
-	public WorkHistoryEntity(int id, String userId, LocalDateTime time, String workCode, int latitude, int longitude, String workPlaceCode, int reward) {
+	public WorkHistoryEntity(int id, String userId, LocalDateTime time, String workCode, BigDecimal latitude, BigDecimal longitude, String workPlaceCode, int reward) {
 		this.id = id;
 		this.userId = userId;
 		this.time = time;

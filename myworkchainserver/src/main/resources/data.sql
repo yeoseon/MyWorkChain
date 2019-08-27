@@ -67,8 +67,8 @@ CREATE TABLE work_history (
 	user_id VARCHAR(250) NOT NULL,
 	time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	work_code VARCHAR(50),
-	latitude INT NOT NULL,
-	longitude INT NOT NULL,
+	latitude DECIMAL NOT NULL,
+	longitude DECIMAL NOT NULL,
 	work_place_code VARCHAR(50) NOT NULL,
 	reward INT NOT NULL
 );
