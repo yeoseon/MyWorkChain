@@ -55,29 +55,31 @@ public class AppService {
 		Boolean newWorkToDBResponse = true;
 		
 		//2. 근무 기록 (to Chain)
-		Boolean newWorkToChainResponse = workService.newWorkHistory(newWorkToChainRequest);
+//		Boolean newWorkToChainResponse = workService.newWorkHistory(newWorkToChainRequest);
 		
 		//3. 토큰 대상 여부 검사 TODO
-		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
+//		Boolean isSendReward = _isSendReward(newWorkToChainRequest);
+//		
+//		//4. 토큰 대상일 경우 토큰 지급
+//		Boolean sendRewardResponse = false;
+//		if(isSendReward) {
+//			SendRewardRequest sendRewardRequest = new SendRewardRequest();
+//			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressById(input.getId())); //직원이 속한 기업 Address 호출하여 Setting
+//			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeById(input.getId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
+//			sendRewardRequest.setValueAmount(VALUE_AMOUNT); 
+//			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
+//		}
+//		else {
+//			sendRewardResponse = true;
+//		}
+//		
+//		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
+//			result = true;
+//		}
+//		
+//		return result;
 		
-		//4. 토큰 대상일 경우 토큰 지급
-		Boolean sendRewardResponse = false;
-		if(isSendReward) {
-			SendRewardRequest sendRewardRequest = new SendRewardRequest();
-			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressById(input.getId())); //직원이 속한 기업 Address 호출하여 Setting
-			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeById(input.getId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
-			sendRewardRequest.setValueAmount(VALUE_AMOUNT); 
-			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
-		}
-		else {
-			sendRewardResponse = true;
-		}
-		
-		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
-			result = true;
-		}
-		
-		return result;
+		return true;
 	}
 	
 	
