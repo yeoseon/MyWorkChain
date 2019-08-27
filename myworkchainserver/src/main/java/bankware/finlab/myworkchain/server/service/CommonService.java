@@ -101,6 +101,20 @@ public class CommonService {
 	}	
 	
 	/*
+	 * 시스템 년,월,일,시간 정보 (yyyy-MM-dd HH:mm:ss)
+	 */
+	public String getDate() {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Date time = new Date();
+		
+		String date = format.format(time);
+		
+		return date;
+	}
+	
+	/*
 	 * 시스템 년,월 정보(YYYYMM)
 	 */
 	public String getYearMonth() {

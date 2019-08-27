@@ -27,9 +27,9 @@ public class WorkService {
 	
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	/*
-	 * 근무 기록
+	 * 근무 기록(Chain)
 	 */
 	public Boolean newWorkHistory(NewWorkRequest request) throws JsonProcessingException  {
 		
@@ -64,7 +64,7 @@ public class WorkService {
 	}
 	
 	/*
-	 * 근무 기록 조회
+	 * 근무 기록 조회(From Chain)
 	 */
 	public List<WorkHistory> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
 		
