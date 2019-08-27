@@ -211,7 +211,7 @@
 .flex-wrap{-ms-flex-wrap:wrap !important;flex-wrap:wrap !important}
 .justify-content-md-center{-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important}
 .align-items-center{-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important}
-.mypage-img { position: absolute;  top: 0;  right: 0;  bottom: 0;  left: 0;  z-index: -1;  background-color: #65b1c9;   height: 373px; background-position-x: right; background-position-y: 30px;   background-size: 450px 450px;  background-repeat: no-repeat;}
+.mypage-img { position: absolute;  top: 0;  right: 0;  bottom: 0;  left: 0;  z-index: -1;  background-color: #5e2d91;   height: 373px; background-position-x: right; background-position-y: 30px;   background-size: 450px 450px;  background-repeat: no-repeat;}
 .my-img {background-image: url('../img2/mypage.jpg');}
 .justify-content-between{-webkit-box-pack:justify !important;-ms-flex-pack:justify !important;justify-content:space-between !important}
 
