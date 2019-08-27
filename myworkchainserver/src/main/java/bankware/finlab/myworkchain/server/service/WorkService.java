@@ -37,10 +37,6 @@ public class WorkService {
 	 */
 	public Boolean newWorkHistory(WorkHistoryDto request) throws JsonProcessingException  {
 		
-		//시스템 시각 Setting
-		Date time = new Date(); 
-		request.setTime(time);
-		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
 		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP);

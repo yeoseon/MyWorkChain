@@ -44,6 +44,10 @@ public class AppService {
 	 */
 	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
+		//시스템 시각 Setting
+		Date time = new Date(); 
+		input.setTime(time);
+		
 		Boolean result = false;
 		
 		//1. 근무 기록 (to DB) TODO
