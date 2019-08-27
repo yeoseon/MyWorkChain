@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
 import bankware.finlab.myworkchain.server.dto.restapi.RestRequestFrom;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
@@ -25,22 +26,17 @@ import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 @Service
 public class CommonService {
 	
-	//TODO : properties 관리
-	private static final String REST_API_URL_TRANSACTION = "https://api.luniverse.io/tx/v1.0/transactions/";
-	private static final String REST_API_URL_WALLET = "https://api.luniverse.io/tx/v1.0/wallets/";
-	private static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
-	
 	@Autowired
 	WorkPlaceRepository workPlaceRepository;
 	
 	public RestResponse callPost(String rqst, String postfix) {
 		
-		String url = REST_API_URL_TRANSACTION + postfix;
+		String url = DataSourceConstant.REST_API_URL_TRANSACTION + postfix;
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		final HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "Bearer " + BEARER_API);
+		headers.set("Authorization", "Bearer " + DataSourceConstant.BEARER_API);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<String> entity = new HttpEntity<String>(rqst, headers);
 		
@@ -53,11 +49,11 @@ public class CommonService {
 	
 	public RestResponse callGet(String adrs, String postfix) { // get Balance일 때만 사용하므로, adrs 고정해둠
 		
-		String url = REST_API_URL_WALLET + adrs + postfix;
+		String url = DataSourceConstant.REST_API_URL_WALLET + adrs + postfix;
 		RestTemplate restTemplate = new RestTemplate();
 		
 		final HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "Bearer " + BEARER_API);
+		headers.set("Authorization", "Bearer " + DataSourceConstant.BEARER_API);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<String> entity = new HttpEntity<String>(headers);
 		

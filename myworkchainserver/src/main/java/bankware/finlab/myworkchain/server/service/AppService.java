@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryServiceInput;
@@ -16,10 +17,6 @@ import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 
 @Service
 public class AppService {
-
-	private final int VALUE_AMOUNT = 100; //TODO properties로 관리
-	private final String START_WORK_CODE = "01";
-	private final String END_WORK_CODE = "02";
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -65,7 +62,7 @@ public class AppService {
 //			SendRewardRequest sendRewardRequest = new SendRewardRequest();
 //			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressById(input.getId())); //직원이 속한 기업 Address 호출하여 Setting
 //			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeById(input.getId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
-//			sendRewardRequest.setValueAmount(VALUE_AMOUNT); 
+//			sendRewardRequest.setValueAmount(DataSourceConstant.VALUE_AMOUNT); 
 //			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
 //		}
 //		else {
@@ -118,7 +115,7 @@ public class AppService {
 //			return false; // 현재 위치는 근무지가 아닙니다.
 //		}
 		
-		if(START_WORK_CODE.equals(request.getWorkCode())) {
+		if(WorkHistoryConstant.WORK_CODE_START.equals(request.getWorkCode())) {
 			//WorkCode가 '출근'인 경우
 			//오전 09:30분 이전 출근 등록시 true
 			
@@ -135,7 +132,7 @@ public class AppService {
 				return false; // 오전 09시 30분이 지났습니다.
 			}
 		}
-		else if(END_WORK_CODE.equals(request.getWorkCode())) {
+		else if(WorkHistoryConstant.WORK_CODE_END.equals(request.getWorkCode())) {
 			//WorkCode가 '퇴근'인 경우
 			//해당 날짜의 출근 시각 조회(UserId와 WorkCode(01), 오늘 날짜로 WorkStartYmd 조회)
 			//8시간 이상 근무 했으면 true

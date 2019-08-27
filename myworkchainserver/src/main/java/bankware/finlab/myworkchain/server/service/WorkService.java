@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
@@ -23,9 +24,6 @@ import bankware.finlab.myworkchain.server.dto.restapi.WorkHistoryInput;
 
 @Service
 public class WorkService {
-
-	private final static String POSTFIX_CHECK_STAMP = "checkStampV2";
-	private final static String POSTFIX_STAMP_LIST = "stampListV2";
 	
 	@Autowired
 	CommonService commonService;
@@ -40,7 +38,7 @@ public class WorkService {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_CHECK_STAMP);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP);
 
 		return response.getResult();
 	}
@@ -75,7 +73,7 @@ public class WorkService {
 	public List<WorkHistoryEntity> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
 		RestRequest restRequest =_setWorkHistoryInput(request);
 		
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_STAMP_LIST);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_STAMP_LIST);
 		//TODO : make workHistoryList;
 		
 		return _makeWorkHistoryList(response, request);

@@ -11,6 +11,7 @@ import org.springframework.web.client.RestClientException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
@@ -20,9 +21,6 @@ import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 
 @Service
 public class EmployeeService {
-
-	//TODO : 상수들 Properties로 관리
-	private static final String POSTFIX_COMPANY_USER_LIST = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
 	
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -64,7 +62,7 @@ public class EmployeeService {
 
 		RestRequest restRequest = _setEmplAddressListRequest(compAddress);
 
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_COMPANY_USER_LIST);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_COMPANY_USER_LIST);
 		
 		List<Object> emplAddressList = new ArrayList<Object>();
 		emplAddressList = (List<Object>) response.getData().getRes().get(0);

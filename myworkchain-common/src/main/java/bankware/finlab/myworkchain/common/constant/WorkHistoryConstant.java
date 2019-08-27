@@ -6,4 +6,5 @@ public class WorkHistoryConstant {
 	
 	public static final String WORK_PLACE_CODE_01 = "01";
 	public static final String WORK_PLACE_CODE_02 = "02";
+
 }

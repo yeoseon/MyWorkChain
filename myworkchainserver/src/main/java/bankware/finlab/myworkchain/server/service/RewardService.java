@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.server.dto.SendRewardRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.RestResponse;
 import bankware.finlab.myworkchain.server.dto.restapi.TransferToUserInput;
@@ -13,9 +14,6 @@ import bankware.finlab.myworkchain.server.dto.restapi.TransferToUserRequest;
 @Service
 public class RewardService {
 
-	
-	private final static String POSTFIX_TRANSFER_TO_USER = "transfer2User";
-	private final static String POSTFIX_GET_BALANCE = "/FT9754/R1908/balance";
 	@Autowired
 	CommonService commonService;
 	
@@ -26,7 +24,7 @@ public class RewardService {
 		
 		TransferToUserRequest restRequest = _setSendRewardRequest(request);
 		
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_TRANSFER_TO_USER);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_TRANSFER_TO_USER);
 		
 		return response.getResult();
 	}
@@ -52,7 +50,7 @@ public class RewardService {
 	 */
 	public String getBalance(String walletAddress) {
 		
-		RestResponse response = commonService.callGet(walletAddress, POSTFIX_GET_BALANCE);
+		RestResponse response = commonService.callGet(walletAddress, DataSourceConstant.POSTFIX_GET_BALANCE);
 		
 		String temp = response.getData().getBalance();
 		double doubleValue = Double.parseDouble(temp);
