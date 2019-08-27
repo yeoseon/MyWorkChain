@@ -23,7 +23,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
+import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.service.WorkService;
+import bankware.finlab.myworkchain.server.vo.WorkHistory;
 
 @Controller
 public class MyWorkChainAppController {
@@ -40,11 +42,20 @@ public class MyWorkChainAppController {
 	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
 	
 	@GetMapping("/calendar")
-	public String viewHome(Model model) {
+	public String viewHome(Model model) throws JsonProcessingException {
 		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
 		
 		// Model Attributes
-		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryList(EMPL_ADDRESS);
+		//List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryList(EMPL_ADDRESS);
+		//logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		//model.addAttribute("workHistoryEntityList", workHistoryEntityList);
+		
+		WorkHistoryRequest request = new WorkHistoryRequest();
+		request.setId("Gabriel");
+		request.setYearMonth("201908");
+		request.setStartDay(1);
+		request.setEndDay(31);
+		List<WorkHistoryEntity> workHistoryEntityList = workService.getWorkHistory(request);
 		logger.info("workHistoryEntityList : {}", workHistoryEntityList);
 		model.addAttribute("workHistoryEntityList", workHistoryEntityList);
 		
