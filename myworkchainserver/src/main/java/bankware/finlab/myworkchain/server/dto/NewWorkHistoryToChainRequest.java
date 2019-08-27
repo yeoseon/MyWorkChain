@@ -1,5 +1,6 @@
 package bankware.finlab.myworkchain.server.dto;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import lombok.Getter;
@@ -19,10 +20,10 @@ public class NewWorkHistoryToChainRequest {
 	private String workPlaceCode;
 	
 	//위도
-	private float latitude;
+	private BigDecimal latitude;
 	
 	//경도
-	private float longtitude;
+	private BigDecimal longtitude;
 	
 	//system Date
 	private Date date;

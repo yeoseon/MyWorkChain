@@ -1,5 +1,7 @@
 package bankware.finlab.myworkchain.server.dto;
 
+import java.math.BigDecimal;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +19,8 @@ public class NewWorkHistoryServiceInput {
 	private String workPlaceCode;
 	
 	//위도
-	private float latitude;
+	private BigDecimal latitude;
 	
 	//경도
-	private float longtitude;
+	private BigDecimal longtitude;
 }

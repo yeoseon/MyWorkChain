@@ -1,5 +1,6 @@
 package bankware.finlab.myworkchain.server.service;
 
+import java.math.BigDecimal;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -118,24 +119,31 @@ public class CommonService {
 		return day;
 	}
 	
-	/*
-	 * 위도/경도 변환(소숫점 6자리 -> Integer)
-	 */
-	public Integer floatToInteger(float target) {
-		Integer result = null;
+	public String bigDecimalToString(BigDecimal target) {
 		
-		result = (int) (target * 100000);
+		return target.toString();
+	}
+	
+	/*
+	 * 위도/경도 변환(소숫점 6자리 -> * 100000)
+	 */
+	public BigDecimal multiple(BigDecimal target) {
+		BigDecimal result;
+		BigDecimal operator = new BigDecimal("100000");
+		
+		result = target.multiply(operator);
 		
 		return result;
 	}
 	
 	/*
-	 * 위도/경도 변환(Integer -> 소숫점 6자리)
+	 * 위도/경도 변환(정수 -> 소숫점 6자리)
 	 */
-	public float integerToFloat(Integer target) {
-		float result;
+	public BigDecimal divide(BigDecimal target) {
+		BigDecimal result;
+		BigDecimal operator = new BigDecimal("100000");
 		
-		result = target / 100000;
+		result = target.divide(operator);
 		
 		return result;
 	}

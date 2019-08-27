@@ -20,10 +20,10 @@ public class CheckStampInput {
 	private String _workCode;
 	
 	@JsonProperty
-	private Integer _latitude;
+	private String _latitude;
 	
 	@JsonProperty
-	private Integer _longitude;
+	private String _longitude;
 	
 	@JsonProperty
 	private String _workPlace;

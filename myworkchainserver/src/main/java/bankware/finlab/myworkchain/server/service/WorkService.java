@@ -66,8 +66,8 @@ public class WorkService {
 		input.set_yearMon(commonService.getYearMonth(request.getDate()));
 		input.set_day(commonService.getDay(request.getDate()));
 		input.set_workCode(request.getWorkCode());
-		input.set_latitude(commonService.floatToInteger(request.getLatitude()));
-		input.set_longitude(commonService.floatToInteger(request.getLatitude()));
+		input.set_latitude(commonService.bigDecimalToString(commonService.multiple(request.getLatitude())));
+		input.set_longitude(commonService.bigDecimalToString(commonService.multiple(request.getLongtitude())));
 		input.set_workPlace(request.getWorkPlaceCode());
 		
 		restRequest.setInputs(input);
