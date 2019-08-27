@@ -2,6 +2,7 @@ package bankware.finlab.myworkchain.common.entity;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class WorkHistoryEntity {
 	private int id;
 	private String userId;
 	@CreationTimestamp
-	private LocalDate time;
+	private LocalDateTime time;
 	private String workCode;
 	private int latitude;
 	private int longitude;
@@ -35,7 +36,7 @@ public class WorkHistoryEntity {
 	private int reward;
 	
 	@Builder
-	public WorkHistoryEntity(int id, String userId, LocalDate time, String workCode, int latitude, int longitude, String workPlaceCode, int reward) {
+	public WorkHistoryEntity(int id, String userId, LocalDateTime time, String workCode, int latitude, int longitude, String workPlaceCode, int reward) {
 		this.id = id;
 		this.userId = userId;
 		this.time = time;

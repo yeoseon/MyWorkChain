@@ -1,6 +1,6 @@
 package bankware.finlab.myworkchain.app.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class WorkHistoryService {
 	 * @param time
 	 * @return
 	 */
-	public List<WorkHistoryEntity> getWorkHistoryWithTime(String userId, LocalDate time) {
+	public List<WorkHistoryEntity> getWorkHistoryWithTime(String userId, LocalDateTime time) {
 		return workHistoryRepository.findWorkHistoryByUserIdAndTimeBetween(userId, time, time.plusDays(1));
 	}
 	

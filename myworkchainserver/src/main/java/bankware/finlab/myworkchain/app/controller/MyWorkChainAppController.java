@@ -1,7 +1,7 @@
 package bankware.finlab.myworkchain.app.controller;
 
 import java.text.ParseException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -73,7 +73,7 @@ public class MyWorkChainAppController {
 	
 	@GetMapping("/work/history/{userId:.+}/{time:.+}")
 	public @ResponseBody List<WorkHistoryEntity> getWorkHistory(@PathVariable("userId") String userId, 
-			@PathVariable("time") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate time) throws ParseException {
+			@PathVariable("time") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime time) throws ParseException {
 		logger.info("userId : {}", userId);
 		
 		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryWithTime(userId, time);
