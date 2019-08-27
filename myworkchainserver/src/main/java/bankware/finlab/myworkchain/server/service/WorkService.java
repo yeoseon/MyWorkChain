@@ -1,13 +1,22 @@
 package bankware.finlab.myworkchain.server.service;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.dto.restapi.CheckStampInput;
@@ -21,6 +30,7 @@ import bankware.finlab.myworkchain.server.vo.WorkHistory;
 public class WorkService {
 
 	private final static String POSTFIX_CHECK_STAMP = "checkStampV2";
+	private final static String POSTFIX_STAMP_LIST = "stampListV2";
 	
 	@Autowired
 	CommonService commonService;
@@ -66,14 +76,14 @@ public class WorkService {
 	/*
 	 * 근무 기록 조회(From Chain)
 	 */
-	public List<WorkHistory> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
-		
+	//public List<WorkHistory> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
+	public List<WorkHistoryEntity> getWorkHistory(WorkHistoryRequest request) throws JsonProcessingException {
 		RestRequest restRequest =_setWorkHistoryInput(request);
 		
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_CHECK_STAMP);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), POSTFIX_STAMP_LIST);
 		//TODO : make workHistoryList;
 		
-		return _makeWorkHistoryList(response);
+		return _makeWorkHistoryList(response, request);
 	}
 	
 	private RestRequest _setWorkHistoryInput(WorkHistoryRequest request) {
@@ -96,9 +106,58 @@ public class WorkService {
 		return restRequest;
 	} 
 
-	private List<WorkHistory> _makeWorkHistoryList(RestResponse response) {
-		List<WorkHistory> workHistoryList = new ArrayList<WorkHistory>();
+	//private List<WorkHistory> _makeWorkHistoryList(RestResponse response) {
+	@SuppressWarnings("unchecked")
+	private List<WorkHistoryEntity> _makeWorkHistoryList(RestResponse response, WorkHistoryRequest request) {
+		List<WorkHistoryEntity> workHistoryList = new ArrayList<WorkHistoryEntity>();
 		
+		String userAddress = employeeService.getEmployeeInfoById(request.getId()).getWalletAddress();
+		
+		List<Object> stampKeyList = new ArrayList<Object>();
+		stampKeyList = (List<Object>) response.getData().getRes().get(0);
+		
+		List<Object> stampTimeList = new ArrayList<Object>();
+		stampTimeList = (List<Object>) response.getData().getRes().get(1);
+		
+		System.out.println("stampTimeList size : " + stampTimeList.size());
+		
+		int count=1;
+		int stampNum = 0;
+		for(Object stampKey : stampKeyList) {
+			String _key = (String)stampKey;
+			
+//			String timestampstr = (String)stampTimeList.get(stampNum);
+//			long timestamp = Long.parseLong(timestampstr);
+//			LocalDateTime triggerTime =
+//			        LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp*1000L), 
+//			                                TimeZone.getDefault().toZoneId()); 
+			String dateInstring = "";
+			if(_key.substring(8,10).equals("01"))
+				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T09:30:00Z";
+			else if (_key.substring(8,10).equals("02"))
+				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T18:30:00Z";
+			
+			//System.out.println("dateInstring : " + dateInstring);
+			Instant instant = Instant.parse(dateInstring);
+			LocalDateTime triggerTime = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
+			System.out.println("triggerTime : " + triggerTime);
+			
+			WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
+					.id(count)
+					.userId(userAddress)
+					.time(triggerTime)
+//					.latitude()
+//					.longitude()
+					.workCode(_key.substring(8,10))
+					.workPlaceCode(_key.substring(10,12))
+				.build();
+			
+			workHistoryList.add(workHistoryEntity);
+			count++;
+			stampNum++;
+		}
+		
+		System.out.println("workHistoryList size : " + workHistoryList.size());
 		return workHistoryList;
 	}
 }
