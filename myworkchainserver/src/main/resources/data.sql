@@ -29,12 +29,12 @@ CREATE TABLE work_place (
 	comp_address VARCHAR(250) NOT NULL,
 	work_name VARCHAR(250),
 	work_address VARCHAR(1000),
-	work_geo_longitude NUMBER(3),
-	work_geo_latitude NUMBER(3),
+	longitude NUMBER(3),
+	latitude NUMBER(3),
 	work_use_yn boolean
 );
 
-INSERT INTO work_place (work_code, comp_address, work_name, work_address, work_geo_longitude, work_geo_latitude, work_use_yn) VALUES
+INSERT INTO work_place (work_code, comp_address, work_name, work_address, longitude, latitude, work_use_yn) VALUES
  ('01', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '서울본사', '서울특별시 중구 소공동 통일로 86', '126.969542', '37.563264', true),
  ('02', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '송도지사', '인천광역시 중구 영종해안남로321번길 208', '126.456209', '37.440220', true);
 

@@ -9,7 +9,6 @@ import bankware.finlab.myworkchain.common.entity.CompanyEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.CompanyRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
-import bankware.finlab.myworkchain.server.vo.WorkPlace;
 
 @Service
 public class CompanyService {
@@ -48,19 +47,9 @@ public class CompanyService {
 	/*
 	 * WorkPlace Code를 입력받아, 근무지 객체 조회
 	 */
-	public WorkPlace getWorkPlaceByCode(String workPlaceCode) {
+	public WorkPlaceEntity getWorkPlaceByCode(String workPlaceCode) {
 		
-		WorkPlaceEntity workPlaceEntity = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
-		
-		WorkPlace workplace = WorkPlace.builder()
-	 			.workCode(workPlaceEntity.getWorkCode())
-				.compAddress(workPlaceEntity.getCompAddress())
-				.workName(workPlaceEntity.getWorkName())
-				.workAddress(workPlaceEntity.getWorkAddress())
-				.longitude(workPlaceEntity.getWorkGeoLongitude())
-				.latitude(workPlaceEntity.getWorkGeoLatitude())
-				.workUseYn(workPlaceEntity.getWorkUseYn())
-				.build();
+		WorkPlaceEntity workplace = workPlaceRepository.findWorkNameByWorkCode(workPlaceCode);
 		
 		return workplace;
 	}

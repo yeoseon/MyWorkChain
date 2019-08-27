@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryServiceInput;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
-import bankware.finlab.myworkchain.server.dto.SendRewardRequest;
-import bankware.finlab.myworkchain.server.vo.WorkPlace;
 
 @Service
 public class AppService {
@@ -109,7 +108,7 @@ public class AppService {
 
 		// 해당 사용자의 근무지 정보 Get
 		String userWorkPlaceCode = employeeService.getEmployeeInfoById(request.getId()).getWorkPlace();
-		WorkPlace userWorkPlace = companyService.getWorkPlaceByCode(userWorkPlaceCode);
+		WorkPlaceEntity userWorkPlace = companyService.getWorkPlaceByCode(userWorkPlaceCode);
 		
 		// 입력받은 위/경도와 비교 TODO : 기준 정확히 정해서 구현해둘 것
 //		if(userWorkPlace.getLatitude() == request.getLatitude() && userWorkPlace.getLongitude() == request.getLongtitude()) {
