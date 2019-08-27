@@ -1,6 +1,6 @@
 package bankware.finlab.myworkchain.app.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class WorkHistoryDto {
 	private String userId;
-	private LocalDateTime time;
+	private Date time;
 	private int latitude;
 	private int longitude;
 	private String workPlaceCode;

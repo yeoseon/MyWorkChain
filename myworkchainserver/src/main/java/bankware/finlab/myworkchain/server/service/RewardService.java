@@ -54,6 +54,11 @@ public class RewardService {
 		
 		RestResponse response = commonService.callGet(walletAddress, POSTFIX_GET_BALANCE);
 		
-		return response.getData().getBalance();
+		String temp = response.getData().getBalance();
+		double doubleValue = Double.parseDouble(temp);
+		
+		doubleValue = (int) (doubleValue / (Math.pow(10, 18)));
+		
+		return Double.toString(doubleValue);
 	}
 }

@@ -90,9 +90,8 @@ $(function() {
 			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
-				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+todayYmd, //요청 경로
-				contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
-				//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
+				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+moment(clickedCalendarTodayYmd).format('YYYY-MM-DD'),
+				contentType : "application/json",
 				success : function(data, status, xhr) {
 					$('#modal-commute').modal('show');
 					$('#modal-commute-date').html(info.dateStr);

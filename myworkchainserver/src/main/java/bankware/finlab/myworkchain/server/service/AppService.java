@@ -11,6 +11,7 @@ import bankware.finlab.myworkchain.common.repository.EmployeeRepository;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryServiceInput;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.SendRewardRequest;
+import bankware.finlab.myworkchain.server.vo.WorkPlace;
 
 @Service
 public class AppService {
@@ -28,6 +29,12 @@ public class AppService {
 	@Autowired
 	RewardService rewardService;
 	
+	@Autowired
+	EmployeeService employeeService;
+	
+	@Autowired
+	CompanyService companyService;
+	
 	/*
 	 * App 근무 기록 Service (근무기록(to Chain) + 근무기록(to DB) + 리워드 토큰 전송
 	 * 오전 09:30분 이전에 출근 등록을 했을 경우,
@@ -35,6 +42,7 @@ public class AppService {
 	 * TODO : 근무지와 현재 위/경도를 비교하는 것도 고려 해야함
 	 * 토큰 지급 대상이 아닐 경우는 근무기록만 수행한다.
 	 * NewWorkHistoryServiceRequest 
+	 * TODO: result가 false시, 에러 메시지도 처리해야할 듯.
 	 */
 	public Boolean newWorkHistoryService(NewWorkHistoryServiceInput input) throws JsonProcessingException {
 		
@@ -89,24 +97,37 @@ public class AppService {
 	/*
 	 * 오전 09:30분 이전에 출근 등록을 했을 경우,
 	 * 퇴근 시, 출근 시간과 비교하여 8시간 이상 근무를 했을 경우 토큰을 지급한다.
+	 * TODO: result가 false시, 에러 메시지도 처리해야할 듯.
 	 */
 	private Boolean _isSendReward(NewWorkHistoryToChainRequest request) {
+		
 		Boolean result = false;
+
+		// 해당 사용자의 근무지 정보 Get
+		String userWorkPlaceCode = employeeService.getEmployeeInfoById(request.getId()).getWorkPlace();
+		WorkPlace userWorkPlace = companyService.getWorkPlaceByCode(userWorkPlaceCode);
 		
-		//WorkCode가 '출근'인 경우
-		//오전 09:30분 이전 출근 등록시 true
+		// 입력받은 위/경도와 비교 TODO : 기준 정확히 정해서 구현해둘 것
+//		if(userWorkPlace.getLatitude() == request.getLatitude() && userWorkPlace.getLongitude() == request.getLongtitude()) {
+//			result = true;
+//		}
+//		else {
+//			return false;
+//		}
+		
 		if(START_WORK_CODE.equals(request.getWorkCode())) {
+			//WorkCode가 '출근'인 경우
+			//오전 09:30분 이전 출근 등록시 true
+			Date date = request.getDate();
 			
 		}
-		
-		//WorkCode가 '퇴근'인 경우
-		//해당 날짜의 출근 시각 조회(UserId와 WorkCode(01), 오늘 날짜로 WorkStartYmd 조회)
-		//8시간 이상 근무 했으면 true
 		else if(END_WORK_CODE.equals(request.getWorkCode())) {
+			//WorkCode가 '퇴근'인 경우
+			//해당 날짜의 출근 시각 조회(UserId와 WorkCode(01), 오늘 날짜로 WorkStartYmd 조회)
+			//8시간 이상 근무 했으면 true
 			
-			
+//			Date startDate = request.get
 		}
-		
 		
 		return result;
 	}

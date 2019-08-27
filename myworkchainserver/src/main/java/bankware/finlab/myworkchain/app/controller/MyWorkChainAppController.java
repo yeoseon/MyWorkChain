@@ -1,11 +1,13 @@
 package bankware.finlab.myworkchain.app.controller;
 
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -69,13 +71,15 @@ public class MyWorkChainAppController {
 		return "app/login";
 	}
 	
-	@GetMapping("/work/history/{userId:.+}/{time}")
-	public @ResponseBody WorkHistoryEntity getWorkHistory(@PathVariable("userId") String userId, @PathVariable("time") LocalDateTime time) {
+	@GetMapping("/work/history/{userId:.+}/{time:.+}")
+	public @ResponseBody List<WorkHistoryEntity> getWorkHistory(@PathVariable("userId") String userId, 
+			@PathVariable("time") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate time) throws ParseException {
 		logger.info("userId : {}", userId);
-		WorkHistoryEntity workHistoryEntity = workHistoryService.getWorkHistoryWithTime(userId, time);
-		logger.info("workHistoryEntity : {}", workHistoryEntity);
 		
-		return workHistoryEntity;
+		List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryWithTime(userId, time);
+		logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		
+		return null;
 	}
 	
 	@GetMapping("/work/history/{userId:.+}")

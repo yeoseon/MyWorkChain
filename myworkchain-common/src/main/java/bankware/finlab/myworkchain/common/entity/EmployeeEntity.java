@@ -18,7 +18,7 @@ public class EmployeeEntity {
 	private String emplAddress; //직원 Wallet 주소
 	private String compAddress; //기업 Wallet 주소
 	private String emplName;
-	private int currentWorkCode; // 현재 근무지 코드
+	private String currentWorkCode; // 현재 근무지 코드
 	// 부서
 	private String department;
 	// 직책

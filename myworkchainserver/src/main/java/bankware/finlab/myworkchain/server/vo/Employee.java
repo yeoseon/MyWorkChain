@@ -28,11 +28,13 @@ public class Employee {
 	private String phoneNumber;
 	// 근무지 
 	private String workPlace;
+	// 근무지명
+	private String workPlaceName;
 	// Wallet Address
 	private String walletAddress;
 	
 	@Builder
-	public Employee(String id, String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String walletAddress) {
+	public Employee(String id, String name, String department, String position, String joinDate, String email, String phoneNumber, String workPlace, String workPlaceName, String walletAddress) {
 		this.id = id;
 		this.name = name;
 		this.department = department;
@@ -41,6 +43,7 @@ public class Employee {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.workPlace = workPlace;
+		this.workPlaceName = workPlaceName;
 		this.walletAddress = walletAddress;
 	}
 }
