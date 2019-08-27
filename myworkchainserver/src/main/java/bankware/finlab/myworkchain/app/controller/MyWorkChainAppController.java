@@ -25,7 +25,6 @@ import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.NewWorkHistoryToChainRequest;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.service.WorkService;
-import bankware.finlab.myworkchain.server.vo.WorkHistory;
 
 @Controller
 public class MyWorkChainAppController {
