@@ -9,11 +9,7 @@ import bankware.finlab.myworkchain.common.entity.CompanyEntity;
 import bankware.finlab.myworkchain.common.entity.WorkPlaceEntity;
 import bankware.finlab.myworkchain.common.repository.CompanyRepository;
 import bankware.finlab.myworkchain.common.repository.WorkPlaceRepository;
-import bankware.finlab.myworkchain.server.vo.Company;
-import bankware.finlab.myworkchain.server.vo.Employee;
 import bankware.finlab.myworkchain.server.vo.WorkPlace;
-import bankware.finlab.myworkchain.server.vo.WorkPlace.WorkPlaceBuilder;
-import lombok.Builder;
 
 @Service
 public class CompanyService {
@@ -34,16 +30,9 @@ public class CompanyService {
 	/*
 	 * 회사의 정보 조회
 	 */
-	public Company getCompanyInfo(String compAdrs) {
+	public CompanyEntity getCompanyInfo(String compAdrs) {
 		
-		CompanyEntity companyEntity = companyRepository.findCompanyByCompAddress(compAdrs);
-		
-		Company company = Company.builder()
-						.compAddress(companyEntity.getCompAddress())
-						.name(companyEntity.getCompName())
-						.address(companyEntity.getLocation())
-						.useYn(companyEntity.getUseYn())
-						.build();
+		CompanyEntity company = companyRepository.findCompanyByCompAddress(compAdrs);
 		
 		return company;
 	}
