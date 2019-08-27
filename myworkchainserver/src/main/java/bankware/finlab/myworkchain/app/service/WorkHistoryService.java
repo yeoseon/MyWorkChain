@@ -1,6 +1,6 @@
 package bankware.finlab.myworkchain.app.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ public class WorkHistoryService {
 	 * @param time
 	 * @return
 	 */
-	public WorkHistoryEntity getWorkHistoryWithTime(String userId, LocalDateTime time) {
-		return workHistoryRepository.findWorkHistoryByUserIdAndTime(userId, time);
+	public List<WorkHistoryEntity> getWorkHistoryWithTime(String userId, LocalDate time) {
+		return workHistoryRepository.findWorkHistoryByUserIdAndTimeAfter(userId, time);
 	}
 	
 	/**
@@ -50,22 +50,5 @@ public class WorkHistoryService {
 	 */
 	public List<WorkHistoryEntity> getWorkHistoryList(String userId) {
 		return workHistoryRepository.findWorkHistoryByUserId(userId);
-	}
-	
-	/**
-	 * Work History 수정
-	 * @param workHistoryDto
-	 * @return WorkHistoryEntity
-	 */
-	public WorkHistoryEntity modifyWorkHistory(WorkHistoryDto workHistoryDto) {
-		WorkHistoryEntity oldWorkHistoryEntity = getWorkHistoryWithTime(workHistoryDto.getUserId(), workHistoryDto.getTime());
-		WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
-																.id(oldWorkHistoryEntity.getId())
-																.userId(oldWorkHistoryEntity.getUserId())
-																.latitude(workHistoryDto.getLatitude())
-																.longitude(workHistoryDto.getLongitude())
-																.workPlaceCode(workHistoryDto.getWorkPlaceCode())
-															.build();
-		return workHistoryRepository.save(workHistoryEntity);
 	}
 }
