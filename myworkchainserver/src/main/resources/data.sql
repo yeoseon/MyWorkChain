@@ -25,22 +25,19 @@ INSERT INTO company (comp_address, mwc_address, comp_name, location, use_yn) VAL
 DROP TABLE IF EXISTS work_place;
 
 CREATE TABLE work_place (
-	work_code INT AUTO_INCREMENT PRIMARY KEY,
+	work_code VARCHAR(50) PRIMARY KEY,
 	comp_address VARCHAR(250) NOT NULL,
 	work_name VARCHAR(250),
 	work_address VARCHAR(1000),
-	work_geo_location NUMBER(3),
 	work_geo_longitude NUMBER(3),
 	work_geo_altitude NUMBER(3),
-	work_geo_accuracy NUMBER(3),
 	work_use_yn boolean
 );
 
-INSERT INTO work_place (comp_address, work_name, work_address, work_geo_location, work_geo_longitude, work_geo_altitude, work_geo_accuracy, work_use_yn) VALUES
- ('0x69f2d1bdc2430a3a067620f617fec3100b892d54', '본사', '서울특별시 중구 소공동 통일로 86', '10', '10', '10', '10', true),
- ('0x69f2d1bdc2430a3a067620f617fec3100b892d54', '부산지사', '부산광역시 수영구 수영로 776', '30', '40', '20', '80', true),
- ('0x69f2d1bdc2430a3a067620f617fec3100b892d54', '신림지사', '서울특별시 관악구 미성3길 41', '90', '270', '60', '30', true);
- 
+INSERT INTO work_place (work_code, comp_address, work_name, work_address, work_geo_longitude, work_geo_altitude, work_use_yn) VALUES
+ ('01', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '서울본사', '서울특별시 중구 소공동 통일로 86', '10', '10', true),
+ ('02', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '송도지사', '인천광역시 중구 영종해안남로321번길 208', '20', '80', true);
+
 DROP TABLE IF EXISTS employee;
 
 CREATE TABLE employee (

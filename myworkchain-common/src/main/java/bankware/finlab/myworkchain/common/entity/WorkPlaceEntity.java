@@ -15,13 +15,11 @@ import lombok.NoArgsConstructor;
 public class WorkPlaceEntity {
 	
 	@Id
-	private int workCode;
+	private String workCode;
 	private String compAddress;
 	private String workName;
 	private String workAddress;
-	private double workGeoLocation;
-	private double workGeoLongitude;
-	private double workGeoAltitude;
-	private double workGeoAccuracy;
+	private float workGeoLongitude;
+	private float workGeoAltitude;
 	private Boolean workUseYn;
 }

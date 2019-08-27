@@ -93,6 +93,8 @@ public class AppService {
 	private Boolean _isSendReward(NewWorkHistoryToChainRequest request) {
 		Boolean result = false;
 		
+		//TODO 근무지와 위/경도 비교
+		
 		//WorkCode가 '출근'인 경우
 		//오전 09:30분 이전 출근 등록시 true
 		if(START_WORK_CODE.equals(request.getWorkCode())) {
@@ -106,7 +108,6 @@ public class AppService {
 			
 			
 		}
-		
 		
 		return result;
 	}
