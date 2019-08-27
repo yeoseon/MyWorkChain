@@ -40,7 +40,7 @@
 					<ul class="nav navbar-nav">
 						<li>
 							<a id="geo" href="#">
-								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom">위치 : BwG 본사</span>
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom">위치 : SL2</span>
 							</a>
 						</li>
 						<li class="dropdown user user-menu">
@@ -139,6 +139,52 @@
 				    <button id="start_work" type="button" class="btn btn-primary btn-lg btn-block">업무 시작</button>
 				    <button id="end_work" type="button" class="btn btn-secondary btn-lg btn-block" disabled>업무 종료</button>
 	      		</div>
+	      		<div class="modal-footer">
+	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	  	</div>
+	</div>
+	
+	<!-- 업무 상세 Modal -->
+	<div class="modal modal-center fade" id="modal-commute-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-center" role="document">
+	    	<div class="modal-content">
+   		      	<div class="modal-header">
+   		      		<h4 class="modal-title" id="modal-commute-date">근무 일자 : <span id="commute_date">sssd</span></h4>
+				  	<h5 class="modal-title" id="modal-commute-time">근무 시간 : <small id="commute_time">sssd</small></h5>
+				  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				   	 	<span aria-hidden="true">&times;</span>
+				  	</button>
+				</div>
+	      		<div class="modal-body">
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">업무 시작</h3>
+						</div>
+						<div class="box-body">
+							<div class="form-group">
+								시간 : <span id="modal_working_start_time">555</span>
+							</div>
+							<div class="form-group">
+								좌표 : <span id="modal_working_start_location_latitude">123</span>, <span id="modal_working_start_location_longitude">456</span>
+							</div>
+						</div>
+					</div>
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">업무 종료</h3>
+						</div>
+						<div class="box-body">
+							<div class="form-group">
+								시간 : <span id="modal_working_end_time">666</span>
+							</div>
+							<div class="form-group">
+								좌표 : <span id="modal_working_end_location_latitude">aaa</span>, <span id="modal_working_end_location_longitude">zzz</span>
+							</div>
+						</div>
+					</div>
+				</div>
 	      		<div class="modal-footer">
 	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
 	      		</div>

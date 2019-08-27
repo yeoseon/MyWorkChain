@@ -80,36 +80,82 @@ $(function() {
 		events : calendarModel,
 		dateClick : function(info) {
 			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYYMMDD');
-			var todayYmd = moment().format('YYYYMMDD');
-			if(clickedCalendarTodayYmd != todayYmd){
-				console.log("clickedCalendarTodayYmd : " + clickedCalendarTodayYmd);
-				console.log("todayYmd : " + todayYmd);
-				alert("오늘 날짜만 선택할 수 있습니다.");
-				return;
-			}
 			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
-				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+moment(clickedCalendarTodayYmd).format('YYYY-MM-DD'),
+				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+moment(clickedCalendarTodayYmd).format(),
 				contentType : "application/json",
 				success : function(data, status, xhr) {
-					$('#modal-commute').modal('show');
-					$('#modal-commute-date').html(info.dateStr);
-					
 					console.log(data);
-					if(!data){
-						console.log('업무 시작 필요 !!');
-						$('#start_work').prop('disabled', false);
-						$('#end_work').prop('disabled', true);
+					var todayYmd = moment().format('YYYYMMDD');
+					if(clickedCalendarTodayYmd != todayYmd){
+						var startTime;
+						var endTime;
+						var startLatitude;
+						var startLongitude;
+						var endLatitude;
+						var endLongitude;
+						$.each(data, function(index, item){
+							var time = item.time;
+							var momentTime = moment(time.year+"-"+time.monthValue+"-"+time.dayOfMonth+" "+time.hour+":"+time.minute+":"+time.second);
+							if(item.workCode == WORK_CODE_START){
+								startTime = momentTime;
+								startLatitude = item.latitude;
+								startLongitude = item.longitude;
+							}else if(item.workCode == WORK_CODE_END){
+								endTime = momentTime;
+								endLatitude = item.latitude;
+								endLongitude = item.longitude;
+							}
+						});
+						
+						if(!startTime || !endTime){
+							alert("근무 상세를 표시할 수 없습니다.");
+							return;
+						}
+						
+						console.log('startTime : ' + startTime);
+						console.log('endTime : ' + endTime);
+						var workingMinutes = endTime.diff(startTime, "minutes");
+						console.log('workingMinutes : ' + workingMinutes);
+					
+						// Show modal
+						$('#modal-commute-detail').modal('show');
+						
+						// Data binding to Modal
+						// Title
+						$('#commute_date').html(clickedCalendarTodayYmd);
+						var hours = parseInt(workingMinutes / 60);
+						var minute = workingMinutes % 60;
+						$('#commute_time').html(hours + " hours " + minute + " minutes");
+						// 근무 시작
+						$('#modal_working_start_time').html(moment(startTime).format('YYYY-MM-DD hh:mm:ss a'));
+						$('#modal_working_start_location_latitude').html(startLatitude);
+						$('#modal_working_start_location_longitude').html(startLongitude);
+						// 근무 종료
+						$('#modal_working_end_time').html(moment(endTime).format('YYYY-MM-DD hh:mm:ss a'));
+						$('#modal_working_end_location_latitude').html(endLatitude);
+						$('#modal_working_end_location_longitude').html(endLongitude);
 					}else{
-						if(!data.workEndYmd || !data.workEndTime){
-							console.log('업무 시작 중 !!');
-							$('#start_work').prop('disabled', true);
-							$('#end_work').prop('disabled', false);
-						}else{
-							console.log('업무 종료 완료 !!');
-							$('#start_work').prop('disabled', true);
+						// Show modal
+						$('#modal-commute').modal('show');
+						$('#modal-commute-date').html(info.dateStr);
+						
+						console.log(data);
+						if(!data){
+							console.log('업무 시작 필요 !!');
+							$('#start_work').prop('disabled', false);
 							$('#end_work').prop('disabled', true);
+						}else{
+							if(!data.workEndYmd || !data.workEndTime){
+								console.log('업무 시작 중 !!');
+								$('#start_work').prop('disabled', true);
+								$('#end_work').prop('disabled', false);
+							}else{
+								console.log('업무 종료 완료 !!');
+								$('#start_work').prop('disabled', true);
+								$('#end_work').prop('disabled', true);
+							}
 						}
 					}
 				},
@@ -133,9 +179,6 @@ $(function() {
 	    navigator.geolocation.getCurrentPosition (function(pos) {
 	    	latitude = pos.coords.latitude;
 	    	longitude = pos.coords.longitude;
-	    	
-	    	latitude = BWG_LATITUDE;
-	    	longitude = BWG_LONGITUDE;
 	    	
 	    	// Tooltip
 	    	var tooltipTitle;
@@ -169,7 +212,7 @@ $(function() {
 				//로그인 아이디
 				id : LOGIN_ID,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
-				workCode : '01',
+				workCode : WORK_CODE_START,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
 				workPlaceCode : '01',
 				//위도
@@ -202,7 +245,7 @@ $(function() {
 				//로그인 아이디
 				id : LOGIN_ID,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
-				workCode : '02',
+				workCode : WORK_CODE_END,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
 				workPlaceCode : '01',
 				//위도
