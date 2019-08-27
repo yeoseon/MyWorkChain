@@ -2,10 +2,12 @@ package bankware.finlab.myworkchain.server.service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -131,6 +133,8 @@ public class WorkService {
 //			LocalDateTime triggerTime =
 //			        LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp*1000L), 
 //			                                TimeZone.getDefault().toZoneId()); 
+			
+			
 			String dateInstring = "";
 			if(_key.substring(8,10).equals("01"))
 				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T09:30:00Z";
@@ -140,7 +144,16 @@ public class WorkService {
 			//System.out.println("dateInstring : " + dateInstring);
 			Instant instant = Instant.parse(dateInstring);
 			LocalDateTime triggerTime = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
-			System.out.println("triggerTime : " + triggerTime);
+			//System.out.println("triggerTime : " + triggerTime);
+			
+			
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d HH:mm:ss");
+//			String dateInstring = "";
+//			if(_key.substring(8,10).equals("01"))
+//				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+" 09:30:00";
+//			else if (_key.substring(8,10).equals("02"))
+//				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+" 18:30:00";
+//			LocalDate triggerTime = LocalDate.parse(dateInstring, formatter);
 			
 			WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
 					.id(count)
@@ -157,7 +170,7 @@ public class WorkService {
 			stampNum++;
 		}
 		
-		System.out.println("workHistoryList size : " + workHistoryList.size());
+		//System.out.println("workHistoryList size : " + workHistoryList.size());
 		return workHistoryList;
 	}
 }
