@@ -22,9 +22,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
+import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.service.AppService;
+import bankware.finlab.myworkchain.server.service.CompanyService;
+import bankware.finlab.myworkchain.server.service.EmployeeService;
 import bankware.finlab.myworkchain.server.service.WorkService;
 
 @Controller
@@ -40,6 +43,12 @@ public class MyWorkChainAppController {
 	
 	@Autowired
 	private AppService appService;
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@Autowired
+	private CompanyService companyService;
 	
 	// 하드 코딩, 추후 변경 필요 TODO
 	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
@@ -135,9 +144,25 @@ public class MyWorkChainAppController {
 		return "app/reward";
 	}
 	
-	@GetMapping("/work")
-	public String viewWork(Model model) {
+	@GetMapping("/work/{userId}")
+	public String viewWork(Model model, @PathVariable String userId) throws JsonProcessingException {
 		if(logger.isDebugEnabled()) logger.debug("viewWork {}", model);
+		
+		// 로그인 User 조회
+		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
+		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
+		
+		// 근무기록 조회
+		WorkHistoryRequest request = new WorkHistoryRequest();
+		request.setUserId(user.getUserId());
+		request.setYearMonth("201908");
+		request.setStartDay(1);
+		request.setEndDay(31);
+	
+		List<WorkHistoryEntity> workHistoryList = workService.getWorkHistory(request); 
+		
+		model.addAttribute("user", user);
+		model.addAttribute("workHistoryList", workHistoryList);
 		
 		// template name
 		return "app/work";

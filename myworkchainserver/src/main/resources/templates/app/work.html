@@ -39,14 +39,14 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<li>
-							<a id="geo" href="#">
-								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom">위치 : 송도지사</span>
+							<a id="geo" href="#" th:object="${user}">
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}">위치 : 송도지사</span>
 							</a>
 						</li>
 						<li class="dropdown user user-menu">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" th:object="${user}">
 								<img th:src="@{/imgs/gabriel.jpeg}" class="user-image" alt="User Image">
-								<span class="hidden-xs">Gabriel</span>
+								<span class="hidden-xs" th:text="*{name}">Gabriel</span>
 							</a>
 						</li>
 						<li class="dropdown messages-menu">
@@ -107,7 +107,43 @@
 
 			<!-- Main content -->
 			<section class="content">
-				<div id='reward'></div>
+				<div id='work'>
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header" th:object="${user}">
+								<h3 class="box-title" th:text="*{name} + ' 님의 근무기록'"></h3>
+							</div>
+							<div class="box-body">
+								<div class="dataTables_wrapper form-inline dt-bootstrap">
+									<div class="row">
+										<div class="col-sm-12">
+											<table class="table table-bordered table-hover dataTable" role="grid">
+												<thead>
+													<tr role="row">
+														<th>ID</th>
+														<th>Date</th>
+														<th>출/퇴근</th>
+														<th>근무지</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd" th:each="history : ${workHistoryList}">
+														<td th:text="${history.id}"></td>
+														<td th:text="${history.time}"></td>
+														<td th:if="${history.getWorkCode().toString().equals('01')}">출근</td>
+														<td th:if="${history.getWorkCode().toString().equals('02')}">퇴근</td>
+														<td th:if="${history.getWorkPlaceCode().toString().equals('01')}">서울지사</td>
+														<td th:if="${history.getWorkPlaceCode().toString().equals('02')}">송도지사</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>
