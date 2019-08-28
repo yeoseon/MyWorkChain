@@ -15,6 +15,7 @@ module.exports = {
     txActionName: {
       transfer2PDA: 'transfer2PDA',
       purchaseItem: 'purchaseItemV1',
+      purchaseList: 'purchaseListV1',
       balance: 'balance',
       getOwner: 'getOwner',
       setOwner: 'setOwner'

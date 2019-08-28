@@ -1,22 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="pt-5">
-      <!-- <div class="mypage-img"></div>
-      <div class="py-5">
-        <div class="wrapper py-xl-5">
-          <div class="portfolio-caption">
-            <div class="portfolio-caption t_white font-weight-500">
-              <div class="h1 mb4">{{username}}</div>
-            </div>
-            <div class="portfolio-caption t_orange font-weight-500">
-              {{balance}}
-              <span class="h1 mb4 t_white">포인트</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
-    </div>
+    <div class="pt-5"></div>
     <div class="container px-3">
       <div class="row justify-content-between">
         <div class="mb-3" style="margin-top: 6rem;">
@@ -32,18 +17,14 @@
             <tr>
               <th scope="col">일시</th>
               <th scope="col">항목</th>
-              <th scope="col">실행결과</th>
+              <th scope="col">금액</th>
             </tr>
           </thead>
           <tbody>
             <tr v-bind:key="`${i}`" v-for="(history, i) in History">
               <td scope="row">{{history.time}}</td>
-              <td>
-                <time datetime>{{history.name.toUpperCase()}}</time>
-              </td>
-              <td>
-                <time datetime v-bind:style="{color: history.color}">{{history.status}}</time>
-              </td>
+              <td scope="row">{{history.product}}</td>
+              <td scope="row">{{history.price}}</td>
             </tr>
           </tbody>
         </table>
@@ -55,7 +36,6 @@
 <script>
 import Header from "@/components/header";
 import { Config } from "../js/config";
-import BigNumber from "bignumber.js";
 
 export default {
   components: {
@@ -84,6 +64,34 @@ export default {
     },
     txActionName() {
       return Config.txActionName;
+    },
+    products() {
+      return  [
+        {
+          id: "1",
+          name: "아이스 카페아메리카노 Tall"
+        },
+        {
+          id: "2",
+          name: "애플망고 치즈 설빙"
+        },
+        {
+          id: "3",
+          name: "신세계상품권 모바일교환권"
+        },
+        {
+          id: "4",
+          name: "Gonjoy"
+        },
+        {
+          id: "5",
+          name: "Front attack"
+        },
+        {
+          id: "6",
+          name: "Morning Glory"
+        }
+      ]
     }
   },
   mounted() {
@@ -92,50 +100,38 @@ export default {
   methods: {
     load() {
       this.axios
-        .get(
-          `https://api.luniverse.io/tx/v1.0/wallets/${this.walletAddress.user}/${this.mtSymbol}/${this.stSymbol}/${this.txActionName.balance}`,
+        .post(
+          `https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.purchaseList}`,
+          {
+            from: {
+              userKey: "Gabriel",
+              walletType: "LUNIVERSE"
+            },
+            inputs: {
+              _userId: {
+                userKey: "Gabriel",
+                walletType: "LUNIVERSE"
+              }
+            }
+          },
           {
             headers: {
-              Authorization: `Bearer ${this.apiKey}`
+              "api-key": this.apiKey
             }
           }
         )
         .then(response => {
-          this.balance = BigNumber(response.data.data.balance).div(
-            BigNumber("10").pow(18)
-          );
-        })
-        .catch(() => {
-          this.balance = 0;
-        });
+          var pIds = response.data.data.res[0];
+          var pPrices = response.data.data.res[1];
+          var pTimes = response.data.data.res[4];
 
-      this.axios
-        .get(`https://api.luniverse.io/tx/v1.0/histories?next=0`, {
-          headers: {
-            Authorization: `Bearer ${this.apiKey}`,
-            "Content-Type": `application/json`
-          }
-        })
-        .then(response => {
-          var temp = response.data.data.histories.items.filter(
-            valid =>
-              (valid.txStatus === "SUCCEED" || valid.txStatus === "FAILED") &&
-              ["funding", "like", "purchase"].indexOf(valid.actionName) !== -1
-          );
-          temp.map(tx =>
+          for (var i = 0; i < pIds.length; i++) {
             this.History.push({
-              time: tx.createdAt.substring(0, 10),
-              name: tx.actionName,
-              status: tx.txStatus
-            })
-          );
-          this.History.map(history => {
-            if (history.status === "SUCCEED") {
-              history.color = "#00B580";
-            } else if (history.status === "FAILED") {
-              history.color = "#F14E4E";
-            }
-          });
+              time: pTimes[i],
+              product: this.products[pIds[i]-1].name,
+              price: pPrices[i]
+            });
+          }
         })
         .catch(() => {});
     }
