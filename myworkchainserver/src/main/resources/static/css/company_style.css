@@ -101,6 +101,9 @@
 
 /************************ CONTENT *****************************/
 
+.mdc-layout-grid__inner {
+	margin-bottom: 20px!important;
+}
 .item-wrapper {
 	border: 1px solid #ddd;
 	margin-bottom: 20px;
