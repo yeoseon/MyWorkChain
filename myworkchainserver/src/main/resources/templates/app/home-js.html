@@ -6,6 +6,19 @@ $(function() {
 	var WORK_CODE_START='01';
 	var WORK_CODE_END='02';
 	
+	console.log(sessionStorage.getItem("id"));
+	id = sessionStorage.getItem("id");
+	if(id == null || id == "") {
+		window.location.href = "/login";
+	}
+	//aaa = $('geo-tooltip').text()
+	//console.log(aaa);
+	
+	//sessionStorage.removeItem("id");
+	//document.getElementById("hidden_id").text(id);
+	//console.log(document.getElementById("hidden_id"));
+	
+	
 	/* Get Working List*/
 	/*<![CDATA[*/
 	var workHistoryEntityList = /*[[${workHistoryEntityList}]]*/;

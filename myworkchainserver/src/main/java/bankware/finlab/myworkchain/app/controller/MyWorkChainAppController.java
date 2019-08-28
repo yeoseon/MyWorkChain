@@ -44,6 +44,14 @@ public class MyWorkChainAppController {
 	// 하드 코딩, 추후 변경 필요 TODO
 	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
 	
+	@GetMapping("/")
+	public String viewMain(Model model) {
+		if(logger.isDebugEnabled()) logger.debug("viewMain {}", model);
+		
+		// template name
+		return "app/login";
+	}
+	
 	@GetMapping("/calendar")
 	public String viewHome(Model model) throws JsonProcessingException {
 		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
@@ -117,5 +125,21 @@ public class MyWorkChainAppController {
 		logger.info("업무 종료 !");
 		
 		return isNewWorkHistory;
+	}
+	
+	@GetMapping("/reward")
+	public String viewReward(Model model) {
+		if(logger.isDebugEnabled()) logger.debug("viewReward {}", model);
+		
+		// template name
+		return "app/reward";
+	}
+	
+	@GetMapping("/work")
+	public String viewWork(Model model) {
+		if(logger.isDebugEnabled()) logger.debug("viewWork {}", model);
+		
+		// template name
+		return "app/work";
 	}
 }

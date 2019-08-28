@@ -14,7 +14,7 @@
 	<!-- include javascript libraries definitions -->
 	<th:block th:include="app/include-script"></th:block>
 	<!-- script -->
-	<th:block th:include="app/home-js"></th:block>
+	<!-- <th:block th:include="app/home-js"></th:block> -->
 
 	<!-- Site wrapper -->
 	<div class="wrapper" style="height: auto; min-height: 100%;">
@@ -97,17 +97,17 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					캘린더<small>업무를 시작하고 종료하세요.</small>
+					리워드 조회 <small> 보유중인 리워드 토큰을 확인하세요.</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-calendar"></i> Home</a></li>
-					<li class="active">Calendar</li>
+					<li class="active">Reword</li>
 				</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
-				<div id='calendar'></div>
+				<div id='reward'></div>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -119,31 +119,11 @@
 			</div>
 			<strong>Copyright © 2019 <a href="http://bankwareglobal.com">BankwareGlobal FinLab</a>.
 			</strong> All rights reserved. -->
-			<img th:src="@{/imgs/avatar5.png}" class="user-image" alt="User Image">
+			<!-- <img th:src="@{/imgs/avatar5.png}" class="user-image" alt="User Image"> -->
 			<!--주52시간 progress bar-->
 		</footer>
 	</div>
 	<!-- ./wrapper -->
 	
-	<!-- 업무 시작/종료 Modal -->
-	<div class="modal modal-center fade" id="modal-commute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-center" role="document">
-	    	<div class="modal-content">
-   		      	<div class="modal-header">
-				  	<h5 class="modal-title" id="modal-commute-date">Modal title</h5>
-				  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				   	 	<span aria-hidden="true">&times;</span>
-				  	</button>
-				</div>
-	      		<div class="modal-body">
-				    <button id="start_work" type="button" class="btn btn-primary btn-lg btn-block">업무 시작</button>
-				    <button id="end_work" type="button" class="btn btn-secondary btn-lg btn-block" disabled>업무 종료</button>
-	      		</div>
-	      		<div class="modal-footer">
-	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-	  	</div>
-	</div>
 </body>
 </html>
