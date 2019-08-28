@@ -9,6 +9,14 @@
 <title>MyWorkChain | Log in</title>
 <!-- include css definitions -->
 <th:block th:include="app/include-css"></th:block>
+<script>
+function login_save(){
+	id = document.getElementById("id");
+	sessionStorage.setItem("id", id.value);
+	alert("id:"+sessionStorage.getItem("id"));
+	
+}
+</script>
 </head>
 <body class="hold-transition login-page">
 
@@ -27,13 +35,13 @@
 			<form action="/login" method="POST">
 				<div class="form-group input-icons">
 					<i class="fa fa-user icon"></i> 
-					<input type="text" class="form-control input-field" placeholder="Id" value="Gabriel">
+					<input type="text" class="form-control input-field" id="id" placeholder="Id" value="Gabriel">
 				</div>
 				<div class="form-group input-icons">
 					<i class="fa fa-lock icon"></i>
-					<input type="password" class="form-control input-field" placeholder="Password" value="123123123">
+					<input type="password" class="form-control input-field" id="pwd" placeholder="Password" value="123123123">
 				</div>
-				<a href="/calendar" class="btn btn-primary btn-block btn-flat">Sigin In</a>
+				<a href="/calendar" onclick="login_save()" class="btn btn-primary btn-block btn-flat">Sigin In</a>
 			</form>
 
 		</div>
