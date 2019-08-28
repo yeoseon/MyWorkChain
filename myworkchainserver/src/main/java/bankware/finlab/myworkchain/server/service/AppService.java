@@ -1,8 +1,6 @@
 package bankware.finlab.myworkchain.server.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,47 +51,45 @@ public class AppService {
 	 */
 	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
-		//TODO : Boolean으로 뱉어주지 말고, Response 처리
-		
-		//시스템 시각 Setting
-		Date time = new Date(); 
-		input.setTime(time);
-		
 		//입력받은 input의 위/경도 소수점 6자리 절사
 		input.setLatitude(commonService.setScale(input.getLatitude()));
 		input.setLongitude(commonService.setScale(input.getLongitude()));
 		
 		Boolean result = false;
 		
-		//1. 근무 기록 (to DB) TODO
-//		WorkHistoryEntity workHistoryDbItem = workHistoryService.newWorkHistoryToDB(input); 
-//		Boolean newWorkToDBResponse = true; // TODO: DB등록 잘 되었는지 처리
+		//1. 근무 기록 (to DB)
+		WorkHistoryEntity workHistoryDbItem = workHistoryService.newWorkHistoryToDB(input); 
+		Boolean newWorkToDBResponse = true; // TODO: DB등록 잘 되었는지 처리
 		
-//		//2. 근무 기록 (to Chain)
+		//DB에 등록된 시각으로 input 시각 세팅 
+		input.setTime(commonService.localdatetimeToDate(workHistoryDbItem.getTime()));
+		
+		//2. 근무 기록 (to Chain)
 		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
-//		
-//		//3. 토큰 대상 여부 검사 TODO
-//		Boolean isSendReward = _isSendReward(input);
-//		
-//		//4. 토큰 대상일 경우 토큰 지급
-//		Boolean sendRewardResponse = false;
-//		if(isSendReward) {
-//			SendRewardRequest sendRewardRequest = new SendRewardRequest();
-//			sendRewardRequest.setGiverAddress(employeeRepository.findEmplAddressByUserId(input.getUserId())); //직원이 속한 기업 Address 호출하여 Setting
-//			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
-//			sendRewardRequest.setValueAmount(DataSourceConstant.VALUE_AMOUNT); 
-//			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
-//		}
-//		else {
-//			sendRewardResponse = true;
-//		}
-//		
-//		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
-//			result = true;
-//		}
 		
-		return true;
-//		return result;
+		//3. 토큰 대상 여부 검사 TODO
+		Boolean isSendReward = _isSendReward(input);
+		
+		//4. 토큰 대상일 경우 토큰 지급
+		Boolean sendRewardResponse = false;
+		
+		if(isSendReward) {
+			SendRewardRequest sendRewardRequest = new SendRewardRequest();
+			sendRewardRequest.setGiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getCompAddress()); //직원이 속한 기업 Address 호출하여 Setting
+			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
+			sendRewardRequest.setValueAmount(DataSourceConstant.VALUE_AMOUNT); 
+			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
+		}
+		else {
+			sendRewardResponse = true;
+		}
+		
+		//DB 등록, Chain 등록, 토큰 지급 모두 성공할 경우 true
+		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
+			result = true;
+		}
+		
+		return result;
 	}
 	
 	/*
@@ -103,43 +99,25 @@ public class AppService {
 	 */
 	private Boolean _isSendReward(WorkHistoryDto request) throws ParseException {
 		
-		Boolean result = false;
+		Boolean result = true;
 
 		// 해당 사용자의 근무지 정보 Get
 		String userWorkPlaceCode = employeeService.getEmployeeInfoById(request.getUserId()).getCurrentWorkplaceCode();
 		WorkPlaceEntity userWorkPlace = companyService.getWorkPlaceByCode(userWorkPlaceCode);
-		
+
 		// 입력받은 위/경도와 비교 TODO : 기준 정확히 정해서 구현해둘 것
-		if(userWorkPlace.getLatitude() == request.getLatitude() && userWorkPlace.getLongitude() == request.getLongitude()) {
-			result = true;
-		}
-		else {
-			return false; // 현재 위치는 근무지가 아닙니다.
-		}
+//		if(userWorkPlace.getLatitude() == request.getLatitude() && userWorkPlace.getLongitude() == request.getLongitude()) {
+//			result = true;
+//		}
+//		else {
+//			return false; // 현재 위치는 근무지가 아닙니다.
+//		}
 		
 		if(WorkHistoryConstant.WORK_CODE_START.equals(request.getWorkCode())) {
-			//WorkCode가 '출근'인 경우
-			//오전 09:30분 이전 출근 등록시 true
-			
-			SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-			Date date = format.parse(request.getTime().toString());
-			Date referenceDate = format.parse("09:30:00"); //오전 9시 30분
-			
-			int compare = referenceDate.compareTo(date); //date가 더 작아야 함. 즉 compare가 > 0
-			
-			if(compare >= 0) {
-				result = true;
-			}
-			else {
-				return false; // 오전 09시 30분이 지났습니다.
-			}
+			//WorkCode가 '출근'인 경우 오전 09:30분 이전 출근 등록시 true
 		}
 		else if(WorkHistoryConstant.WORK_CODE_END.equals(request.getWorkCode())) {
-			//WorkCode가 '퇴근'인 경우
-			//해당 날짜의 출근 시각 조회(UserId와 WorkCode(01), 오늘 날짜로 WorkStartYmd 조회)
-			//8시간 이상 근무 했으면 true
-			
-//			Date startDate = request.get
+			//WorkCode가 '퇴근'인 경우 오늘 출근한 시간 호출하여 8시간 이상 근무해야지 true
 		}
 		
 		return result;

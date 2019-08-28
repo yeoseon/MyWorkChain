@@ -39,7 +39,7 @@ public class WorkService {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
-		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP);
+		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP); 
 
 		return response.getResult();
 	}
