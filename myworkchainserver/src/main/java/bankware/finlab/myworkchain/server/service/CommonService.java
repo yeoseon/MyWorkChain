@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,6 +118,25 @@ public class CommonService {
 		return day;
 	}
 	
+	/*
+	 * Date to LocalDateTime
+	 */
+	public LocalDateTime dateToLocalDateTime(Date target) {
+	    return target.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDateTime();
+	}
+	
+	/*
+	 * LocalDateTime To Date
+	 */
+	public Date localdatetimeToDate(LocalDateTime target) {
+		
+		return Date.from(target.atZone( ZoneId.systemDefault()).toInstant());
+	}
+	/*
+	 * BigDecimal To String
+	 */
 	public String bigDecimalToString(BigDecimal target) {
 		
 		return target.toString();

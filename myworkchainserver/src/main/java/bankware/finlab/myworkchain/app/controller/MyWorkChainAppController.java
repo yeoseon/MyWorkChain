@@ -97,6 +97,8 @@ public class MyWorkChainAppController {
 	@Transactional
 	@PostMapping("/work/history")
 	public @ResponseBody Boolean newWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException, ParseException {
+		//TODO 근무지 코드 처리
+		
 		logger.info("NewWorkRequest : {}", request);
 
 		Boolean isNewWorkHistory = appService.newWorkHistoryService(request);
@@ -108,6 +110,8 @@ public class MyWorkChainAppController {
 	@Transactional
 	@PatchMapping("/work/history")
 	public @ResponseBody Boolean modifyWorkHistory(@RequestBody WorkHistoryDto request) throws JsonProcessingException, ParseException {
+		//TODO 근무지 코드 처리
+		
 		logger.info("NewWorkRequest : {}", request);
 		Boolean isNewWorkHistory = appService.newWorkHistoryService(request);
 		logger.info("업무 종료 !");
