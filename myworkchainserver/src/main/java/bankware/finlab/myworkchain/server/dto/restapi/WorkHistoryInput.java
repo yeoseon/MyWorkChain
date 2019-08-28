@@ -8,7 +8,7 @@ import lombok.Setter;
 public class WorkHistoryInput {
 	
 	@JsonProperty
-	private String _userId;
+	private String _userId; // user의 Wallet Address
 	
 	@JsonProperty
 	private String _yearMon;

@@ -90,7 +90,7 @@ public class WorkService {
 		
 		//input
 		WorkHistoryInput input = new WorkHistoryInput();
-		input.set_userId(employeeService.getEmployeeInfoById(request.getId()).getEmplAddress());
+		input.set_userId(employeeService.getEmployeeInfoById(request.getUserId()).getEmplAddress());
 		input.set_yearMon(request.getYearMonth());
 		input.set_stday(request.getStartDay());
 		input.set_edday(request.getEndDay());
@@ -105,7 +105,7 @@ public class WorkService {
 	private List<WorkHistoryEntity> _makeWorkHistoryList(RestResponse response, WorkHistoryRequest request) {
 		List<WorkHistoryEntity> workHistoryList = new ArrayList<WorkHistoryEntity>();
 		
-		String userAddress = employeeService.getEmployeeInfoById(request.getId()).getEmplAddress();
+		String userAddress = employeeService.getEmployeeInfoById(request.getUserId()).getEmplAddress();
 		
 		List<Object> stampKeyList = new ArrayList<Object>();
 		stampKeyList = (List<Object>) response.getData().getRes().get(0);

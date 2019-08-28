@@ -8,7 +8,7 @@ import lombok.Setter;
 public class WorkHistoryRequest {
 	
 	//로그인 아이디
-	private String id;
+	private String userId;
 	
 	//호출하고자 하는 년/월 (yyyyMM)
 	private String yearMonth;

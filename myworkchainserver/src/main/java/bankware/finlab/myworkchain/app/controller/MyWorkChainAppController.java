@@ -54,7 +54,7 @@ public class MyWorkChainAppController {
 		//model.addAttribute("workHistoryEntityList", workHistoryEntityList);
 		
 		WorkHistoryRequest request = new WorkHistoryRequest();
-		request.setId("Gabriel");
+		request.setUserId("Gabriel");
 		request.setYearMonth("201908");
 		request.setStartDay(1);
 		request.setEndDay(31);
