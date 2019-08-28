@@ -39,6 +39,9 @@ public class AppService {
 	@Autowired
 	WorkHistoryService workHistoryService;
 	
+	@Autowired
+	CommonService commonService;
+	
 	/*
 	 * App 근무 기록 Service (근무기록(to Chain) + 근무기록(to DB) + 리워드 토큰 전송
 	 * 오전 09:30분 이전에 출근 등록을 했을 경우,
@@ -56,14 +59,18 @@ public class AppService {
 		Date time = new Date(); 
 		input.setTime(time);
 		
-//		Boolean result = false;
-//		
-//		//1. 근무 기록 (to DB) TODO
+		//입력받은 input의 위/경도 소수점 6자리 절사
+		input.setLatitude(commonService.setScale(input.getLatitude()));
+		input.setLongitude(commonService.setScale(input.getLongitude()));
+		
+		Boolean result = false;
+		
+		//1. 근무 기록 (to DB) TODO
 //		WorkHistoryEntity workHistoryDbItem = workHistoryService.newWorkHistoryToDB(input); 
 //		Boolean newWorkToDBResponse = true; // TODO: DB등록 잘 되었는지 처리
-//		
+		
 //		//2. 근무 기록 (to Chain)
-//		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
+		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
 //		
 //		//3. 토큰 대상 여부 검사 TODO
 //		Boolean isSendReward = _isSendReward(input);

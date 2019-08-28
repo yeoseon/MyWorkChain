@@ -1,6 +1,7 @@
 package bankware.finlab.myworkchain.server.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -121,23 +122,30 @@ public class CommonService {
 	}
 	
 	/*
-	 * 위도/경도 변환(소숫점 6자리 -> * 100000)
+	 * 위/경도 소수점 6자리 절사(반올림)
+	 */
+	public BigDecimal setScale(BigDecimal target) {
+		return target.setScale(6, RoundingMode.HALF_EVEN);
+	}
+	/*
+	 * 위도/경도 변환(소숫점 6자리 -> * 1000000), 소수점 이하 절사
 	 */
 	public BigDecimal multiple(BigDecimal target) {
 		BigDecimal result;
-		BigDecimal operator = new BigDecimal("100000");
+		BigDecimal operator = new BigDecimal("1000000");
 		
 		result = target.multiply(operator);
 		
-		return result;
+		return result.setScale(0, RoundingMode.FLOOR);
 	}
 	
 	/*
 	 * 위도/경도 변환(정수 -> 소숫점 6자리)
+	 * 현재 사용X
 	 */
 	public BigDecimal divide(BigDecimal target) {
 		BigDecimal result;
-		BigDecimal operator = new BigDecimal("100000");
+		BigDecimal operator = new BigDecimal("1000000");
 		
 		result = target.divide(operator);
 		

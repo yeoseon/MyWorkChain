@@ -25,7 +25,7 @@ public class WorkHistoryService {
 	public WorkHistoryEntity newWorkHistoryToDB(WorkHistoryDto workHistoryDto) {
 		WorkHistoryEntity workHistoryEntity = WorkHistoryEntity.builder()
 																	.userId(workHistoryDto.getUserId())
-																	.workCode(WorkHistoryConstant.WORK_CODE_START)
+																	.workCode(workHistoryDto.getWorkCode())
 																	.latitude(workHistoryDto.getLatitude())
 																	.longitude(workHistoryDto.getLongitude())
 																	.workPlaceCode(WorkHistoryConstant.WORK_PLACE_CODE_01)
