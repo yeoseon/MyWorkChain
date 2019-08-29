@@ -24,12 +24,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
 import bankware.finlab.myworkchain.server.service.AppService;
 import bankware.finlab.myworkchain.server.service.CompanyService;
 import bankware.finlab.myworkchain.server.service.EmployeeService;
+import bankware.finlab.myworkchain.server.service.RewardService;
 import bankware.finlab.myworkchain.server.service.WorkService;
 
 @Controller
@@ -51,6 +53,9 @@ public class MyWorkChainAppController {
 	
 	@Autowired
 	private CompanyService companyService;
+	
+	@Autowired
+	private RewardService rewardService;
 	
 	// 하드 코딩, 추후 변경 필요 TODO
 	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
@@ -163,6 +168,9 @@ public class MyWorkChainAppController {
 		logger.info("yyyyMM : {}", yyyyMM);
 		
 		model.addAttribute("user", user);
+		model.addAttribute("balance", rewardService.getBalance(user.getEmplAddress()));
+		logger.info("user.getEmplAddress : {}.{}", user.getUserId(), user.getEmplAddress());
+
 		
 		// template name
 		return "app/reward";

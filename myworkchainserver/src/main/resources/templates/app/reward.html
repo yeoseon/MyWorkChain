@@ -107,7 +107,20 @@
 
 			<!-- Main content -->
 			<section class="content">
-				<div id='reward'></div>
+				<div id='reward'>
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header" th:object="${user}">
+								<h3 class="box-title" th:text="*{name} + ' 님의 리워드 토큰(Balance)'"></h3>
+							</div>
+							<div class="box-body">
+								<div class="dataTables_wrapper form-inline dt-bootstrap">
+									<h3 th:text="${balance} + ' R1908'"></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>
