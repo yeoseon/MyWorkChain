@@ -79,7 +79,7 @@ public class AppService {
 			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
 			Integer valueAmount = (int) (DataSourceConstant.VALUE_AMOUNT * (Math.pow(10, 18)));
 			sendRewardRequest.setValueAmount(valueAmount); 
-			sendRewardResponse = rewardService.sendReward(sendRewardRequest);
+			sendRewardResponse = rewardService.sendReward(sendRewardRequest); 
 		}
 		else {
 			sendRewardResponse = true;
