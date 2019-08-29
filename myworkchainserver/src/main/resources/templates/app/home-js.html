@@ -11,13 +11,6 @@ $(function() {
 	if(id == null || id == "") {
 		window.location.href = "/login";
 	}
-	//aaa = $('geo-tooltip').text()
-	//console.log(aaa);
-	
-	//sessionStorage.removeItem("id");
-	//document.getElementById("hidden_id").text(id);
-	//console.log(document.getElementById("hidden_id"));
-	
 	
 	/* Get Working List*/
 	/*<![CDATA[*/
@@ -278,4 +271,24 @@ $(function() {
 		});
 	});
 });
+
+function memu_click(url){
+	//id = document.getElementById("id");
+	//sessionStorage.setItem("id", id.value);
+	//alert("id:"+sessionStorage.getItem("id"));
+	id = sessionStorage.getItem("id");
+	
+	window.location.href = "/" + url + "/"+id;
+	
+}
+function market_click(url){
+	//id = document.getElementById("id");
+	//sessionStorage.setItem("id", id.value);
+	//alert("id:"+sessionStorage.getItem("id"));
+	id = sessionStorage.getItem("id");
+	
+	//window.open('http://localhost:8080?userId='+id, '_blank');
+	window.open('http://172.16.2.160:8080?userId='+id, '_blank');
+	
+}
 </script>

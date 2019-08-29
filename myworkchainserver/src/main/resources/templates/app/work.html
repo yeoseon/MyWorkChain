@@ -25,7 +25,7 @@ function memu_click(url){
 	<!-- include javascript libraries definitions -->
 	<th:block th:include="app/include-script"></th:block>
 	<!-- script -->
-	<!-- <th:block th:include="app/home-js"></th:block> -->
+	<th:block th:include="app/func-js"></th:block>
 
 	<!-- Site wrapper -->
 	<div class="wrapper" style="height: auto; min-height: 100%;">
@@ -51,7 +51,7 @@ function memu_click(url){
 					<ul class="nav navbar-nav">
 						<li>
 							<a id="geo" href="#" th:object="${user}">
-								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}">위치 : 송도지사</span>
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}"></span>
 							</a>
 						</li>
 						<li class="dropdown user user-menu">
@@ -61,7 +61,7 @@ function memu_click(url){
 							</a>
 						</li>
 						<li class="dropdown messages-menu">
-							<a href="http://localhost:8082/aaa?userId=Gabriel" class="dropdown-toggle" target="_blank">
+							<a href="#" onclick="market_click()" class="dropdown-toggle" target="_blank">
 								<i class="fa fa-shopping-cart"></i>
 								<span class="label label-success">4</span>
 							</a>

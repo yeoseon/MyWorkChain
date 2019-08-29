@@ -82,12 +82,14 @@ public class MyWorkChainAppController {
 		logger.info("yyyyMM : {}", yyyyMM);
 		
 		WorkHistoryRequest request = new WorkHistoryRequest();
-		request.setUserId("Gabriel");
+		request.setUserId(user.getUserId());
 		request.setYearMonth(yyyyMM);
 		request.setStartDay(1);
 		request.setEndDay(31);
 		List<WorkHistoryEntity> workHistoryEntityList = workService.getWorkHistory(request);
-		logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		//logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		
+		model.addAttribute("user", user);
 		model.addAttribute("workHistoryEntityList", workHistoryEntityList);
 		
 		// template name
@@ -160,6 +162,7 @@ public class MyWorkChainAppController {
 		String yyyyMM = sdf.format(c1.getTime());
 		logger.info("yyyyMM : {}", yyyyMM);
 		
+		model.addAttribute("user", user);
 		
 		// template name
 		return "app/reward";

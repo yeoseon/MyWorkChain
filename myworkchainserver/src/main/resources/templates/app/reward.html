@@ -8,24 +8,13 @@
 <meta name="context-path" th:content="@{/}" />
 <!-- include css definitions -->
 <th:block th:include="app/include-css"></th:block>
-<script>
-function memu_click(url){
-	//id = document.getElementById("id");
-	//sessionStorage.setItem("id", id.value);
-	//alert("id:"+sessionStorage.getItem("id"));
-	id = sessionStorage.getItem("id");
-	
-	window.location.href = "/" + url + "/"+id;
-	
-}
-</script>
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
 
 	<!-- include javascript libraries definitions -->
 	<th:block th:include="app/include-script"></th:block>
 	<!-- script -->
-	<!-- <th:block th:include="app/home-js"></th:block> -->
+	<th:block th:include="app/func-js"></th:block>
 
 	<!-- Site wrapper -->
 	<div class="wrapper" style="height: auto; min-height: 100%;">
@@ -50,18 +39,18 @@ function memu_click(url){
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<li>
-							<a id="geo" href="#">
-								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom">위치 : 송도지사</span>
+							<a id="geo" href="#" th:object="${user}">
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}"></span>
 							</a>
 						</li>
 						<li class="dropdown user user-menu">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" th:object="${user}">
 								<img th:src="@{/imgs/gabriel.jpeg}" class="user-image" alt="User Image">
-								<span class="hidden-xs">Gabriel</span>
+								<span class="hidden-xs" th:text="*{name}">Gabriel</span>
 							</a>
 						</li>
 						<li class="dropdown messages-menu">
-							<a href="http://localhost:8082/aaa?userId=Gabriel" class="dropdown-toggle" target="_blank">
+							<a href="#" onclick="market_click()" class="dropdown-toggle" target="_blank">
 								<i class="fa fa-shopping-cart"></i>
 								<span class="label label-success">4</span>
 							</a>
