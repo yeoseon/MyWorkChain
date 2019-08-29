@@ -230,7 +230,7 @@ $(function() {
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
 				alert("정상 처리 되었습니다.");
-				location.replace(BASE_CONTEXT_PATH+'calendar');
+				location.replace(BASE_CONTEXT_PATH+'calendar/'+ LOGIN_ID);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
@@ -263,7 +263,7 @@ $(function() {
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
 				alert("정상 처리 되었습니다.");
-				location.replace(BASE_CONTEXT_PATH+'calendar');
+				location.replace(BASE_CONTEXT_PATH+'calendar/'+ LOGIN_ID);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
