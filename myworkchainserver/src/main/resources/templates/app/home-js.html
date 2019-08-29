@@ -89,7 +89,7 @@ $(function() {
 			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
-				url : BASE_CONTEXT_PATH + "work/history/"+EMPL_ADDRESS+"/"+moment(clickedCalendarTodayYmd).format(),
+				url : BASE_CONTEXT_PATH + "work/history/"+LOGIN_ID+"/"+moment(clickedCalendarTodayYmd).format(),
 				contentType : "application/json",
 				success : function(data, status, xhr) {
 					console.log(data);
