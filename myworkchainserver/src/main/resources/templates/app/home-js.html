@@ -148,7 +148,7 @@ $(function() {
 						$('#modal-commute-date').html(info.dateStr);
 						
 						console.log(data);
-						if(!data){
+						if(!data ||data == ''){
 							console.log('업무 시작 필요 !!');
 							$('#start_work').prop('disabled', false);
 							$('#end_work').prop('disabled', true);
