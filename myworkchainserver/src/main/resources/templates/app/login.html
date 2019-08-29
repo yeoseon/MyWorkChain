@@ -15,6 +15,8 @@ function login_save(){
 	sessionStorage.setItem("id", id.value);
 	//alert("id:"+sessionStorage.getItem("id"));
 	
+	window.location.href = "/calendar/"+id.value;
+	
 }
 </script>
 </head>
@@ -41,7 +43,7 @@ function login_save(){
 					<i class="fa fa-lock icon"></i>
 					<input type="password" class="form-control input-field" id="pwd" placeholder="Password" value="123123123">
 				</div>
-				<a href="/calendar" onclick="login_save()" class="btn btn-primary btn-block btn-flat">Sign In</a>
+				<a href="#" onclick="login_save()" class="btn btn-primary btn-block btn-flat">Sign In</a>
 			</form>
 
 		</div>

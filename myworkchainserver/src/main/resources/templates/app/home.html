@@ -8,6 +8,17 @@
 <meta name="context-path" th:content="@{/}" />
 <!-- include css definitions -->
 <th:block th:include="app/include-css"></th:block>
+<script>
+function memu_click(url){
+	//id = document.getElementById("id");
+	//sessionStorage.setItem("id", id.value);
+	//alert("id:"+sessionStorage.getItem("id"));
+	id = sessionStorage.getItem("id");
+	
+	window.location.href = "/" + url + "/"+id;
+	
+}
+</script>
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
 
@@ -71,17 +82,17 @@
 				<ul class="sidebar-menu tree" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<li>
-						<a href="/calendar">
+						<a href="#" onclick="memu_click('calendar')">
 							<i class="fa fa-calendar"></i><span>캘린더</span>
 						</a>
 					</li>
 					<li>
-						<a href="/work/Gabriel">
+						<a href="#" onclick="memu_click('work')">
 							<i class="fa fa-hourglass-2"></i><span>근무 기록 조회</span>
 						</a>
 					</li>
 					<li>
-						<a href="/reward">
+						<a href="#" onclick="memu_click('reward')">
 							<i class="fa fa-battery-4"></i><span>리워드 조회</span>
 						</a>
 					</li>

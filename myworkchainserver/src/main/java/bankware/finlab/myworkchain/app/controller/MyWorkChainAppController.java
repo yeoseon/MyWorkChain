@@ -1,7 +1,9 @@
 package bankware.finlab.myworkchain.app.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -61,8 +63,8 @@ public class MyWorkChainAppController {
 		return "app/login";
 	}
 	
-	@GetMapping("/calendar")
-	public String viewHome(Model model) throws JsonProcessingException {
+	@GetMapping("/calendar/{userId}")
+	public String viewHome(Model model, @PathVariable String userId) throws JsonProcessingException {
 		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
 		
 		// Model Attributes
@@ -70,9 +72,18 @@ public class MyWorkChainAppController {
 		//logger.info("workHistoryEntityList : {}", workHistoryEntityList);
 		//model.addAttribute("workHistoryEntityList", workHistoryEntityList);
 		
+		// 로그인 User 조회
+		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
+		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		Calendar c1 = Calendar.getInstance();
+		String yyyyMM = sdf.format(c1.getTime());
+		logger.info("yyyyMM : {}", yyyyMM);
+		
 		WorkHistoryRequest request = new WorkHistoryRequest();
 		request.setUserId("Gabriel");
-		request.setYearMonth("201908");
+		request.setYearMonth(yyyyMM);
 		request.setStartDay(1);
 		request.setEndDay(31);
 		List<WorkHistoryEntity> workHistoryEntityList = workService.getWorkHistory(request);
@@ -136,9 +147,19 @@ public class MyWorkChainAppController {
 		return isNewWorkHistory;
 	}
 	
-	@GetMapping("/reward")
-	public String viewReward(Model model) {
+	@GetMapping("/reward/{userId}")
+	public String viewReward(Model model, @PathVariable String userId) {
 		if(logger.isDebugEnabled()) logger.debug("viewReward {}", model);
+		
+		// 로그인 User 조회
+		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
+		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		Calendar c1 = Calendar.getInstance();
+		String yyyyMM = sdf.format(c1.getTime());
+		logger.info("yyyyMM : {}", yyyyMM);
+		
 		
 		// template name
 		return "app/reward";
@@ -152,10 +173,15 @@ public class MyWorkChainAppController {
 		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
 		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		Calendar c1 = Calendar.getInstance();
+		String yyyyMM = sdf.format(c1.getTime());
+		logger.info("yyyyMM : {}", yyyyMM);
+		
 		// 근무기록 조회
 		WorkHistoryRequest request = new WorkHistoryRequest();
 		request.setUserId(user.getUserId());
-		request.setYearMonth("201908");
+		request.setYearMonth(yyyyMM);
 		request.setStartDay(1);
 		request.setEndDay(31);
 	
