@@ -237,4 +237,26 @@ public class MyWorkChainAppController {
 		// template name
 		return "app/qrstamp";
 	}
+	
+	@GetMapping("/qrscan/{userId}")
+	public String viewQrscan(Model model, @PathVariable String userId) {
+		if(logger.isDebugEnabled()) logger.debug("viewQrscan {}", model);
+		
+		// 로그인 User 조회
+		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
+		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		Calendar c1 = Calendar.getInstance();
+		String yyyyMM = sdf.format(c1.getTime());
+		logger.info("yyyyMM : {}", yyyyMM);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("balance", rewardService.getBalance(user.getEmplAddress()));
+		logger.info("user.getEmplAddress : {}.{}", user.getUserId(), user.getEmplAddress());
+
+		
+		// template name
+		return "app/qrscan";
+	}
 }

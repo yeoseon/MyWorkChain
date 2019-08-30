@@ -152,15 +152,21 @@ $(function() {
 							console.log('업무 시작 필요 !!');
 							$('#start_work').prop('disabled', false);
 							$('#end_work').prop('disabled', true);
+							$('#start_qr').prop('disabled', false);
+							$('#end_qr').prop('disabled', true);
 						}else{
 							if(!data.workEndYmd || !data.workEndTime){
 								console.log('업무 시작 중 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', false);
+								$('#start_qr').prop('disabled', true);
+								$('#end_qr').prop('disabled', false);
 							}else{
 								console.log('업무 종료 완료 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', true);
+								$('#start_qr').prop('disabled', true);
+								$('#end_qr').prop('disabled', true);
 							}
 						}
 					}
@@ -211,7 +217,7 @@ $(function() {
 		//alert("The current date of the calendar is " + date.toISOString());
 		
 		// New Work History
-		$.ajax({
+ 		$.ajax({
 			type : "POST", //요청 메소드 타입
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
@@ -244,7 +250,7 @@ $(function() {
 		//alert("The current date of the calendar is " + date.toISOString());
 		
 		// New Work History
-		$.ajax({
+ 		$.ajax({
 			type : "PATCH", //요청 메소드 타입
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
@@ -270,6 +276,72 @@ $(function() {
 			}
 		});
 	});
+	
+	// 업무 시작 (QR)
+	$('#start_qr').on('click', function(e){
+		console.log("start_work with QR");
+		$('#modal-commute').modal('hide');
+		$('#qrcode').html("");
+		$('#qrmodal-commute').modal('show');
+
+		data = JSON.stringify({
+			//로그인 아이디
+			userId : LOGIN_ID,
+			//근무 구분 코드 (01: 출근, 02: 퇴근)
+			workCode : WORK_CODE_START,
+			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
+			workPlaceCode : '01',
+			//위도
+			latitude : 126.456209,
+			//경도
+			longitude : 37.440220,
+		});
+		console.log(data);
+		
+		var qrcode = new QRCode(document.getElementById("qrcode"), {
+	        text: data,
+	        width: 256,
+	        height: 256,
+	        colorDark : "#000000",
+	        colorLight : "#ffffff",
+	        correctLevel : QRCode.CorrectLevel.H
+	    });
+	 
+	    $("#qrcode > img").css({"margin":"auto"});
+		
+	});
+	// 업무 종료 (QR)
+	$('#end_qr').on('click', function(e){
+		console.log("end_work with QR");
+		
+		$('#modal-commute').modal('hide');
+		$('#qrcode').html("");
+		$('#qrmodal-commute').modal('show');
+
+		data = JSON.stringify({
+			//로그인 아이디
+			userId : LOGIN_ID,
+			//근무 구분 코드 (01: 출근, 02: 퇴근)
+			workCode : WORK_CODE_END,
+			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
+			workPlaceCode : '01',
+			//위도
+			latitude : 126.456209,
+			//경도
+			longitude : 37.440220,
+		});
+		
+		var qrcode = new QRCode(document.getElementById("qrcode"), {
+	        text: data,
+	        width: 256,
+	        height: 256,
+	        colorDark : "#000000",
+	        colorLight : "#ffffff",
+	        correctLevel : QRCode.CorrectLevel.H
+	    });
+	 
+	    $("#qrcode > img").css({"margin":"auto"});
+	});
 });
 
 function memu_click(url){
@@ -288,7 +360,7 @@ function market_click(url){
 	id = sessionStorage.getItem("id");
 	
 	//window.open('http://localhost:8080?userId='+id, '_blank');
-	window.open('http://172.16.2.160:8080?userId='+id, '_blank');
-	
+	//window.open('http://172.16.2.160:8080?userId='+id, '_blank');
+	window.open('http://192.168.0.18:8080?userId='+id, '_blank');
 }
 </script>
