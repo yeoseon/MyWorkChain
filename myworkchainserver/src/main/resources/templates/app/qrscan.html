@@ -7,16 +7,16 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="context-path" th:content="@{/}" />
 <!-- include css definitions -->
-<th:block th:include="app/include-css"></th:block>
+<th:block th:include="app/include-css"></th:block> 
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
 
 	<!-- include javascript libraries definitions -->
 	<th:block th:include="app/include-script"></th:block>
 	<!-- script -->
-	<th:block th:include="app/home-js"></th:block>
-	<script th:src="@{/js/qrcode.js}"></script>
-	
+	<th:block th:include="app/func-js"></th:block>
+	<script th:src="@{/js/instascan.min.js}"></script>
+
 	<!-- Site wrapper -->
 	<div class="wrapper" style="height: auto; min-height: 100%;">
 
@@ -41,13 +41,13 @@
 					<ul class="nav navbar-nav">
 						<li>
 							<a id="geo" href="#" th:object="${user}">
-								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}">근무위치</span>
+								<span id="geo-tooltip" data-toggle="tooltip" data-placement="bottom" th:text="'위치 : ' + *{workPlaceName}"></span>
 							</a>
 						</li>
 						<li class="dropdown user user-menu">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" th:object="${user}">
 								<img th:src="@{/imgs/gabriel.jpeg}" class="user-image" alt="User Image">
-								<span class="hidden-xs">Gabriel</span>
+								<span class="hidden-xs" th:text="*{name}">Gabriel</span>
 							</a>
 						</li>
 						<li class="dropdown messages-menu">
@@ -103,17 +103,31 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					캘린더<small>업무를 시작하고 종료하세요.</small>
+					QR Scan <small></small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-calendar"></i> Home</a></li>
-					<li class="active">Calendar</li>
+					<li class="active">QR</li>
 				</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
-				<div id='calendar'></div>
+				<div id='qrscan' align="center">
+					<video id="preview"></video>
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header" th:object="${user}">
+								<h3 class="box-title" th:text="'QR Scanning 결과'"></h3>
+							</div>
+							<div class="box-body">
+								<div class="dataTables_wrapper form-inline dt-bootstrap">
+									<h3 id="scan_data"></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</section>
 			<!-- /.content -->
 		</div>
@@ -125,54 +139,35 @@
 			</div>
 			<strong>Copyright © 2019 <a href="http://bankwareglobal.com">BankwareGlobal FinLab</a>.
 			</strong> All rights reserved. -->
-			<img th:src="@{/imgs/avatar5.png}" class="user-image" alt="User Image">
+			<!-- <img th:src="@{/imgs/avatar5.png}" class="user-image" alt="User Image"> -->
 			<!--주52시간 progress bar-->
 		</footer>
 	</div>
 	<!-- ./wrapper -->
 	
-	<!-- 업무 시작/종료 Modal -->
-	<div class="modal modal-center fade" id="modal-commute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-center" role="document">
-	    	<div class="modal-content">
-   		      	<div class="modal-header">
-				  	<h5 class="modal-title" id="modal-commute-date">Modal title</h5>
-				  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				   	 	<span aria-hidden="true">&times;</span>
-				  	</button>
-				</div>
-	      		<div class="modal-body">
-				    <button id="start_work" type="button" class="btn btn-primary btn-lg btn-block">업무시작(GEO)</button>
-				    <button id="start_qr" type="button" class="btn btn-primary btn-lg btn-block">업무시작(QR)</button>
-				    <button id="end_work" type="button" class="btn btn-secondary btn-lg btn-block" disabled>업무종료(GEO)</button>
-				    <button id="end_qr" type="button" class="btn btn-secondary btn-lg btn-block" disabled>업무종료(QR)</button>
-	      		</div>
-	      		<div class="modal-footer">
-	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-	  	</div>
-	</div>
-	
-	<!-- 업무 시작/종료 QRModal -->
-	<div class="modal modal-center fade" id="qrmodal-commute" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-center" role="document">
-	    	<div class="modal-content">
-   		      	<div class="modal-header">
-				  	<h5 class="modal-title" id="qrmodal-commute-date">Modal - 출/퇴근 QR</h5>
-				  	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				   	 	<span aria-hidden="true">&times;</span>
-				  	</button>
-				</div>
-	      		<div class="modal-body">
-				    <div id="qrcode"></div>
-	      		</div>
-	      		<div class="modal-footer">
-	       		 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-	  	</div>
-	</div>
-	
+    <script type="text/javascript">
+      	let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      	console.log(scanner);
+      	//console.log(Instascan.Camera.getCameras().length);
+      	//cameras = Instascan.Camera.getCameras();
+      	//console.log(cameras.length);
+      	//$('#scan_data').text("aaaa");
+       	scanner.addListener('scan', function (content) {
+        	console.log(content);
+        	$('#scan_data').text(JSON.stringify(JSON.parse(content), null, 2));
+      	});
+        Instascan.Camera.getCameras().then(function (cameras) {
+        	console.log(cameras);
+        	if (cameras.length > 0) {
+        		console.log(cameras[0].name);
+          		scanner.start(cameras[0]);
+        	} else {
+          		console.error('No cameras found.');
+        	}
+      	}).catch(function (e) {
+        	console.error(e);
+      	});
+    </script>
+    
 </body>
 </html>

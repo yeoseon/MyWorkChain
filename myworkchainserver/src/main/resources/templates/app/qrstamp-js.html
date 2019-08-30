@@ -208,10 +208,9 @@ $(function() {
 	$('#start_work').on('click', function(e){
 		console.log("start_work");
 		$('#modal-commute').modal('hide');
+		$('#qrcode').html("");
 		$('#qrmodal-commute').modal('show');
-		
-		
-		
+
 		var qrcode = new QRCode(document.getElementById("qrcode"), {
 	        text: "Work Start!!!",
 	        width: 256,
@@ -246,7 +245,8 @@ function market_click(url){
 	id = sessionStorage.getItem("id");
 	
 	//window.open('http://localhost:8080?userId='+id, '_blank');
-	window.open('http://172.16.2.160:8080?userId='+id, '_blank');
+	//window.open('http://172.16.2.160:8080?userId='+id, '_blank');
+	window.open('http://192.168.0.18:8080?userId='+id, '_blank');
 	
 }
 </script>
