@@ -105,13 +105,13 @@
 	margin-bottom: 20px!important;
 }
 .item-wrapper {
-	border: 1px solid #ddd;
+	/* border: 1px solid #ddd; */
 	margin-bottom: 20px;
 	border-radius: 10px;
 }
 /* <<<<<  Common  >>>>>>*/
 .page-content {
-	/* TODO: 이걸 margin으로 두니까 Scroll이 발생함..*/
+	/* TODO: �씠嫄� margin�쑝濡� �몢�땲源� Scroll�씠 諛쒖깮�븿..*/
 /* 	margin-top: 55px; */
 	display: flex;
 }
@@ -146,7 +146,7 @@
     position: fixed;
 	top: 55px;
     right: 0;
-    /*main 쪽과 다르게 왼쪽 1px 포함되어있어 고려했음.*/
+    /*main 履쎄낵 �떎瑜닿쾶 �쇊履� 1px �룷�븿�릺�뼱�엳�뼱 怨좊젮�뻽�쓬.*/
     left: 201px;
     height: 95px;
     padding: 0;
@@ -441,4 +441,35 @@
 } 
 .paging-box .mdc-icon-button.disable:after, .paging-box .mdc-icon-button.disable:before {
 	background-color: white;
+}
+
+progress{
+  border: 1pt solid;
+  width: 200px;
+  height: 20px;
+  background: crimson;
+}
+
+.progress-green::-webkit-progress-value {
+  background-color:green;
+}
+
+.progress-green::-webkit-progress-bar {
+  background-color:#fff;
+}
+
+.progress-orange::-webkit-progress-value {
+  background-color:orange;
+}
+
+.progress-orange::-webkit-progress-bar {
+  background-color:#fff;
+}
+
+.progress-red::-webkit-progress-value {
+  background: red;
+}
+
+.progress-red::-webkit-progress-bar {
+  background: #fff;
 }
