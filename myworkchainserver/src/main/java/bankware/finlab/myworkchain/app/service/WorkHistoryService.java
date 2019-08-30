@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
+import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.common.repository.WorkHistoryRepository;
@@ -29,6 +30,7 @@ public class WorkHistoryService {
 																	.latitude(workHistoryDto.getLatitude())
 																	.longitude(workHistoryDto.getLongitude())
 																	.workPlaceCode(WorkHistoryConstant.WORK_PLACE_CODE_01)
+																	.reward(DataSourceConstant.VALUE_AMOUNT)
 																	.build();
 		return workHistoryRepository.save(workHistoryEntity);
 	}
