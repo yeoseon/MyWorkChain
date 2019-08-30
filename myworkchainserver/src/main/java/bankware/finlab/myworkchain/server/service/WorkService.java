@@ -155,6 +155,7 @@ public class WorkService {
 //					.longitude()
 					.workCode(_key.substring(8,10))
 					.workPlaceCode(_key.substring(10,12))
+					.reward(DataSourceConstant.VALUE_AMOUNT)
 				.build();
 			
 			workHistoryList.add(workHistoryEntity);
