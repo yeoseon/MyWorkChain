@@ -204,4 +204,37 @@ public class MyWorkChainAppController {
 		// template name
 		return "app/work";
 	}
+	
+	@GetMapping("/qrstamp/{userId}")
+	public String viewQrHome(Model model, @PathVariable String userId) throws JsonProcessingException {
+		if(logger.isDebugEnabled()) logger.debug("viewHome {}", model);
+		
+		// Model Attributes
+		//List<WorkHistoryEntity> workHistoryEntityList = workHistoryService.getWorkHistoryList(EMPL_ADDRESS);
+		//logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		//model.addAttribute("workHistoryEntityList", workHistoryEntityList);
+		
+		// 로그인 User 조회
+		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
+		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		Calendar c1 = Calendar.getInstance();
+		String yyyyMM = sdf.format(c1.getTime());
+		logger.info("yyyyMM : {}", yyyyMM);
+		
+		WorkHistoryRequest request = new WorkHistoryRequest();
+		request.setUserId(user.getUserId());
+		request.setYearMonth(yyyyMM);
+		request.setStartDay(1);
+		request.setEndDay(31);
+		List<WorkHistoryEntity> workHistoryEntityList = workService.getWorkHistory(request);
+		//logger.info("workHistoryEntityList : {}", workHistoryEntityList);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("workHistoryEntityList", workHistoryEntityList);
+		
+		// template name
+		return "app/qrstamp";
+	}
 }
