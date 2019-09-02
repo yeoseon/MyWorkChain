@@ -36,11 +36,15 @@ public class EmployeeEntity {
 	private String email;
 	// 휴대전화
 	private String phoneNumber;
+	@Transient
+	private int workValue; //직원 근무 시간 Progress 표시를 위한 value
+	@Transient
+	private String progressColor; //직원 근무시간 Progress 색
 	
 	
 	
 	@Builder
-	public EmployeeEntity(String userId, String emplAddress, String compAddress, String name, String currentWorkplaceCode, String workPlaceName, String department, String position, String joinDate, String email, String phoneNumber) {
+	public EmployeeEntity(String userId, String emplAddress, String compAddress, String name, String currentWorkplaceCode, String workPlaceName, String department, String position, String joinDate, String email, String phoneNumber, int workValue, String progressColor) {
 		this.userId = userId;
 		this.emplAddress = emplAddress;
 		this.compAddress = compAddress;
@@ -52,6 +56,8 @@ public class EmployeeEntity {
 		this.joinDate = joinDate;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
+		this.workValue = workValue;
+		this.progressColor = progressColor;
 	}
 	
 }

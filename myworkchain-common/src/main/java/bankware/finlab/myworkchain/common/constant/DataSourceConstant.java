@@ -23,4 +23,8 @@ public class DataSourceConstant {
 	
 	//Work History 등록시 리워드 제공 기준이 되는 출근 시각
 	public static final String REFERENCE_START_TIME = "09:30:00";
+	
+	//Employee의 Progress Bar 정보 (Sample)
+	public static final int[] workValue = {80, 52, 60, 40};
+	public static final String[] progressColor = {"red", "green", "red", "orange"}; 
 }
