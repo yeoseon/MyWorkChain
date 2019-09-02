@@ -14,5 +14,5 @@ public class SendRewardRequest {
 	private String receiverAddress;
 	
 	//리워드 양
-	private int valueAmount;
+	private double valueAmount;
 }
