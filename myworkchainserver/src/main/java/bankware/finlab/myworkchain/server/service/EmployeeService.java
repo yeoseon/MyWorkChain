@@ -130,6 +130,7 @@ public class EmployeeService {
 			EmployeeEntity emplItem = emplList.get(i);
 			emplItem.setWorkValue(DataSourceConstant.workValue[i]);
 			emplItem.setProgressColor(DataSourceConstant.progressColor[i]);
+			emplItem.setImgName(DataSourceConstant.imgName[i]);
 		}
 		
 		return emplList;

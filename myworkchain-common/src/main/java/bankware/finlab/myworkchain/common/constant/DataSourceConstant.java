@@ -27,4 +27,6 @@ public class DataSourceConstant {
 	//Employee의 Progress Bar 정보 (Sample)
 	public static final int[] workValue = {80, 52, 60, 40};
 	public static final String[] progressColor = {"red", "green", "red", "orange"}; 
+	//0:Gabriel, 1:Mickey, 2:Kevin, 3:Celine
+	public static final String[] imgName = {"gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg"};
 }
