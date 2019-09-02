@@ -2,7 +2,7 @@
 $(function() {
 	/* Variables */
 	var EMPL_ADDRESS = '0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0';
-	var LOGIN_ID = 'Gabriel';
+	//var LOGIN_ID = 'Gabriel';
 	var WORK_CODE_START='01';
 	var WORK_CODE_END='02';
 	
@@ -33,7 +33,7 @@ $(function() {
 		var startWorkStartYmd=moment(startWorkHistoryEntity.time).format('YYYYMMDD');
 		var startMilliSeconds = moment(startWorkHistoryEntity.time).valueOf();
 		var workHistory = {
-				title : '업무 종료를 하지 않으셨습니다.',
+				title : '업무시작',
 				start : startMilliSeconds,
 				end : null,
 				backgroundColor : null,
@@ -56,7 +56,7 @@ $(function() {
 				else rgbCode = '#1DDB16';
 				
 				// Calendar Model
-				workHistory.title = 'Working';
+				workHistory.title = '업무종료';
 				workHistory.end = endMilliSeconds;
 				workHistory.backgroundColor = rgbCode;
 				workHistory.borderColor = rgbCode;
@@ -89,7 +89,7 @@ $(function() {
 			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
-				url : BASE_CONTEXT_PATH + "work/history/"+LOGIN_ID+"/"+moment(clickedCalendarTodayYmd).format(),
+				url : BASE_CONTEXT_PATH + "work/history/"+id+"/"+moment(clickedCalendarTodayYmd).format(),
 				contentType : "application/json",
 				success : function(data, status, xhr) {
 					console.log(data);
@@ -155,14 +155,27 @@ $(function() {
 							$('#start_qr').prop('disabled', false);
 							$('#end_qr').prop('disabled', true);
 						}else{
-							if(!data.workEndYmd || !data.workEndTime){
+							console.log(data.length);
+							console.log(data[0].workCode);
+							//if(!data.workEndYmd || !data.workEndTime){
+							if(data.length == 1 && data[0].workCode == '01'){
 								console.log('업무 시작 중 !!');
+								$('#modal-commute-date').html(info.dateStr + ' > 업무 시작 중 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', false);
 								$('#start_qr').prop('disabled', true);
 								$('#end_qr').prop('disabled', false);
-							}else{
+							}else if(data.length == 2 && data[1].workCode == '02'){
 								console.log('업무 종료 완료 !!');
+								$('#modal-commute-date').html(info.dateStr + ' > 업무 종료 완료 !!');
+								$('#start_work').prop('disabled', true);
+								$('#end_work').prop('disabled', true);
+								$('#start_qr').prop('disabled', true);
+								$('#end_qr').prop('disabled', true);
+							} else {
+								alert("업무종료됨. 아직 나머지 workCode를 정의하지 않았음.")
+								console.log('업무 종료 완료 !!');
+								$('#modal-commute-date').html(info.dateStr + ' > 업무 종료 완료 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', true);
 								$('#start_qr').prop('disabled', true);
@@ -216,13 +229,22 @@ $(function() {
 		//var date = calendar.getDate();
 		//alert("The current date of the calendar is " + date.toISOString());
 		
+/* 		$('#modal-commute').modal('hide');
+		msg = "<h3>"+id+" 님, 업무시작이 정상 처리 되었습니다.<br> "
+				+ "Reward 100 포인트가 지급되었습니다.</h3>"
+				+ "- 근무지 " + $('#geo-tooltip').text() + "<br>"
+				+ "- 위도 : " + latitude + "<br>"
+				+ "- 경도 : " + longitude + "<br>";
+		$('#wkmodal').html(msg);
+		$('#wkmodal-commute').modal('show'); */
+		
 		// New Work History
- 		$.ajax({
+  		$.ajax({
 			type : "POST", //요청 메소드 타입
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
 				//로그인 아이디
-				userId : LOGIN_ID,
+				userId : id,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_START,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
@@ -235,8 +257,8 @@ $(function() {
 			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
-				alert("정상 처리 되었습니다.");
-				location.replace(BASE_CONTEXT_PATH+'calendar/'+ LOGIN_ID);
+				alert(id + "님, 업무시작이 정상 처리 되었습니다.");
+				location.replace(BASE_CONTEXT_PATH+'calendar/'+ id);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
@@ -255,7 +277,7 @@ $(function() {
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
 			data : JSON.stringify({
 				//로그인 아이디
-				userId : LOGIN_ID,
+				userId : id,
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_END,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
@@ -268,8 +290,8 @@ $(function() {
 			contentType : "application/json", //요청 컨텐트 타입 "application/x-www-form-urlencoded; charset=UTF-8"
 			//dataType : "json", //응답 데이터 형식 명시하지 않을 경우 자동으로 추측
 			success : function(data, status, xhr) {
-				alert("정상 처리 되었습니다.");
-				location.replace(BASE_CONTEXT_PATH+'calendar/'+ LOGIN_ID);
+				alert(id + "님, 업무종료가 정상 처리 되었습니다.");
+				location.replace(BASE_CONTEXT_PATH+'calendar/'+ id);
 			},
 			error : function(xhr, status, error) {
 				alert("에러 발생 !!");
@@ -286,7 +308,7 @@ $(function() {
 
 		data = JSON.stringify({
 			//로그인 아이디
-			userId : LOGIN_ID,
+			userId : id,
 			//근무 구분 코드 (01: 출근, 02: 퇴근)
 			workCode : WORK_CODE_START,
 			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
@@ -320,7 +342,7 @@ $(function() {
 
 		data = JSON.stringify({
 			//로그인 아이디
-			userId : LOGIN_ID,
+			userId : id,
 			//근무 구분 코드 (01: 출근, 02: 퇴근)
 			workCode : WORK_CODE_END,
 			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
