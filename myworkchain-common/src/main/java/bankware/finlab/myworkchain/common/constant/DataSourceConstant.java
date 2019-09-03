@@ -1,5 +1,7 @@
 package bankware.finlab.myworkchain.common.constant;
 
+import java.math.BigDecimal;
+
 //TODO : Properties로 관리할 정보 처리
 public class DataSourceConstant {
 	
@@ -29,4 +31,8 @@ public class DataSourceConstant {
 	public static final int[] workValue = {80, 52, 60, 40};
 	public static final String[] progressColor = {"red", "green", "red", "orange"}; 
 	public static final String[] imgName = {"gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg"};
+	
+	//위/경도 Sample Data
+	public static final BigDecimal latitude = BigDecimal.valueOf(37.440220);
+	public static final BigDecimal longitude = BigDecimal.valueOf(126.456209);
 }

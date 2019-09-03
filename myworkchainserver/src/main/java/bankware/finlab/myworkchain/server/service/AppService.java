@@ -51,6 +51,10 @@ public class AppService {
 	 */
 	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
+		//위/경도 정보를 못받아오는 현상해결을 위해 Sample 값으로 Setting
+		input.setLatitude(DataSourceConstant.latitude);
+		input.setLongitude(DataSourceConstant.longitude);
+		
 		//입력받은 input의 위/경도 소수점 6자리 절사
 		input.setLatitude(commonService.setScale(input.getLatitude()));
 		input.setLongitude(commonService.setScale(input.getLongitude()));
