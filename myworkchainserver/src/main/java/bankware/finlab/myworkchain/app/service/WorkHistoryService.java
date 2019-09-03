@@ -29,7 +29,7 @@ public class WorkHistoryService {
 																	.workCode(workHistoryDto.getWorkCode())
 																	.latitude(workHistoryDto.getLatitude())
 																	.longitude(workHistoryDto.getLongitude())
-																	.workPlaceCode(WorkHistoryConstant.WORK_PLACE_CODE_01)
+																	.workPlaceCode(workHistoryDto.getWorkPlaceCode())
 																	.reward(DataSourceConstant.VALUE_AMOUNT)
 																	.build();
 		return workHistoryRepository.save(workHistoryEntity);

@@ -5,6 +5,7 @@ $(function() {
 	//var LOGIN_ID = 'Gabriel';
 	var WORK_CODE_START='01';
 	var WORK_CODE_END='02';
+	var workPlaceCode = $("#geo-tooltip").data("workplacecode"); // user의 Current Place Code
 	
 	console.log(sessionStorage.getItem("id"));
 	id = sessionStorage.getItem("id");
@@ -239,6 +240,7 @@ $(function() {
 		$('#wkmodal-commute').modal('show'); */
 		
 		// New Work History
+		
   		$.ajax({
 			type : "POST", //요청 메소드 타입
 			url : BASE_CONTEXT_PATH + "work/history", //요청 경로
@@ -248,7 +250,7 @@ $(function() {
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_START,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
-				workPlaceCode : '02',
+				workPlaceCode : workPlaceCode,
 				//위도
 				latitude : latitude,
 				//경도
@@ -281,7 +283,7 @@ $(function() {
 				//근무 구분 코드 (01: 출근, 02: 퇴근)
 				workCode : WORK_CODE_END,
 				//근무지 구분 코드 (01: 서울 본사, 02: 송도)
-				workPlaceCode : '02',
+				workPlaceCode : workPlaceCode,
 				//위도
 				latitude : latitude,
 				//경도
@@ -312,7 +314,7 @@ $(function() {
 			//근무 구분 코드 (01: 출근, 02: 퇴근)
 			workCode : WORK_CODE_START,
 			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
-			workPlaceCode : '02',
+			workPlaceCode : workPlaceCode,
 			//위도
 			latitude : 126.456209,
 			//경도
@@ -346,7 +348,7 @@ $(function() {
 			//근무 구분 코드 (01: 출근, 02: 퇴근)
 			workCode : WORK_CODE_END,
 			//근무지 구분 코드 (01: 서울 본사, 02: 송도)
-			workPlaceCode : '02',
+			workPlaceCode : workPlaceCode,
 			//위도
 			latitude : 126.456209,
 			//경도
