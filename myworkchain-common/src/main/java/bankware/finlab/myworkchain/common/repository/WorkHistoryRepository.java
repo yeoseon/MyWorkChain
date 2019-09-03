@@ -12,4 +12,6 @@ public interface WorkHistoryRepository extends CrudRepository<WorkHistoryEntity,
 	List<WorkHistoryEntity> findWorkHistoryByUserIdAndTimeBetween(String userId, LocalDateTime now, LocalDateTime after);
 
 	List<WorkHistoryEntity> findWorkHistoryByUserId(String userId);
+	
+	WorkHistoryEntity findOneById(int id);
 }

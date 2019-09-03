@@ -69,7 +69,10 @@ public class AppService {
 		input.setTime(commonService.localdatetimeToDate(workHistoryDbItem.getTime()));
 		
 		//2. 근무 기록 (to Chain)
-		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
+		String newWorkToChainResponse = workService.newWorkHistoryToChain(input); //txId 반환
+		
+		//3. DB에 Chain 등록 결과 txId update
+		workHistoryService.updateTxId(workHistoryDbItem.getId(), newWorkToChainResponse);
 		
 		//3. 토큰 대상 여부 검사 TODO
 		Boolean isSendReward = _isSendReward(input);
@@ -90,7 +93,7 @@ public class AppService {
 		}
 		
 		//DB 등록, Chain 등록, 토큰 지급 모두 성공할 경우 true
-		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
+		if(newWorkToChainResponse != null && sendRewardResponse == true && newWorkToDBResponse == true) {
 			result = true;
 		}
 		

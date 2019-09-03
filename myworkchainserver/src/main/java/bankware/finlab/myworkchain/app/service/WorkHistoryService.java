@@ -53,4 +53,18 @@ public class WorkHistoryService {
 	public List<WorkHistoryEntity> getWorkHistoryList(String userId) {
 		return workHistoryRepository.findWorkHistoryByUserId(userId);
 	}
+	
+	
+	
+	/**
+	 * Chain에 값 등록시 반환받은 txId를 workHistory에 update 해준다. 
+	 * @param input
+	 * @param txId
+	 * @return boolean
+	 */
+	public void updateTxId(int id, String txId) {		
+		WorkHistoryEntity item = workHistoryRepository.findOneById(id);
+		item.setTxId(txId);
+		workHistoryRepository.save(item);
+	}
 }

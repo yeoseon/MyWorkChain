@@ -70,5 +70,6 @@ CREATE TABLE work_history (
 	latitude DECIMAL NOT NULL,
 	longitude DECIMAL NOT NULL,
 	work_place_code VARCHAR(50) NOT NULL,
-	reward INT NOT NULL
+	reward INT NOT NULL,
+	tx_id VARCHAR(50)
 );

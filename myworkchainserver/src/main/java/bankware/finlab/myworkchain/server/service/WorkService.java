@@ -36,13 +36,13 @@ public class WorkService {
 	/*
 	 * 근무 기록(Chain)
 	 */
-	public Boolean newWorkHistoryToChain(WorkHistoryDto request) throws JsonProcessingException  {
+	public String newWorkHistoryToChain(WorkHistoryDto request) throws JsonProcessingException  {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
 		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP); 
 
-		return response.getResult();
+		return response.getData().getTxId();
 	}
 	
 	private RestRequest _setNewWorkRequest(WorkHistoryDto request) {
