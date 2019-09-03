@@ -16,9 +16,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Setter
 @Entity
 @Table(name = "work_history")
 public class WorkHistoryEntity {
@@ -34,6 +36,7 @@ public class WorkHistoryEntity {
 	private BigDecimal longitude;
 	private String workPlaceCode;
 	private int reward;
+	private String txId;
 	
 	@Builder
 	public WorkHistoryEntity(int id, String userId, LocalDateTime time, String workCode, BigDecimal latitude, BigDecimal longitude, String workPlaceCode, int reward) {

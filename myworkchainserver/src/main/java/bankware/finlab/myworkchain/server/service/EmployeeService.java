@@ -113,6 +113,26 @@ public class EmployeeService {
 			employeeList.add(employee);
 		}
 		
+		/*
+		 * Progress Bar를 위한 Sample 정보  Setting
+		 */
+		employeeList = _settingProgressInfo(employeeList);
+		
 		return employeeList;
+	}
+	
+	/**
+	 * 직원 목록의 근무시간 Progress Bar 표시를 위한 Sample Data Setting 함수 (workValue, progressColor)
+	 */
+	private List<EmployeeEntity> _settingProgressInfo(List<EmployeeEntity> emplList) {
+		
+		for(int i = 0; i < emplList.size(); i++) {
+			EmployeeEntity emplItem = emplList.get(i);
+			emplItem.setWorkValue(DataSourceConstant.workValue[i]);
+			emplItem.setProgressColor(DataSourceConstant.progressColor[i]);
+			emplItem.setImgName(DataSourceConstant.imgName[i]);
+		}
+		
+		return emplList;
 	}
 }

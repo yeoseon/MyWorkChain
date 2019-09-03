@@ -51,6 +51,10 @@ public class AppService {
 	 */
 	public Boolean newWorkHistoryService(WorkHistoryDto input) throws JsonProcessingException, ParseException {
 		
+		//위/경도 정보를 못받아오는 현상해결을 위해 Sample 값으로 Setting
+		input.setLatitude(DataSourceConstant.latitude);
+		input.setLongitude(DataSourceConstant.longitude);
+		
 		//입력받은 input의 위/경도 소수점 6자리 절사
 		input.setLatitude(commonService.setScale(input.getLatitude()));
 		input.setLongitude(commonService.setScale(input.getLongitude()));
@@ -65,7 +69,10 @@ public class AppService {
 		input.setTime(commonService.localdatetimeToDate(workHistoryDbItem.getTime()));
 		
 		//2. 근무 기록 (to Chain)
-		Boolean newWorkToChainResponse = workService.newWorkHistoryToChain(input);
+		String newWorkToChainResponse = workService.newWorkHistoryToChain(input); //txId 반환
+		
+		//3. DB에 Chain 등록 결과 txId update
+		workHistoryService.updateTxId(workHistoryDbItem.getId(), newWorkToChainResponse);
 		
 		//3. 토큰 대상 여부 검사 TODO
 		Boolean isSendReward = _isSendReward(input);
@@ -77,7 +84,7 @@ public class AppService {
 			SendRewardRequest sendRewardRequest = new SendRewardRequest();
 			sendRewardRequest.setGiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getCompAddress()); //직원이 속한 기업 Address 호출하여 Setting
 			sendRewardRequest.setReceiverAddress(employeeRepository.findEmployeeByUserId(input.getUserId()).getEmplAddress()); //직원 id를 통해 Address 호출하여 Setting
-			Integer valueAmount = (int) (DataSourceConstant.VALUE_AMOUNT * (Math.pow(10, 18)));
+			double valueAmount = (DataSourceConstant.VALUE_AMOUNT * (Math.pow(10, 18)));
 			sendRewardRequest.setValueAmount(valueAmount); 
 			sendRewardResponse = rewardService.sendReward(sendRewardRequest); 
 		}
@@ -86,7 +93,7 @@ public class AppService {
 		}
 		
 		//DB 등록, Chain 등록, 토큰 지급 모두 성공할 경우 true
-		if(newWorkToChainResponse == true && sendRewardResponse == true && newWorkToDBResponse == true) {
+		if(newWorkToChainResponse != null && sendRewardResponse == true && newWorkToDBResponse == true) {
 			result = true;
 		}
 		

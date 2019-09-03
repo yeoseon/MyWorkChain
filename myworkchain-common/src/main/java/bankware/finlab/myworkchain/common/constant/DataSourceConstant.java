@@ -1,5 +1,7 @@
 package bankware.finlab.myworkchain.common.constant;
 
+import java.math.BigDecimal;
+
 //TODO : Properties로 관리할 정보 처리
 public class DataSourceConstant {
 	
@@ -23,4 +25,14 @@ public class DataSourceConstant {
 	
 	//Work History 등록시 리워드 제공 기준이 되는 출근 시각
 	public static final String REFERENCE_START_TIME = "09:30:00";
+	
+	//Employee의 Progress Bar 정보 (Sample)
+	//0:Gabriel, 1:Mickey, 2:Kevin, 3:Celine
+	public static final int[] workValue = {80, 52, 60, 40};
+	public static final String[] progressColor = {"red", "green", "red", "orange"}; 
+	public static final String[] imgName = {"gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg", "gabriel.jpeg"};
+	
+	//위/경도 Sample Data
+	public static final BigDecimal latitude = BigDecimal.valueOf(37.440220);
+	public static final BigDecimal longitude = BigDecimal.valueOf(126.456209);
 }

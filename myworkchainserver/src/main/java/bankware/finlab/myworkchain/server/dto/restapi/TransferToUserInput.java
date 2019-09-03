@@ -11,5 +11,5 @@ public class TransferToUserInput {
 	private String receiverAddress;
 	
 	@JsonProperty
-	private int valueAmount;
+	private double valueAmount;
 }

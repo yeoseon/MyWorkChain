@@ -55,7 +55,7 @@ public class RewardService {
 		String temp = response.getData().getBalance();
 		double doubleValue = Double.parseDouble(temp);
 		
-		doubleValue = (int) (doubleValue / (Math.pow(10, 18)));
+		doubleValue = (doubleValue / (Math.pow(10, 18)));
 		
 		return Double.toString(doubleValue);
 	}

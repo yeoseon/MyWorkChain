@@ -148,7 +148,7 @@ function memu_click(url){
 														<td th:text="${history.time}"></td>
 														<td th:if="${history.getWorkCode().toString().equals('01')}">출근</td>
 														<td th:if="${history.getWorkCode().toString().equals('02')}">퇴근</td>
-														<td th:if="${history.getWorkPlaceCode().toString().equals('01')}">서울지사</td>
+														<td th:if="${history.getWorkPlaceCode().toString().equals('01')}">서울본사</td>
 														<td th:if="${history.getWorkPlaceCode().toString().equals('02')}">송도지사</td>
 													</tr>
 												</tbody>

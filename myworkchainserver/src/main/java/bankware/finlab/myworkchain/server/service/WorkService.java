@@ -7,6 +7,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,13 +36,13 @@ public class WorkService {
 	/*
 	 * 근무 기록(Chain)
 	 */
-	public Boolean newWorkHistoryToChain(WorkHistoryDto request) throws JsonProcessingException  {
+	public String newWorkHistoryToChain(WorkHistoryDto request) throws JsonProcessingException  {
 		
 		RestRequest restRequest =_setNewWorkRequest(request);
 		
 		RestResponse response = commonService.callPost(commonService.objectToJson(restRequest), DataSourceConstant.POSTFIX_CHECK_STAMP); 
 
-		return response.getResult();
+		return response.getData().getTxId();
 	}
 	
 	private RestRequest _setNewWorkRequest(WorkHistoryDto request) {
@@ -120,23 +121,22 @@ public class WorkService {
 		for(Object stampKey : stampKeyList) {
 			String _key = (String)stampKey;
 			
-//			String timestampstr = (String)stampTimeList.get(stampNum);
-//			long timestamp = Long.parseLong(timestampstr);
-//			LocalDateTime triggerTime =
-//			        LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp*1000L), 
-//			                                TimeZone.getDefault().toZoneId()); 
+			String timestampstr = (String)stampTimeList.get(stampNum);
+			long timestamp = Long.parseLong(timestampstr);
+			LocalDateTime triggerTime =
+			        LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp*1000L), 
+			                                TimeZone.getDefault().toZoneId()); 
 			
-			
-			String dateInstring = "";
-			if(_key.substring(8,10).equals("01"))
-				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T09:30:00Z";
-			else if (_key.substring(8,10).equals("02"))
-				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T18:30:00Z";
-			
-			//System.out.println("dateInstring : " + dateInstring);
-			Instant instant = Instant.parse(dateInstring);
-			LocalDateTime triggerTime = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
-			//System.out.println("triggerTime : " + triggerTime);
+//			String dateInstring = "";
+//			if(_key.substring(8,10).equals("01"))
+//				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T09:30:00Z";
+//			else if (_key.substring(8,10).equals("02"))
+//				dateInstring = _key.substring(0,4)+"-"+_key.substring(4,6)+"-"+_key.substring(6,8)+"T18:30:00Z";
+//			
+//			//System.out.println("dateInstring : " + dateInstring);
+//			Instant instant = Instant.parse(dateInstring);
+//			LocalDateTime triggerTime = LocalDateTime.ofInstant(instant, ZoneId.of(ZoneOffset.UTC.getId()));
+//			//System.out.println("triggerTime : " + triggerTime);
 			
 			
 //			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d HH:mm:ss");
