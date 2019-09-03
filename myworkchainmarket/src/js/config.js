@@ -9,7 +9,7 @@ module.exports = {
     },
     walletAddress: {
       pd: '0x12368a52a75aaf4aa2dbdad636be57690141e093',
-      user: '0x425d268cb4075e809762eaf6644adb71fbae600d',
+      user: '0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0',
       market: '0x5afd0deaff628bfc66ffe9fbdf6e381d4278ce24'
     },
     txActionName: {
