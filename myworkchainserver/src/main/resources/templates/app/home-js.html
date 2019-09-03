@@ -87,6 +87,7 @@ $(function() {
 		events : calendarModel,
 		dateClick : function(info) {
 			var clickedCalendarTodayYmd = moment(info.dateStr).format('YYYYMMDD');
+			var clickedCalendarTodayYmd_v1 = moment(info.dateStr).format('YYYY-MM-DD');
 			// Get Work History
 			$.ajax({
 				type : "GET", //요청 메소드 타입
@@ -131,7 +132,7 @@ $(function() {
 						
 						// Data binding to Modal
 						// Title
-						$('#commute_date').html(clickedCalendarTodayYmd);
+						$('#commute_date').html(clickedCalendarTodayYmd_v1);
 						var hours = parseInt(workingMinutes / 60);
 						var minute = workingMinutes % 60;
 						$('#commute_time').html(hours + " hours " + minute + " minutes");
@@ -161,14 +162,14 @@ $(function() {
 							//if(!data.workEndYmd || !data.workEndTime){
 							if(data.length == 1 && data[0].workCode == '01'){
 								console.log('업무 시작 중 !!');
-								$('#modal-commute-date').html(info.dateStr + ' > 업무 시작 중 !!');
+								$('#modal-commute-date').html(info.dateStr + '<br>업무 시작 중 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', false);
 								$('#start_qr').prop('disabled', true);
 								$('#end_qr').prop('disabled', false);
 							}else if(data.length == 2 && data[1].workCode == '02'){
 								console.log('업무 종료 완료 !!');
-								$('#modal-commute-date').html(info.dateStr + ' > 업무 종료 완료 !!');
+								$('#modal-commute-date').html(info.dateStr + '<br>업무 종료 완료 !!');
 								$('#start_work').prop('disabled', true);
 								$('#end_work').prop('disabled', true);
 								$('#start_qr').prop('disabled', true);
