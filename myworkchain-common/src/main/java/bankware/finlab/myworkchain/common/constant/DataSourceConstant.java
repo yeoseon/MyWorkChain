@@ -11,7 +11,7 @@ public class DataSourceConstant {
 	public static final String BEARER_API = "sYjfGNX21yT4UUPMYczotVdAXAsUSjLQkpPpbkyN8qPZywgyoWqszkJiDuDXqMM9";
 	
 	//REST API POSTFIX
-	public static final String POSTFIX_COMPANY_USER_LIST = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
+	public static final String POSTFIX_COMPANY_USER_LIST = "companyUserList"; //getEmployeeAddressList의 API PostFix
 	public final static String POSTFIX_TRANSFER_TO_USER = "transfer2User";
 	public final static String POSTFIX_GET_BALANCE = "/MWC/MWRT/balance";
 	public final static String POSTFIX_CHECK_STAMP = "checkStamp";
