@@ -92,9 +92,9 @@ public class EmployeeService {
 		// 1. Server DB에 있는 직원 목록을 먼저 다 가져온 후 Mapping한다. 
 		for(Object emplAddress : emplAddressList) {
 			EmployeeEntity employee = new EmployeeEntity();
-			
+			String add = emplAddress.toString();
 			for(EmployeeEntity emplDataItem : emplListData) {
-				if(emplAddress.equals(emplDataItem.getEmplAddress())) {
+				if(add.equalsIgnoreCase(emplDataItem.getEmplAddress())) {
 					 employee = EmployeeEntity.builder()
 							 			.userId(emplDataItem.getUserId())
 							 			.emplAddress(emplDataItem.getEmplAddress())
