@@ -216,7 +216,7 @@ export default {
           {
             from: {
               // userKey: "Gabriel",
-              userKey: "Mickey",
+              userKey: this.userName,
               walletType: "LUNIVERSE"
             },
             inputs: {
@@ -242,7 +242,7 @@ export default {
                 inputs: {
                   _userId: {
                     // userKey: "Gabriel",
-                    userKey: "Mickey",
+                    userKey: this.userName,
                     walletType: "LUNIVERSE"
                   },
                   _itemId: 1,
