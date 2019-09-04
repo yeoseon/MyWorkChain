@@ -140,6 +140,7 @@ function memu_click(url){
 														<th>Date</th>
 														<th>출/퇴근</th>
 														<th>근무지</th>
+														<th>Transaction ID</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -150,6 +151,7 @@ function memu_click(url){
 														<td th:if="${history.getWorkCode().toString().equals('02')}">퇴근</td>
 														<td th:if="${history.getWorkPlaceCode().toString().equals('01')}">서울본사</td>
 														<td th:if="${history.getWorkPlaceCode().toString().equals('02')}">송도지사</td>
+														<td th:text="${history.txId}"></td>
 													</tr>
 												</tbody>
 											</table>

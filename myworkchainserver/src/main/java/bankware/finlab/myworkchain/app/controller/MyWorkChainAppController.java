@@ -184,19 +184,19 @@ public class MyWorkChainAppController {
 		EmployeeEntity user = employeeService.getEmployeeInfoById(userId);
 		user.setWorkPlaceName(companyService.getWorkPlaceName(user.getCurrentWorkplaceCode())); //user 근무지 코드 정보 이용해서 근무지 이름 조회
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-		Calendar c1 = Calendar.getInstance();
-		String yyyyMM = sdf.format(c1.getTime());
-		logger.info("yyyyMM : {}", yyyyMM);
-		
-		// 근무기록 조회
-		WorkHistoryRequest request = new WorkHistoryRequest();
-		request.setUserId(user.getUserId());
-		request.setYearMonth(yyyyMM);
-		request.setStartDay(1);
-		request.setEndDay(31);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+//		Calendar c1 = Calendar.getInstance();
+//		String yyyyMM = sdf.format(c1.getTime());
+//		logger.info("yyyyMM : {}", yyyyMM);
+//		
+//		// 근무기록 조회
+//		WorkHistoryRequest request = new WorkHistoryRequest();
+//		request.setUserId(user.getUserId());
+//		request.setYearMonth(yyyyMM);
+//		request.setStartDay(1);
+//		request.setEndDay(31);
 	
-		List<WorkHistoryEntity> workHistoryList = workService.getWorkHistory(request); 
+		List<WorkHistoryEntity> workHistoryList = workHistoryService.getWorkHistoryList(userId); 
 		
 		model.addAttribute("user", user);
 		model.addAttribute("workHistoryList", workHistoryList);
