@@ -78,6 +78,7 @@ $(function() {
 		plugins : [ 'interaction', 'dayGrid', 'timeGrid', 'interaction' ],
 		defaultView : 'dayGridMonth',
 		//defaultDate : '2019-08-07',
+		locale : "ko-kr",
 		selectable : true,
 		header : {
 			left : 'prev,next today',
@@ -384,8 +385,7 @@ function market_click(url){
 	//alert("id:"+sessionStorage.getItem("id"));
 	id = sessionStorage.getItem("id");
 	
-	//window.open('http://localhost:8080?userId='+id, '_blank');
-	//window.open('http://172.16.2.160:8080?userId='+id, '_blank');
-	window.open('http://172.18.100.251:8080/?userId='+id, '_blank');
+	window.open('http://localhost:8080?userId='+id, '_blank');
+
 }
 </script>
