@@ -177,7 +177,7 @@ export default {
   methods: {
     load() {
       this.axios
-        .get(`https://api.luniverse.io/tx/v1.0/histories?next=0`, {
+        .get(`https://api.luniverse.net/tx/v1.0/histories?next=0`, {
           headers: {
             Authorization: `Bearer ${this.apiKey}`,
             "products-Type": `application/json`
@@ -212,7 +212,7 @@ export default {
     purchase(productId) {
       this.axios
         .post(
-          `https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.transfer2PDA}`,
+          `https://api.luniverse.net/tx/v1.0/transactions/${this.txActionName.transfer2MWCA}`,
           {
             from: {
               userKey: "Gabriel",
@@ -232,7 +232,7 @@ export default {
         .then(() => {
           this.axios
             .post(
-              `https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.purchaseItem}`,
+              `https://api.luniverse.net/tx/v1.0/transactions/${this.txActionName.purchaseItem}`,
               {
                 from: {
                   userKey: "APIAddress",

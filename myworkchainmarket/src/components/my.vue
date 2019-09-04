@@ -94,7 +94,7 @@ export default {
     load() {
       this.axios
         .post(
-          `https://api.luniverse.io/tx/v1.0/transactions/${this.txActionName.purchaseList}`,
+          `https://api.luniverse.net/tx/v1.0/transactions/${this.txActionName.purchaseList}`,
           {
             from: {
               userKey: "Gabriel",

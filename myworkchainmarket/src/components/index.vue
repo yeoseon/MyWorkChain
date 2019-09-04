@@ -169,7 +169,7 @@ export default {
     load() {
       this.axios
         .get(
-          `https://api.luniverse.io/tx/v1.0/wallets/${this.walletAddress.user}/${this.mtSymbol}/${this.stSymbol}/${this.txActionName.balance}`,
+          `https://api.luniverse.net/tx/v1.0/wallets/${this.walletAddress.user}/${this.mtSymbol}/${this.stSymbol}/${this.txActionName.balance}`,
           {
             headers: {
               Authorization: `Bearer ${this.apiKey}`
