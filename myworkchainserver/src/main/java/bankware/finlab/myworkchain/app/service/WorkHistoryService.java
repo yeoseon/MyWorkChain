@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
-import bankware.finlab.myworkchain.common.constant.WorkHistoryConstant;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.common.repository.WorkHistoryRepository;
 

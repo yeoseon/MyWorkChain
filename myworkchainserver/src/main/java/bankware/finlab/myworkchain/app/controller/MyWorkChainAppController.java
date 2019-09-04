@@ -24,7 +24,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import bankware.finlab.myworkchain.app.dto.WorkHistoryDto;
 import bankware.finlab.myworkchain.app.service.WorkHistoryService;
-import bankware.finlab.myworkchain.common.constant.DataSourceConstant;
 import bankware.finlab.myworkchain.common.entity.EmployeeEntity;
 import bankware.finlab.myworkchain.common.entity.WorkHistoryEntity;
 import bankware.finlab.myworkchain.server.dto.WorkHistoryRequest;
@@ -58,7 +57,7 @@ public class MyWorkChainAppController {
 	private RewardService rewardService;
 	
 	// 하드 코딩, 추후 변경 필요 TODO
-	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
+//	private static final String EMPL_ADDRESS = "0xbfb07e725f66b2ac1187a5b134fbcf4a3f3beaf0";
 	
 	@GetMapping("/")
 	public String viewMain(Model model) {
