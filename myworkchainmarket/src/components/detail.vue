@@ -110,7 +110,6 @@
 <script>
 import Header from "@/components/header";
 import { Config } from "../js/config";
-import BigNumber from "bignumber.js";
 
 export default {
   components: {
@@ -221,7 +220,7 @@ export default {
             },
             inputs: {
               receiverAddress: this.walletAddress.market,
-              valueAmount: BigNumber(this.products[productId].price * 1000000000000000000)
+              valueAmount: this.products[productId].price + '000000000000000000'
             }
           },
           {
@@ -245,7 +244,7 @@ export default {
                     walletType: "LUNIVERSE"
                   },
                   _itemId: 1,
-                  _price: BigNumber(this.products[productId].price * 1000000000000000000)
+                  _price: this.products[productId].price + '000000000000000000'
                 }
               },
               {
