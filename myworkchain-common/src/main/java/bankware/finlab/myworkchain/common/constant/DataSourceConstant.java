@@ -8,14 +8,14 @@ public class DataSourceConstant {
 	//REST API
 	public static final String REST_API_URL_TRANSACTION = "https://api.luniverse.net/tx/v1.0/transactions/";
 	public static final String REST_API_URL_WALLET = "https://api.luniverse.net/tx/v1.0/wallets/";
-	public static final String BEARER_API = "XVgsnDtJLUTZhVh112swjeKyqGQDDgWAL2rJTtSdD2PZhsypjifapM8nFZVWCV2J";
+	public static final String BEARER_API = "sYjfGNX21yT4UUPMYczotVdAXAsUSjLQkpPpbkyN8qPZywgyoWqszkJiDuDXqMM9";
 	
 	//REST API POSTFIX
 	public static final String POSTFIX_COMPANY_USER_LIST = "companyUserListV1"; //getEmployeeAddressList의 API PostFix
 	public final static String POSTFIX_TRANSFER_TO_USER = "transfer2User";
 	public final static String POSTFIX_GET_BALANCE = "/MWC/MWRT/balance";
-	public final static String POSTFIX_CHECK_STAMP = "checkStampV2";
-	public final static String POSTFIX_STAMP_LIST = "stampListV2";
+	public final static String POSTFIX_CHECK_STAMP = "checkStamp";
+	public final static String POSTFIX_STAMP_LIST = "stampList";
 	
 	//Wallet Address
 	public static final String COMPANY_ADDRESS = "0x68d6d94a83d8348f15db84b00e4fb02521872c5d";
