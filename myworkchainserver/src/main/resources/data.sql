@@ -5,7 +5,7 @@ CREATE TABLE system_info (
 );
 
 INSERT INTO system_info (mwc_address) VALUES
- ('0xf2852cc72bed2cb039464d347154331fdd4d8491');
+ ('0x88efddaf6053c06cfe9c254d4952e319ddae3cba');
 
  
 DROP TABLE IF EXISTS company;
@@ -19,7 +19,7 @@ CREATE TABLE company (
 );
 
 INSERT INTO company (comp_address, mwc_address, comp_name, location, use_yn) VALUES
- ('0x69f2d1bdc2430a3a067620f617fec3100b892d54','0xf2852cc72bed2cb039464d347154331fdd4d8491', 'SL2', '서울특별시 중구 소공동 통일로 86', true);
+ ('0x68d6d94a83d8348f15db84b00e4fb02521872c5d','0x88efddaf6053c06cfe9c254d4952e319ddae3cba', 'BWG', '서울특별시 중구 소공동 통일로 86', true);
  
  
 DROP TABLE IF EXISTS work_place;
@@ -35,8 +35,8 @@ CREATE TABLE work_place (
 );
 
 INSERT INTO work_place (work_code, comp_address, work_name, work_address, longitude, latitude, work_use_yn) VALUES
- ('01', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '서울본사', '서울특별시 중구 소공동 통일로 86', '126.969542', '37.563264', true),
- ('02', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', '송도지사', '인천광역시 중구 영종해안남로321번길 208', '126.456209', '37.440220', true);
+ ('01', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', '서울본사', '서울특별시 중구 소공동 통일로 86', '126.969542', '37.563264', true),
+ ('02', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', '송도지사', '인천광역시 중구 영종해안남로321번길 208', '126.456209', '37.440220', true);
 
 DROP TABLE IF EXISTS employee;
 
@@ -54,10 +54,10 @@ CREATE TABLE employee (
 );
 
 INSERT INTO employee (user_id, empl_address, comp_address, name, current_workplace_code, department, position, join_date, email, phone_number) VALUES
- ('Gabriel', '0xbFB07E725F66B2aC1187a5B134FbCF4a3f3bEaF0', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Gabriel', '02', '개발팀', '매니저', '2019-02-18', 'dongshik.lee@gmail.com', '010-1111-1111'),
- ('Kevin', '0x425d268cB4075e809762eaf6644ADB71fBAe600D', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Kevin', '01', '개발팀', '매니저', '2013-07-01', 'kylee1112@hotmail.com', '010-1111-1111'),
- ('Mickey', '0xf537938cC1A409db6eAeB557889795C28467Af96', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Mickey', '01', '개발팀', '매니저', '2015-03-01', 'Sjh8341@gmail.com', '010-1111-1111'),
- ('Celine', '0xF1568fdE338a2641fEe85Dd2d3a936e0dEed4aAD', '0x69f2d1bdc2430a3a067620f617fec3100b892d54', 'Celine', '02', '개발팀', '매니저', '2019-01-21', 'devyyskr@gmail.com', '010-1111-1111');
+ ('Gabriel', '0xf99c71b2cd6e4edeb115cefb409375735a5ff118', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', 'Gabriel', '02', '개발팀', '매니저', '2019-02-18', 'dongshik.lee@gmail.com', '010-1111-1111'),
+ ('Kevin', '0xfbb28cf625ea359c52ffc8464bd21f4878751aec', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', 'Kevin', '01', '개발팀', '매니저', '2013-07-01', 'kylee1112@hotmail.com', '010-1111-1111'),
+ ('Mickey', '0xaf5d1424e08522cb86cffc9212379ff328d63673', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', 'Mickey', '01', '개발팀', '매니저', '2015-03-01', 'Sjh8341@gmail.com', '010-1111-1111'),
+ ('Celine', '0xF1568fdE338a2641fEe85Dd2d3a936e0dEed4aAD', '0x68d6d94a83d8348f15db84b00e4fb02521872c5d', 'Celine', '02', '개발팀', '매니저', '2019-01-21', 'devyyskr@gmail.com', '010-1111-1111');
 
 /* WORK HISTORY */
 DROP TABLE IF EXISTS work_history;
