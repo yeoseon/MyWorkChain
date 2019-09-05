@@ -20,4 +20,3 @@
  > Spec - Spring Boot, JQuery
 
  - Market : 직원의 리워드 포인트로 상품 구매, 상품 구매내역 조회
- > Spec - Node.js, Vue.js
