@@ -1,3 +1,9 @@
+# 개요
+
+[UDC 2019](https://udc.upbit.com/special_event/hackaton) 출전을 위한 2019.08 ~ 2019.09 동안의 MyWorkChain 개발 프로젝트
+
+---
+
 # 블록체인기반 리워드형 근무기록 관리 서비스, MyWorkChain (by SL2)
 
 **MyWorkChain**은 근무 기록을 안전하고 투명하게 관리하기 위한 블록체인 기반의 리워드형 근무 기록 서비스 플랫폼입니다.
